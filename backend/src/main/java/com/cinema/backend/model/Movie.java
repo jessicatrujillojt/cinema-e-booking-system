@@ -1,5 +1,6 @@
 package com.cinema.backend.model;
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class Movie {
@@ -83,4 +84,8 @@ public class Movie {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public List<String> getShowtimes() {
+    return List.of("2:00 PM", "5:00 PM", "8:00 PM");
+}
 }
