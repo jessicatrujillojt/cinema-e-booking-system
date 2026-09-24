@@ -137,3 +137,174 @@ button {
     cursor: pointer;
     margin: 10px auto;
 }
+
+/* BROWSE MOVIES PAGE */
+
+.browse-page {
+    padding: 35px 45px;
+    background-color: white;
+    min-height: 100vh;
+}
+
+.browse-page h2 {
+    font-size: 40px;
+    margin: 0 0 45px 10px;
+}
+
+
+/* FILTER / SEARCH AREA */
+
+.browse-controls {
+    display: flex;
+    align-items: flex-end;
+    gap: 40px;
+    padding: 0 10px;
+    margin-bottom: 25px;
+}
+
+
+/* Genre / Show Date */
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-group label {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.filter-group select {
+    width: 160px;
+    height: 42px;
+
+    padding: 0 12px;
+
+    background-color: white;
+
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+
+    font-size: 14px;
+}
+
+
+/* Search */
+
+.search-container {
+    display: flex;
+    align-items: center;
+
+    width: 420px;
+    height: 45px;
+
+    margin-left: auto;
+    padding: 0 15px;
+
+    background-color: #eee8f0;
+
+    border-radius: 25px;
+}
+
+.search-container input {
+    flex: 1;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    font-size: 15px;
+
+    padding: 0 10px;
+}
+
+.search-container input::placeholder {
+    color: #777777;
+}
+
+
+/* MOVIE GRID */
+
+.movie-grid {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 15px;
+
+    padding: 0 10px;
+}
+
+
+/* BROWSE MOVIE CARD */
+
+.browse-card {
+    border: 1px solid #dddddd;
+
+    border-radius: 7px;
+
+    overflow: hidden;
+
+    background-color: white;
+}
+
+.browse-card img {
+    width: 100%;
+    height: 210px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* Card information */
+
+.browse-card-content {
+    padding: 10px;
+}
+
+.browse-card-content h3 {
+    margin: 0 0 8px 0;
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.browse-card-content p {
+    margin: 0 0 10px 0;
+
+    font-size: 11px;
+
+    color: #aaaaaa;
+}
+
+
+/* Details button */
+
+.details-button {
+    display: block;
+
+    width: 100%;
+
+    padding: 6px 0;
+
+    background-color: #e5e5e5;
+
+    border-radius: 6px;
+
+    text-align: center;
+
+    color: black;
+
+    font-size: 10px;
+
+    text-decoration: none;
+}
+
+.details-button:hover {
+    background-color: #d5d5d5;
+}
