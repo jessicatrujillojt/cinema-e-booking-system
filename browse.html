@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Movie Browsing</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+         <h1> Movie E-Booking System Title </h1>
+        <div class="navsection">
+            <p> <a href="browse.html">Browse</a></p>
+            <p><button type="button" class="login-btn" href="login.html">
+                 Login
+             </button>
+            </p>
+        </div>
+    </nav>
+
+
+    <!-- Main Browse Page -->
+    <main class="browse-page">
+
+        <h2>Browse Movies</h2>
+
+
+        <!-- Filters -->
+        <section class="browse-controls">
+
+            <!-- Genre -->
+            <div class="filter-group">
+                <label for="genre">Genre</label>
+
+                <select id="genre" name="genre">
+                    <option value="all">All Genres</option>
+                    <option value="action">Action</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="documentary">Documentary</option>
+                    <option value="drama">Drama</option>
+                    <option value="horror">Horror</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="romance">Romance</option>
+                    <option value="thriller">Thriller</option>
+                </select>
+            </div>
+
+
+            <!-- Show Date -->
+            <div class="filter-group">
+                <label for="show-date">Show Date</label>
+
+                <select id="show-date" name="show-date">
+                    <option value="all">&lt;Week day, Month Day&gt;</option>
+                    <option value="date1">&lt;Week day, Month Day&gt;</option>
+                    <option value="date2">&lt;Week day, Month Day&gt;</option>
+                    <option value="date3">&lt;Week day, Month Day&gt;</option>
+                </select>
+            </div>
+
+
+            <!-- Search -->
+            <div class="search-container">
+
+                <span class="search-icon">⌕</span>
+
+                <input
+                    type="text"
+                    id="movie-search"
+                    placeholder="I'm looking for..."
+                >
+
+                <span class="search-button">⌕</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- Movie Results -->
+        <section class="movie-grid">
+
+            <!-- Movie 1 -->
+            <article class="browse-card" data-title="Pearl" data-genre="Horror">
+
+                <img
+                    src="img/movieposter.jpg"
+                    alt="Movie poster"
+                >
+
+                <div class="browse-card-content">
+
+                    <h3>Pearl</h3>
+
+                    <p>
+                        Horror
+                    </p>
+
+                    <a href="details.html" class="details-button">
+                        Show Movie Details →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Movie 2 -->
+            <article class="browse-card" data-title="Batman" data-genre="Action">
+
+                <img
+                    src="img/movieposter.jpg"
+                    alt="Movie poster"
+                >
+
+                <div class="browse-card-content">
+
+                    <h3>Batman</h3>
+
+                    <p>
+                        Action
+                    </p>
+
+                    <a href="details.html" class="details-button">
+                        Show Movie Details →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Movie 3 -->
+            <article class="browse-card" data-title="Finding Nemo" data-genre="Comedy">
+
+                <img
+                    src="img/movieposter.jpg"
+                    alt="Movie poster"
+                >
+
+                <div class="browse-card-content">
+
+                    <h3>Finding Nemo</h3>
+
+                    <p>
+                      Comedy
+                    </p>
+
+                    <a href="details.html" class="details-button">
+                        Show Movie Details →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Movie 4 -->
+            <article class="browse-card" data-title="The Lord of the Rings" data-genre="Adventure">
+
+                <img
+                    src="img/movieposter.jpg"
+                    alt="Movie poster"
+                >
+
+                <div class="browse-card-content">
+
+                    <h3>The Lord of the Rings</h3>
+
+                    <p>
+                        Adventure
+                    </p>
+
+                    <a href="details.html" class="details-button">
+                        Show Movie Details →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Movie 5 -->
+            <article class="browse-card" data-title="Hereditary" data-genre="Horror">
+
+                <img
+                    src="img/movieposter.jpg"
+                    alt="Movie poster"
+                >
+
+                <div class="browse-card-content">
+
+                    <h3>Hereditary</h3>
+
+                    <p>
+                        Horror
+                    </p>
+
+                    <a href="details.html" class="details-button">
+                        Show Movie Details →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Movie 6 -->
+            <article class="browse-card" data-title="White Chicks" data-genre="Comedy">
+
+                <img
+                    src="img/movieposter.jpg"
+                    alt="Movie poster"
+                >
+
+                <div class="browse-card-content">
+
+                    <h3>White Chicks</h3>
+
+                    <p>
+                        Comedy
+                    </p>
+
+                    <a href="details.html" class="details-button">
+                        Show Movie Details →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Movie 7 -->
+            <article class="browse-card" data-title="The Drama" data-genre="Drama">
+
+                <img
+                    src="img/movieposter.jpg"
+                    alt="Movie poster"
+                >
+
+                <div class="browse-card-content">
+
+                    <h3>The Drama</h3>
+
+                    <p>
+                        Drama
+                    </p>
+
+                    <a href="details.html" class="details-button">
+                        Show Movie Details →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Movie 8 -->
+            <article class="browse-card" data-title="Mission: Impossible" data-genre="Action">
+
+                <img
+                    src="img/movieposter.jpg"
+                    alt="Movie poster"
+                >
+
+                <div class="browse-card-content">
+
+                    <h3>Mission: Impossible</h3>
+
+                    <p>
+                        Action
+                    </p>
+
+                    <a href="details.html" class="details-button">
+                        Show Movie Details →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Movie 9 -->
+            <article class="browse-card" data-title="Midsommar" data-genre="Horror">
+
+                <img
+                    src="img/movieposter.jpg"
+                    alt="Movie poster"
+                >
+
+                <div class="browse-card-content">
+
+                    <h3>Midsommar</h3>
+
+                    <p>
+                        Horror
+                    </p>
+
+                    <a href="details.html" class="details-button">
+                        Show Movie Details →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Movie 10 -->
+            <article class="browse-card" data-title="Jumanji" data-genre="Adventure">
+
+                <img
+                    src="img/movieposter.jpg"
+                    alt="Movie poster"
+                >
+
+                <div class="browse-card-content">
+
+                    <h3>Jumanji</h3>
+
+                    <p>
+                        Adventure
+                    </p>
+
+                    <a href="details.html" class="details-button">
+                        Show Movie Details →
+                    </a>
+
+                </div>
+
+            </article>
+
+        </section>
+        <p id="no-results" class="no-results">
+            SORRY WE CANNOT FIND WHAT YOU'RE LOOKING FOR...
+        </p>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Movie E-Booking System. All rights reserved.</p>
+    </footer>
+
+<script src="browse.js"></script
+</body>
+</html>
+
