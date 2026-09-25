@@ -308,3 +308,13 @@ button {
 .details-button:hover {
     background-color: #d5d5d5;
 }
+.details-button:hover {
+    background-color: #d5d5d5;
+}
+.no-results {
+    display: none;
+    text-align: center;
+    font-size: 36px;
+    margin: 70px auto; 
+    max-width: 700px; 
+}
