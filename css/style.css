@@ -37,6 +37,22 @@ a{
     color: rgb(0, 0, 0);
     text-decoration: none;
 }
+.dot0, .dot1, .dot2, .dot3{
+    color: rgb(0, 0, 0);
+    margin: 0px 2px;
+    background-color: rgb(255, 255, 255);
+}
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
 .frame{
     background-color: rgb(4, 4, 4);
@@ -102,7 +118,7 @@ a{
     display: block;
 }
 
-.card h4,
+.card h4, .card h3,
 .card h5,
 .card button {
     position: relative; /* ensures text sits ABOVE overlay */
@@ -111,6 +127,15 @@ a{
 
 .card h4 {
     margin: 2px 2px 1px 8px;
+}
+.card h3 {
+    margin: 2px 2px 1px 8px;
+}
+h3 {
+    margin: 2px 2px 1px 8px;
+}
+p {
+    margin: 2px 2px 20px 8px;
 }
 .card h5 {
     margin: 2px 2px 1px 8px;
@@ -136,4 +161,14 @@ button {
     width: 80%;
     cursor: pointer;
     margin: 10px auto;
+}
+.showtimes{
+    margin: 15px 2px 1px 25px;
+}
+.detailed{
+    margin: 2px 2px 1px 8px;;
+    display: block;
+}
+.time{
+    margin: 2px 2px 1px 8px;
 }
