@@ -55,7 +55,7 @@ The H2 database starts automatically with the Spring Boot application.
 
 No MySQL installation or database configuration is required.
 
-# Mac / Linux
+### Mac / Linux
 
 From the project root:
 
