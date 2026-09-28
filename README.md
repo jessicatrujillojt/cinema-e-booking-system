@@ -61,7 +61,9 @@ From the project root:
 
 ```bash
 ./run.sh
+```
 
-# Windows
+### Windows 
+```powershell
 .\run.bat
-
+```
