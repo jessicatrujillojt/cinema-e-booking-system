@@ -10,3 +10,4 @@ How to Run
    ./mvnw spring-boot:run
 5. The database is automatically seeded with the required movie data.
 6. Open home.html with Live Server.
+
