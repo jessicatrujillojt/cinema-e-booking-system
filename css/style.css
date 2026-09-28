@@ -355,3 +355,10 @@ button {
 .time{
     margin: 2px 2px 1px 8px;
 }
+#booking-poster {
+    width: 280px;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 20px auto;
+}

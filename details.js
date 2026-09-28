@@ -18,6 +18,11 @@ fetch(`http://localhost:8080/api/movies/${movieId}`)
             button.textContent = showtime;
             button.classList.add("time");
 
+            button.addEventListener("click", function() {
+                window.location.href =
+                    `booking page.html?movie=${encodeURIComponent(movie.title)}&time=${encodeURIComponent(showtime)}&poster=${encodeURIComponent(movie.posterUrl)}`;
+            });
+
             showtimeContainer.appendChild(button);
         });
     })
