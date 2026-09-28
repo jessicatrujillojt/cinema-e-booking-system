@@ -69,7 +69,7 @@
 
                 <div>
                     <h3>Adult</h3>
-                    <p>$15.00</p>
+                    <p>$10.00</p>
                 </div>
 
                 <div class="ticket-counter">
@@ -135,7 +135,7 @@
 
                 <div>
                     <h3>Senior</h3>
-                    <p>$10.00</p>
+                    <p>$9.00</p>
                 </div>
 
                 <div class="ticket-counter">
@@ -158,13 +158,33 @@
                         +
                     </button>
 
-                </div>
 
             </div>
 
         </section>
 
+        
 
+        <div class="seat-legend">
+
+    <div>
+        <span class="legend available"></span>
+        Available
+    </div>
+
+
+    <div>
+        <span class="legend selected"></span>
+        Selected
+    </div>
+
+
+    <div>
+        <span class="legend taken"></span>
+        Taken
+    </div>
+
+</div>
         <!-- Seating -->
         <section class="seating-section">
 
@@ -182,10 +202,10 @@
                     <span class="row-label">A</span>
 
                     <button class="seat" data-seat="A1">A1</button>
-                    <button class="seat" data-seat="A2">A2</button>
+                    <button class="seat taken" data-seat="A2">A2</button>
                     <button class="seat" data-seat="A3">A3</button>
                     <button class="seat" data-seat="A4">A4</button>
-                    <button class="seat" data-seat="A5">A5</button>
+                    <button class="seat taken" data-seat="A5">A5</button>
                     <button class="seat" data-seat="A6">A6</button>
 
                 </div>
@@ -198,7 +218,7 @@
 
                     <button class="seat" data-seat="B1">B1</button>
                     <button class="seat" data-seat="B2">B2</button>
-                    <button class="seat" data-seat="B3">B3</button>
+                    <button class="seat taken" data-seat="B3">B3</button>
                     <button class="seat" data-seat="B4">B4</button>
                     <button class="seat" data-seat="B5">B5</button>
                     <button class="seat" data-seat="B6">B6</button>
@@ -215,8 +235,8 @@
                     <button class="seat" data-seat="C2">C2</button>
                     <button class="seat" data-seat="C3">C3</button>
                     <button class="seat" data-seat="C4">C4</button>
-                    <button class="seat" data-seat="C5">C5</button>
-                    <button class="seat" data-seat="C6">C6</button>
+                    <button class="seat taken" data-seat="C5">C5</button>
+                    <button class="seat taken" data-seat="C6">C6</button>
 
                 </div>
 
@@ -227,8 +247,8 @@
                     <span class="row-label">D</span>
 
                     <button class="seat" data-seat="D1">D1</button>
-                    <button class="seat" data-seat="D2">D2</button>
-                    <button class="seat" data-seat="D3">D3</button>
+                    <button class="seat taken" data-seat="D2">D2</button>
+                    <button class="seat taken" data-seat="D3">D3</button>
                     <button class="seat" data-seat="D4">D4</button>
                     <button class="seat" data-seat="D5">D5</button>
                     <button class="seat" data-seat="D6">D6</button>
@@ -236,6 +256,7 @@
                 </div>
 
             </div>
+            <p id="seat-message" class="seat-message"></p>
 
         </section>
 
