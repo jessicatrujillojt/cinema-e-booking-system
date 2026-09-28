@@ -16,77 +16,34 @@
         </div>
     </nav>
     <div class="frame">
-        <iframe class="imgcover" 
-            src="https://www.youtube.com/embed/L5PW5r3pEOg" 
-            title="Pearl | Official Trailer HD | A24"  
-            allow="accelerometer; 
-            autoplay; 
-            clipboard-write; 
-            encrypted-media; 
-            gyroscope; 
-            picture-in-picture; 
-            web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-        </iframe>
+        <iframe
+            id="movie-trailer"
+            class="imgcover"
+            title="Movie Trailer"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+
+    </iframe>
     </div>
-    <h1>
-        Movie Title Here
-    </h1>
+    <h1 id="movie-title">Movie Title Here</h1>    
     <h3>Summary</h3>
-    <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quis dolore itaque atque maiores nulla amet placeat hic eum ad, ex expedita laborum distinctio dolores voluptate temporibus repudiandae possimus quas. </p>
+    <p id="movie-description">Movie description here</p>    
     <h3>Rating</h3>
-    <p> Enter Rating here </p>
-    <h3>Notable Cast</h3>
-    <p> Enter Cast here </p>
+    <p id="movie-rating">Movie rating here</p>
+
     <h2>Showtimes</h2>
     <div class="showtimes">
-        <h3> Date here </h3>
-        <div class="detailed">
-            <button onclick="window.location.href='details.html'" type="button" class="time" > Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
+        <div class="detailed" id="showtime-buttons">
         </div>
     </div>
-    <div class="showtimes">
-        <h3> Date here </h3>
-        <div class="detailed">
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-        </div>
-    </div>
-    <div class="showtimes">
-        <h3> Date here </h3>
-        <div class="detailed">
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-        </div>
-    </div>
-    <div class="showtimes">
-        <h3> Date here </h3>
-        <div class="detailed">
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-            <button type="button" class="time" href="details.html"> Movie Time Here</button>
-        </div>
-    </div>
+    
     <br>
     <br>
     <br>
     <footer>
     <p> &copy; 2024 Movie Poster Title. All rights reserved.</p>
     </footer>
+    <script src="details.js"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@ const params = new URLSearchParams(window.location.search);
 const movie = params.get("movie");
 const date = params.get("date");
 const time = params.get("time");
+const poster = params.get("poster");
 
 if (movie) {
     document.getElementById("booking-movie-title").textContent = movie;
@@ -15,6 +16,11 @@ if (date) {
 if (time) {
     document.getElementById("booking-time").textContent = time;
 }
+
+if (poster) {
+    document.getElementById("booking-poster").src = poster;
+}
+
 const prices = {
     adult: 10.00,
     child: 5.00,
