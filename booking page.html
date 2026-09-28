@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Booking Page</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+         <h1> Prototype Booking Page </h1>
+        <div class="navsection">
+            <p> <a href="browse.html">Browse</a></p>
+            <p><button type="button" class="login-btn" href="login.html">
+                 Login
+             </button>
+            </p>
+        </div>
+    </nav>
+
+     <!-- Booking Page -->
+    <main class="booking-page">
+
+        <h2>Book Your Tickets</h2>
+
+
+        <!-- Movie Information -->
+        <section class="booking-movie">
+
+            <img
+                id="booking-poster"
+                src="img/movieposter.jpg"
+                alt="Movie poster"
+            >
+
+            <div class="booking-movie-info">
+
+                <h3 id="booking-movie-title">
+                    Pearl
+                </h3>
+
+                <p>
+                    <strong>Date:</strong>
+                    <span id="booking-date">Friday, September 25</span>
+                </p>
+
+                <p>
+                    <strong>Showtime:</strong>
+                    <span id="booking-time">5:00 PM</span>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Tickets -->
+        <section class="ticket-section">
+
+            <h2>Tickets</h2>
+
+            <!-- Adult -->
+            <div class="ticket-row">
+
+                <div>
+                    <h3>Adult</h3>
+                    <p>$15.00</p>
+                </div>
+
+                <div class="ticket-counter">
+
+                    <button
+                        type="button"
+                        class="quantity-button"
+                        data-type="adult"
+                        data-action="minus">
+                        −
+                    </button>
+
+                    <span id="adult-quantity">0</span>
+
+                    <button
+                        type="button"
+                        class="quantity-button"
+                        data-type="adult"
+                        data-action="plus">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Child -->
+            <div class="ticket-row">
+
+                <div>
+                    <h3>Child</h3>
+                    <p>$5.00</p>
+                </div>
+
+                <div class="ticket-counter">
+
+                    <button
+                        type="button"
+                        class="quantity-button"
+                        data-type="child"
+                        data-action="minus">
+                        −
+                    </button>
+
+                    <span id="child-quantity">0</span>
+
+                    <button
+                        type="button"
+                        class="quantity-button"
+                        data-type="child"
+                        data-action="plus">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Senior -->
+            <div class="ticket-row">
+
+                <div>
+                    <h3>Senior</h3>
+                    <p>$10.00</p>
+                </div>
+
+                <div class="ticket-counter">
+
+                    <button
+                        type="button"
+                        class="quantity-button"
+                        data-type="senior"
+                        data-action="minus">
+                        −
+                    </button>
+
+                    <span id="senior-quantity">0</span>
+
+                    <button
+                        type="button"
+                        class="quantity-button"
+                        data-type="senior"
+                        data-action="plus">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Seating -->
+        <section class="seating-section">
+
+            <h2>Select Your Seats</h2>
+
+            <div class="screen">
+                SCREEN
+            </div>
+
+            <div class="seat-layout">
+
+                <!-- Row A -->
+                <div class="seat-row">
+
+                    <span class="row-label">A</span>
+
+                    <button class="seat" data-seat="A1">A1</button>
+                    <button class="seat" data-seat="A2">A2</button>
+                    <button class="seat" data-seat="A3">A3</button>
+                    <button class="seat" data-seat="A4">A4</button>
+                    <button class="seat" data-seat="A5">A5</button>
+                    <button class="seat" data-seat="A6">A6</button>
+
+                </div>
+
+
+                <!-- Row B -->
+                <div class="seat-row">
+
+                    <span class="row-label">B</span>
+
+                    <button class="seat" data-seat="B1">B1</button>
+                    <button class="seat" data-seat="B2">B2</button>
+                    <button class="seat" data-seat="B3">B3</button>
+                    <button class="seat" data-seat="B4">B4</button>
+                    <button class="seat" data-seat="B5">B5</button>
+                    <button class="seat" data-seat="B6">B6</button>
+
+                </div>
+
+
+                <!-- Row C -->
+                <div class="seat-row">
+
+                    <span class="row-label">C</span>
+
+                    <button class="seat" data-seat="C1">C1</button>
+                    <button class="seat" data-seat="C2">C2</button>
+                    <button class="seat" data-seat="C3">C3</button>
+                    <button class="seat" data-seat="C4">C4</button>
+                    <button class="seat" data-seat="C5">C5</button>
+                    <button class="seat" data-seat="C6">C6</button>
+
+                </div>
+
+
+                <!-- Row D -->
+                <div class="seat-row">
+
+                    <span class="row-label">D</span>
+
+                    <button class="seat" data-seat="D1">D1</button>
+                    <button class="seat" data-seat="D2">D2</button>
+                    <button class="seat" data-seat="D3">D3</button>
+                    <button class="seat" data-seat="D4">D4</button>
+                    <button class="seat" data-seat="D5">D5</button>
+                    <button class="seat" data-seat="D6">D6</button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Summary -->
+        <section class="booking-summary">
+
+            <h2>Summary</h2>
+
+            <div class="summary-row">
+
+                <strong>Selected Seats:</strong>
+
+                <span id="selected-seats">
+                    None
+                </span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <strong>Total:</strong>
+
+                <span id="total-price">
+                    $0.00
+                </span>
+
+            </div>
+
+            <button
+                type="button"
+                id="checkout-button"
+                class="checkout-button">
+
+                Continue to Checkout
+
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            &copy; 2024 Movie E-Booking System.
+            All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="booking.js"></script>
+
+</body>
+
+</html>
+    
