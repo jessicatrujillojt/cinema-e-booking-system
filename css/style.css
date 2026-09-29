@@ -4,23 +4,27 @@ body {
     box-sizing: border-box;
     font-family: sans-serif;
 }
+
 h1{
     margin: 5px;
     color: rgb(0, 0, 0);
+    font-family: "Instrument Serif", serif;
 }
-h2 {
+h2, h3, h4, h5, h6, p{
     margin: 5px;
     color: rgb(0, 0, 0);
+    font-family: "Lora", serif;
 }
 footer{
-    background-color: rgb(190, 190, 190);
+    background-color: rgb(232, 222, 233);
     color: rgb(0, 0, 0);
     text-align: center;
     font-size: 10px;
     padding: 5px;
+    font-family: "Lora", serif;
 }
 nav {
-background-color: rgb(254, 251, 251);
+background-color: rgb(232, 222, 233);
   color: rgb(0, 0, 0);
   display: flex;
   padding: 10px;
@@ -121,7 +125,10 @@ a{
 }
 
 .card h4, .card h3,
-.card h5,
+.card h5{
+    position: relative; /* ensures text sits ABOVE overlay */
+    z-index: 2;
+}
 .card button {
     position: relative; /* ensures text sits ABOVE overlay */
     z-index: 2;
@@ -149,7 +156,8 @@ p {
     overflow:auto;
 }
 button {
-    background-color: #383838;
+    font-family: "Lora", serif;
+    background-color: #3e1f48;
     color: white;
     border-radius: 35px;
 }
@@ -157,7 +165,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #383838;
+    background-color: #3e1f48;
     color: white;
     border: none;
     padding: 7px;
@@ -171,6 +179,7 @@ button {
 /* BROWSE MOVIES PAGE */
 
 .browse-page {
+    font-family: "Lora", serif;
     padding: 35px 45px;
     background-color: white;
     min-height: 100vh;
@@ -224,6 +233,7 @@ button {
 /* Search */
 
 .search-container {
+    
     display: flex;
     align-items: center;
 
@@ -328,7 +338,7 @@ button {
 
     text-align: center;
 
-    color: black;
+    color: #3e1f48;
 
     font-size: 10px;
 
@@ -420,7 +430,7 @@ button {
 
 .ticket-row p {
     margin: 0;
-    color: #777777;
+    color: #756576;
 }
 
 .ticket-counter {
@@ -436,7 +446,7 @@ button {
     border: none;
     border-radius: 50%;
 
-    background-color: #383838;
+    background-color: #3e1f48;
     color: white;
 
     font-size: 20px;
@@ -445,7 +455,7 @@ button {
 }
 
 .quantity-button:hover {
-    background-color: #555555;
+    background-color: #554357;
 }
 
 .ticket-counter span {
@@ -589,7 +599,7 @@ button {
 
     text-align: center;
 
-    color: red;
+    color: rgb(144, 0, 255);
 
     font-size: 16px;
 
