@@ -103,12 +103,15 @@ a{
 }
 
 .card {
-    flex: 0 0 180px;
-    height: 380px;
+    flex: 0 0 240px;
+    height: 390px;
     background: #dadada;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .card img {
@@ -127,9 +130,11 @@ a{
 
 .card h4 {
     margin: 2px 2px 1px 8px;
+    color: #636060;
 }
 .card h3 {
     margin: 2px 2px 1px 8px;
+    text-decoration:solid
 }
 h3 {
     margin: 2px 2px 1px 8px;
@@ -661,12 +666,11 @@ button {
 }
 */
 .detail-poster {
-    width: 270px;
-    height: auto;
+    width: 140px;
+    height: 210px;
     object-fit: cover;
     display: block;
-    margin: 30px auto;
-    border-radius: 8px;
+    margin: 0 auto 20px auto;
 }
 
 
