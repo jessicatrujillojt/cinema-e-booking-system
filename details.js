@@ -7,6 +7,9 @@ fetch(`http://localhost:8080/api/movies/${movieId}`)
         document.getElementById("movie-title").textContent = movie.title;
         document.getElementById("movie-description").textContent = movie.description;
         document.getElementById("movie-rating").textContent = movie.rating;
+
+        document.getElementById("movie-poster").src = movie.posterUrl;
+document.getElementById("movie-poster").alt = movie.title;
         document.getElementById("movie-trailer").src = movie.trailerUrl;
 
         const showtimeContainer =
