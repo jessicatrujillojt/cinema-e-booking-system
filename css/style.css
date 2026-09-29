@@ -103,8 +103,7 @@ a{
 }
 
 .card {
-    flex: 0 0 240px;
-    height: 390px;
+    flex: 0 0 220px;
     background: #dadada;
     border-radius: 10px;
     overflow: hidden;
