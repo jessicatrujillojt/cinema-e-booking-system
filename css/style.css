@@ -640,7 +640,7 @@ button {
 .checkout-button:hover {
     background-color: #555555;
 }
-/*
+
 .showtimes{
     margin: 15px 2px 1px 25px;
 }
@@ -651,6 +651,7 @@ button {
 .time{
     margin: 2px 2px 1px 8px;
 }
+/*
 #booking-poster {
     width: 280px;
     height: 420px;
@@ -659,3 +660,12 @@ button {
     margin: 0 auto 20px auto;
 }
 */
+.detail-poster {
+    width: 140px;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+

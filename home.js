@@ -23,7 +23,7 @@ fetch("http://localhost:8080/api/movies")
             title.textContent = movie.title;
 
             const description = document.createElement("h5");
-            description.textContent = movie.description;
+            description.textContent = movie.showtimes[0] ? `Showtime: ${movie.showtimes[0]}` : "No showtimes available";
 
             const button = document.createElement("button");
             button.textContent = "See Movie Details";
