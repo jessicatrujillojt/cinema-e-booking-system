@@ -661,11 +661,12 @@ button {
 }
 */
 .detail-poster {
-    width: 140px;
-    height: 210px;
+    width: 270px;
+    height: auto;
     object-fit: cover;
     display: block;
-    margin: 0 auto 20px auto;
+    margin: 30px auto;
+    border-radius: 8px;
 }
 
 
