@@ -1,5 +1,6 @@
 package com.cinema.backend.controller;
 
+import com.cinema.backend.dto.ChangePasswordRequest;
 import com.cinema.backend.dto.ForgotPasswordRequest;
 import com.cinema.backend.dto.LoginRequest;
 import com.cinema.backend.dto.LoginResult;
@@ -214,6 +215,51 @@ public ResponseEntity<?> resetPassword(
                 Map.of(
                         "success", true,
                         "message", "Password reset successfully."
+                )
+        );
+
+    } catch (IllegalArgumentException e) {
+
+        return ResponseEntity.badRequest().body(
+                Map.of(
+                        "success", false,
+                        "message", e.getMessage()
+                )
+        );
+    }
+}
+
+@PostMapping("/change-password")
+public ResponseEntity<?> changePassword(
+        @RequestBody ChangePasswordRequest request,
+        HttpSession session) {
+
+    Object userIdObject =
+            session.getAttribute("userId");
+
+    if (userIdObject == null) {
+        return ResponseEntity.status(401).body(
+                Map.of(
+                        "success", false,
+                        "message", "You must be logged in to change your password."
+                )
+        );
+    }
+
+    try {
+
+        Long userId = (Long) userIdObject;
+
+        authService.changePassword(
+                userId,
+                request.getCurrentPassword(),
+                request.getNewPassword()
+        );
+
+        return ResponseEntity.ok(
+                Map.of(
+                        "success", true,
+                        "message", "Password changed successfully."
                 )
         );
 

@@ -162,4 +162,32 @@ public void resetPassword(String token, String newPassword) {
 
     userRepository.save(user);
 }
+
+@Transactional
+public void changePassword(
+        Long userId,
+        String currentPassword,
+        String newPassword) {
+
+    User user = userRepository.findById(userId)
+            .orElseThrow(() ->
+                    new IllegalArgumentException("User not found.")
+            );
+
+    if (!passwordEncoder.matches(
+            currentPassword,
+            user.getPassword())) {
+
+        throw new IllegalArgumentException(
+                "Current password is incorrect."
+        );
+    }
+
+    String hashedPassword =
+            passwordEncoder.encode(newPassword);
+
+    user.setPassword(hashedPassword);
+
+    userRepository.save(user);
+}
 }

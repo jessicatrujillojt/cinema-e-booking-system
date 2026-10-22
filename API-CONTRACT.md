@@ -194,3 +194,47 @@ FE uses endpoints and formats listend, and BE must notify FE when a change is ma
 - Checks the current server session.
 - Returns whether a user is logged in.
 - Returns the logged-in user's ID and role when a valid session exists.
+
+### Change Password
+
+**Status:** IN PROGRESS
+
+**Method:** POST
+
+**Endpoint:**
+
+/api/auth/change-password
+
+**Frontend Sends:**
+
+{
+  "currentPassword": "Password123!",
+  "newPassword": "NewPassword456!"
+}
+
+**Successful Response:**
+
+{
+  "success": true,
+  "message": "Password changed successfully."
+}
+
+**Possible Errors:**
+
+{
+  "success": false,
+  "message": "You must be logged in to change your password."
+}
+
+{
+  "success": false,
+  "message": "Current password is incorrect."
+}
+
+**Backend Behavior:**
+
+- Requires an active logged-in session.
+- Uses the current session's userId.
+- Verifies the user's current password using BCrypt.
+- Hashes the new password before saving it.
+- Old password stops working after the change.
