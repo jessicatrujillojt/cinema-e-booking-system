@@ -1,9 +1,12 @@
 package com.cinema.backend.controller;
 
 import com.cinema.backend.dto.LoginRequest;
+import com.cinema.backend.dto.LoginResult;
 import com.cinema.backend.dto.RegisterRequest;
 import com.cinema.backend.model.User;
 import com.cinema.backend.service.AuthService;
+
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,7 +54,8 @@ public class AuthController {
     }
 
     @GetMapping("/verify")
-    public ResponseEntity<?> verifyAccount(@RequestParam String token) {
+    public ResponseEntity<?> verifyAccount(
+            @RequestParam String token) {
 
         try {
 
@@ -76,20 +80,38 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(
+            @RequestBody LoginRequest request,
+            HttpSession session) {
 
         try {
 
-            String role = authService.login(
+            LoginResult result = authService.login(
                     request.getEmailAddress(),
                     request.getPassword()
+            );
+
+            session.setAttribute(
+                    "userId",
+                    result.getUserId()
+            );
+
+            session.setAttribute(
+                    "emailAddress",
+                    request.getEmailAddress()
+            );
+
+            session.setAttribute(
+                    "role",
+                    result.getRole()
             );
 
             return ResponseEntity.ok(
                     Map.of(
                             "success", true,
                             "message", "Login successful.",
-                            "role", role
+                            "userId", result.getUserId(),
+                            "role", result.getRole()
                     )
             );
 
@@ -102,5 +124,47 @@ public class AuthController {
                     )
             );
         }
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(
+            HttpSession session) {
+
+        session.invalidate();
+
+        return ResponseEntity.ok(
+                Map.of(
+                        "success", true,
+                        "message", "Logout successful."
+                )
+        );
+    }
+
+    @GetMapping("/session")
+    public ResponseEntity<?> getSession(
+            HttpSession session) {
+
+        Object userId =
+                session.getAttribute("userId");
+
+        Object role =
+                session.getAttribute("role");
+
+        if (userId == null) {
+
+            return ResponseEntity.ok(
+                    Map.of(
+                            "loggedIn", false
+                    )
+            );
+        }
+
+        return ResponseEntity.ok(
+                Map.of(
+                        "loggedIn", true,
+                        "userId", userId,
+                        "role", role
+                )
+        );
     }
 }

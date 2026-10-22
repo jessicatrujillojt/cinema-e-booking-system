@@ -92,4 +92,105 @@ FE uses endpoints and formats listend, and BE must notify FE when a change is ma
   "message": "Invalid verification token."
 }
 
-**Note:** The verification endpoint is working, but the verification email is not being sent automatically yet.
+### Login
+
+**Status:** IN PROGRESS
+
+**Method:** POST
+
+**Endpoint:**
+
+/api/auth/login
+
+**Frontend Sends:**
+
+{
+  "emailAddress": "eman@gmail.com",
+  "password": "MyPass!20"
+}
+
+**Successful Response:**
+
+{
+  "success": true,
+  "message": "Login successful.",
+  "userId": 1,
+  "role": "CUSTOMER"
+}
+
+**Backend Behavior:**
+
+- Looks up the user by email address.
+- Compares the entered password to the stored BCrypt hash.
+- Rejects invalid email/password combinations.
+- Rejects customer accounts that are not ACTIVE.
+- Returns the user role as CUSTOMER or ADMIN.
+- Creates a server session for the logged-in user.
+
+**Possible Errors:**
+
+{
+  "success": false,
+  "message": "Invalid email or password."
+}
+
+{
+  "success": false,
+  "message": "Account is not verified. Please verify your account before logging in."
+}
+
+---
+
+### Logout
+
+**Status:** IN PROGRESS
+
+**Method:** POST
+
+**Endpoint:**
+
+/api/auth/logout
+
+**Successful Response:**
+
+{
+  "success": true,
+  "message": "Logout successful."
+}
+
+**Backend Behavior:**
+
+- Invalidates the current server session.
+- User is no longer considered logged in.
+
+---
+
+### Check Session
+
+**Status:** IN PROGRESS
+
+**Method:** GET
+
+**Endpoint:**
+
+/api/auth/session
+
+**Successful Response When Logged In:**
+
+{
+  "loggedIn": true,
+  "userId": 1,
+  "role": "CUSTOMER"
+}
+
+**Successful Response When Logged Out:**
+
+{
+  "loggedIn": false
+}
+
+**Backend Behavior:**
+
+- Checks the current server session.
+- Returns whether a user is logged in.
+- Returns the logged-in user's ID and role when a valid session exists.
