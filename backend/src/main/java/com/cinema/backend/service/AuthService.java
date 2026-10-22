@@ -10,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 @Service
 public class AuthService {
 
@@ -53,6 +55,7 @@ public class AuthService {
 
         customer.setUserId(savedUser.getUserId());
         customer.setStatus("INACTIVE");
+        customer.setVerificationToken(UUID.randomUUID().toString());
         customer.setPromotionSubscriptions(
                 request.isPromotionSubscriptions()
         );
@@ -60,5 +63,19 @@ public class AuthService {
         customerRepository.save(customer);
 
         return savedUser;
+    }
+
+    @Transactional
+    public void verifyAccount(String token) {
+
+        Customer customer = customerRepository.findByVerificationToken(token)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Invalid verification token.")
+                );
+
+        customer.setStatus("ACTIVE");
+        customer.setVerificationToken(null);
+
+        customerRepository.save(customer);
     }
 }

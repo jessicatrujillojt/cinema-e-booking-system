@@ -11,9 +11,8 @@ public class Customer {
 
     @Column(nullable = false)
     private String status;
-
+    private String verificationToken;
     private String preferences;
-
     private boolean promotionSubscriptions;
 
     public Customer() {}
@@ -48,5 +47,13 @@ public class Customer {
 
     public void setPromotionSubscriptions(boolean promotionSubscriptions) {
         this.promotionSubscriptions = promotionSubscriptions;
+    }
+
+    public String getVerificationToken() {
+    return verificationToken;
+}
+
+    public void setVerificationToken(String verificationToken) {
+        this.verificationToken = verificationToken;
     }
 }

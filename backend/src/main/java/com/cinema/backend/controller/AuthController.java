@@ -48,4 +48,29 @@ public class AuthController {
             );
         }
     }
+
+    @GetMapping("/verify")
+public ResponseEntity<?> verifyAccount(@RequestParam String token) {
+
+    try {
+
+        authService.verifyAccount(token);
+
+        return ResponseEntity.ok(
+                Map.of(
+                        "success", true,
+                        "message", "Account verified successfully."
+                )
+        );
+
+    } catch (IllegalArgumentException e) {
+
+        return ResponseEntity.badRequest().body(
+                Map.of(
+                        "success", false,
+                        "message", e.getMessage()
+                )
+        );
+    }
+}
 }
