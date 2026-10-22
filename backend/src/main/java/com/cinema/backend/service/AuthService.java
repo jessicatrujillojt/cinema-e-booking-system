@@ -20,16 +20,19 @@ public class AuthService {
     private final UserRepository userRepository;
     private final CustomerRepository customerRepository;
     private final AdminRepository adminRepository;
+    private final AuthEmailService authEmailService;
     private final BCryptPasswordEncoder passwordEncoder;
 
     public AuthService(
             UserRepository userRepository,
             CustomerRepository customerRepository,
-            AdminRepository adminRepository) {
+            AdminRepository adminRepository,
+            AuthEmailService authEmailService) {
 
         this.userRepository = userRepository;
         this.customerRepository = customerRepository;
         this.adminRepository = adminRepository;
+        this.authEmailService = authEmailService;
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
@@ -56,16 +59,25 @@ public class AuthService {
 
         User savedUser = userRepository.save(user);
 
+        String verificationToken =
+                UUID.randomUUID().toString();
+
         Customer customer = new Customer();
 
         customer.setUserId(savedUser.getUserId());
         customer.setStatus("INACTIVE");
-        customer.setVerificationToken(UUID.randomUUID().toString());
+        customer.setVerificationToken(verificationToken);
         customer.setPromotionSubscriptions(
                 request.isPromotionSubscriptions()
         );
 
         customerRepository.save(customer);
+
+        authEmailService.sendVerificationEmail(
+                savedUser.getEmailAddress(),
+                savedUser.getFirstName(),
+                verificationToken
+        );
 
         return savedUser;
     }
@@ -73,7 +85,8 @@ public class AuthService {
     @Transactional
     public void verifyAccount(String token) {
 
-        Customer customer = customerRepository.findByVerificationToken(token)
+        Customer customer = customerRepository
+                .findByVerificationToken(token)
                 .orElseThrow(() ->
                         new IllegalArgumentException(
                                 "Invalid verification token."
@@ -86,29 +99,38 @@ public class AuthService {
         customerRepository.save(customer);
     }
 
-    public LoginResult login(String emailAddress, String password) {
+    public LoginResult login(
+            String emailAddress,
+            String password) {
 
-        User user = userRepository.findByEmailAddress(emailAddress)
+        User user = userRepository
+                .findByEmailAddress(emailAddress)
                 .orElseThrow(() ->
                         new IllegalArgumentException(
                                 "Invalid email or password."
                         )
                 );
 
-        if (!passwordEncoder.matches(password, user.getPassword())) {
+        if (!passwordEncoder.matches(
+                password,
+                user.getPassword())) {
+
             throw new IllegalArgumentException(
                     "Invalid email or password."
             );
         }
 
-        if (adminRepository.existsById(user.getUserId())) {
+        if (adminRepository.existsById(
+                user.getUserId())) {
+
             return new LoginResult(
                     user.getUserId(),
                     "ADMIN"
             );
         }
 
-        Customer customer = customerRepository.findById(user.getUserId())
+        Customer customer = customerRepository
+                .findById(user.getUserId())
                 .orElseThrow(() ->
                         new IllegalArgumentException(
                                 "Customer account not found."
@@ -128,66 +150,83 @@ public class AuthService {
     }
 
     @Transactional
-public String requestPasswordReset(String emailAddress) {
+    public String requestPasswordReset(
+            String emailAddress) {
 
-    User user = userRepository.findByEmailAddress(emailAddress)
-            .orElseThrow(() ->
-                    new IllegalArgumentException("No account found with this email.")
-            );
+        User user = userRepository
+                .findByEmailAddress(emailAddress)
+                .orElseThrow(() ->
+                        new IllegalArgumentException(
+                                "No account found with this email."
+                        )
+                );
 
-    String resetToken = UUID.randomUUID().toString();
+        String resetToken =
+                UUID.randomUUID().toString();
 
-    user.setResetPasswordToken(resetToken);
+        user.setResetPasswordToken(resetToken);
 
-    userRepository.save(user);
+        userRepository.save(user);
 
-    return resetToken;
-}
-
-@Transactional
-public void resetPassword(String token, String newPassword) {
-
-    User user = userRepository.findByResetPasswordToken(token)
-            .orElseThrow(() ->
-                    new IllegalArgumentException(
-                            "Invalid password reset token."
-                    )
-            );
-
-    String hashedPassword =
-            passwordEncoder.encode(newPassword);
-
-    user.setPassword(hashedPassword);
-    user.setResetPasswordToken(null);
-
-    userRepository.save(user);
-}
-
-@Transactional
-public void changePassword(
-        Long userId,
-        String currentPassword,
-        String newPassword) {
-
-    User user = userRepository.findById(userId)
-            .orElseThrow(() ->
-                    new IllegalArgumentException("User not found.")
-            );
-
-    if (!passwordEncoder.matches(
-            currentPassword,
-            user.getPassword())) {
-
-        throw new IllegalArgumentException(
-                "Current password is incorrect."
+        authEmailService.sendPasswordResetEmail(
+                user.getEmailAddress(),
+                user.getFirstName(),
+                resetToken
         );
+
+        return resetToken;
     }
 
-    String hashedPassword =
-            passwordEncoder.encode(newPassword);
+    @Transactional
+    public void resetPassword(
+            String token,
+            String newPassword) {
 
-    user.setPassword(hashedPassword);
+        User user = userRepository
+                .findByResetPasswordToken(token)
+                .orElseThrow(() ->
+                        new IllegalArgumentException(
+                                "Invalid password reset token."
+                        )
+                );
 
-    userRepository.save(user);
-}
+        String hashedPassword =
+                passwordEncoder.encode(newPassword);
+
+        user.setPassword(hashedPassword);
+        user.setResetPasswordToken(null);
+
+        userRepository.save(user);
+    }
+
+    @Transactional
+    public void changePassword(
+            Long userId,
+            String currentPassword,
+            String newPassword) {
+
+        User user = userRepository
+                .findById(userId)
+                .orElseThrow(() ->
+                        new IllegalArgumentException(
+                                "User not found."
+                        )
+                );
+
+        if (!passwordEncoder.matches(
+                currentPassword,
+                user.getPassword())) {
+
+            throw new IllegalArgumentException(
+                    "Current password is incorrect."
+            );
+        }
+
+        String hashedPassword =
+                passwordEncoder.encode(newPassword);
+
+        user.setPassword(hashedPassword);
+
+        userRepository.save(user);
+    }
 }
