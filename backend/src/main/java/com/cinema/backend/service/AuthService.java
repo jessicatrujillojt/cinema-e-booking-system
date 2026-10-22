@@ -126,4 +126,40 @@ public class AuthService {
                 "CUSTOMER"
         );
     }
+
+    @Transactional
+public String requestPasswordReset(String emailAddress) {
+
+    User user = userRepository.findByEmailAddress(emailAddress)
+            .orElseThrow(() ->
+                    new IllegalArgumentException("No account found with this email.")
+            );
+
+    String resetToken = UUID.randomUUID().toString();
+
+    user.setResetPasswordToken(resetToken);
+
+    userRepository.save(user);
+
+    return resetToken;
+}
+
+@Transactional
+public void resetPassword(String token, String newPassword) {
+
+    User user = userRepository.findByResetPasswordToken(token)
+            .orElseThrow(() ->
+                    new IllegalArgumentException(
+                            "Invalid password reset token."
+                    )
+            );
+
+    String hashedPassword =
+            passwordEncoder.encode(newPassword);
+
+    user.setPassword(hashedPassword);
+    user.setResetPasswordToken(null);
+
+    userRepository.save(user);
+}
 }

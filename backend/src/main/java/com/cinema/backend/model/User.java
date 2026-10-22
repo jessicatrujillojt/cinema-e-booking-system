@@ -24,7 +24,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    private String resetPasswordToken;
+
     public User() {}
+
 
     public Long getUserId() {
         return userId;
@@ -72,5 +75,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getResetPasswordToken() {
+    return resetPasswordToken;
+}
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
     }
 }

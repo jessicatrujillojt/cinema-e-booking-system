@@ -1,10 +1,12 @@
 package com.cinema.backend.controller;
 
+import com.cinema.backend.dto.ForgotPasswordRequest;
 import com.cinema.backend.dto.LoginRequest;
 import com.cinema.backend.dto.LoginResult;
 import com.cinema.backend.dto.RegisterRequest;
 import com.cinema.backend.model.User;
 import com.cinema.backend.service.AuthService;
+import com.cinema.backend.dto.ResetPasswordRequest;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -167,4 +169,62 @@ public class AuthController {
                 )
         );
     }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(
+            @RequestBody ForgotPasswordRequest request) {
+
+        try {
+
+            String token = authService.requestPasswordReset(
+                    request.getEmailAddress()
+            );
+
+            return ResponseEntity.ok(
+                    Map.of(
+                            "success", true,
+                            "message", "Password reset request created.",
+                            "resetToken", token
+                    )
+            );
+
+        } catch (IllegalArgumentException e) {
+
+            return ResponseEntity.badRequest().body(
+                    Map.of(
+                            "success", false,
+                            "message", e.getMessage()
+                    )
+            );
+        }
+    }
+
+    @PostMapping("/reset-password")
+public ResponseEntity<?> resetPassword(
+        @RequestBody ResetPasswordRequest request) {
+
+    try {
+
+        authService.resetPassword(
+                request.getToken(),
+                request.getNewPassword()
+        );
+
+        return ResponseEntity.ok(
+                Map.of(
+                        "success", true,
+                        "message", "Password reset successfully."
+                )
+        );
+
+    } catch (IllegalArgumentException e) {
+
+        return ResponseEntity.badRequest().body(
+                Map.of(
+                        "success", false,
+                        "message", e.getMessage()
+                )
+        );
+    }
+}
 }
