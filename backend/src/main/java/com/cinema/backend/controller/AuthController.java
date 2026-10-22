@@ -177,17 +177,16 @@ public class AuthController {
 
         try {
 
-            String token = authService.requestPasswordReset(
-                    request.getEmailAddress()
-            );
+                authService.requestPasswordReset(
+                request.getEmailAddress()
+        );
 
-            return ResponseEntity.ok(
-                    Map.of(
-                            "success", true,
-                            "message", "Password reset request created.",
-                            "resetToken", token
-                    )
-            );
+        return ResponseEntity.ok(
+                Map.of(
+                        "success", true,
+                        "message", "Password reset request created."
+                )
+        );
 
         } catch (IllegalArgumentException e) {
 
