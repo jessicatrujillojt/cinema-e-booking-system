@@ -1,5 +1,6 @@
 package com.cinema.backend.controller;
 
+import com.cinema.backend.dto.LoginRequest;
 import com.cinema.backend.dto.RegisterRequest;
 import com.cinema.backend.model.User;
 import com.cinema.backend.service.AuthService;
@@ -50,27 +51,56 @@ public class AuthController {
     }
 
     @GetMapping("/verify")
-public ResponseEntity<?> verifyAccount(@RequestParam String token) {
+    public ResponseEntity<?> verifyAccount(@RequestParam String token) {
 
-    try {
+        try {
 
-        authService.verifyAccount(token);
+            authService.verifyAccount(token);
 
-        return ResponseEntity.ok(
-                Map.of(
-                        "success", true,
-                        "message", "Account verified successfully."
-                )
-        );
+            return ResponseEntity.ok(
+                    Map.of(
+                            "success", true,
+                            "message", "Account verified successfully."
+                    )
+            );
 
-    } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
 
-        return ResponseEntity.badRequest().body(
-                Map.of(
-                        "success", false,
-                        "message", e.getMessage()
-                )
-        );
+            return ResponseEntity.badRequest().body(
+                    Map.of(
+                            "success", false,
+                            "message", e.getMessage()
+                    )
+            );
+        }
     }
-}
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+
+        try {
+
+            String role = authService.login(
+                    request.getEmailAddress(),
+                    request.getPassword()
+            );
+
+            return ResponseEntity.ok(
+                    Map.of(
+                            "success", true,
+                            "message", "Login successful.",
+                            "role", role
+                    )
+            );
+
+        } catch (IllegalArgumentException e) {
+
+            return ResponseEntity.badRequest().body(
+                    Map.of(
+                            "success", false,
+                            "message", e.getMessage()
+                    )
+            );
+        }
+    }
 }
