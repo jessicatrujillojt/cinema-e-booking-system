@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile | Cinema E-Booking</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav>
+        <div class="navsection">
+            <h1>Cinema E-Booking</h1>
+            <a href="home.html">Home</a>
+            <a href="browse.html">Browse Movies</a>
+            <a href="edit-profile.html">Edit Profile</a>
+            <a href="login.html">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Edit Profile Form -->
+    <main class="login-section profile-section">
+        <h2>Edit Profile</h2>
+
+        <form class="login-form" id="editProfileForm">
+
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName"
+                       name="firstName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName"
+                       name="lastName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username"
+                       name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email"
+                       name="email" readonly>
+                <small>Your email address cannot be changed.</small>
+            </div>
+
+            <button type="submit">Save Changes</button>
+
+        </form>
+
+        <div class="login-links">
+            <h5><a class="register-link"
+                   href="password.html">Change Password</a></h5>
+            <h5><a class="register-link"
+                   href="browse.html">Browse Movies</a></h5>
+        </div>
+    </main>
+
+</body>
+</html>

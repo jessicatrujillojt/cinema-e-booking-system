@@ -682,4 +682,156 @@ button {
     margin: 0 auto 20px auto;
 }
 
+/* LOGIN PAGE */
 
+/* Center the card beneath the existing navigation */
+.login-section {
+    width: calc(100% - 40px);
+    max-width: 625px;
+    margin: 50px auto 40px;
+    padding: 42px 43px;
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+    border-radius: 11px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.10);
+}
+
+/* Login heading */
+.login-section h2 {
+    margin: 0 0 32px;
+    color: #554357;
+    font-family: Arial, sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    text-align: center;
+}
+
+/* Form layout */
+.login-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.login-form label {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #30343a;
+}
+
+.login-form input {
+    width: 100%;
+    height: 46px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+
+    border: 1px solid #91a4b9;
+    border-radius: 5px;
+    background-color: #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.login-form input:focus {
+    outline: 2px solid #533257;
+    outline-offset: 2px;
+}
+
+/* Full-width purple Login button */
+.login-form button {
+    display: block;
+    width: 100%;
+    min-height: 53px;
+    margin-top: 4px;
+    padding: 12px;
+
+    background-color: #3e1f48;
+    color: #ffffff;
+    border: none;
+    border-radius: 7px;
+
+    font-family: "Lora", serif;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #554357;
+}
+
+/* Existing registration and password-reset messages */
+.login-links {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-links h5 {
+    width: 100%;
+    margin: 8px 0;
+    text-align: center;
+    color: #30343a;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.login-links .register-link {
+    color: #b59bc5;
+    text-decoration: none;
+}
+
+.login-links .register-link:hover {
+    text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .login-section {
+        width: calc(100% - 32px);
+        margin-top: 30px;
+        padding: 30px 22px;
+    }
+
+    .login-section h2 {
+        font-size: 30px;
+    }
+
+    .login-links h5 {
+        font-size: 14px;
+    }
+}
+
+
+/* Navbar logout controls */
+
+.logout-btn {
+     font: inherit;
+    padding: 2px 6px;
+    cursor: pointer;
+}
+
+
+.logout-btn:hover {
+    background-color: #554357;
+}
+
+
+/* EDIT PROFILE PAGE */
+.profile-section {
+    max-width: 550px;
+    margin: 40px auto;
+}
+
+.profile-section small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-size: 12px;
+}
