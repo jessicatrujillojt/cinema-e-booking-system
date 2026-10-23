@@ -6,41 +6,51 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleadmin.css">
     <title>Admin Home</title>
 </head>
 <body>
     <nav>
         <h1> 13th Reel E-Booking System Admin </h1>
         <div class="navsection">
-            <p> <a href="browse.html">Browse</a></p>
-            <p><button type="button" class="login-btn" href="login.html">Login</button></p>
+            <p>
+            <button type="button" onclick="window.location.href='manage_movies.html'">Manage Movies</button>
+            <button type="button" onclick="window.location.href='view_bookings.html'">View Bookings</button>
+            <button type="button" onclick="window.location.href='user_management.html'">User Management</button>
+            <button type="button" class="login-btn" href="login.html">Logout</button></p>
         </div>
     </nav>
-    <div class="slide">
-    <div class="frame">
-    <div class="imgbase">
-        <img class="imgcover" src="img/trailerbase.jpg" alt="Pearl Movie Poster">
-    </div>
-    </div>
-    <!--- <div class="row">
-    <button type="button"> &lt; </button>
-    <button type="button"> &gt; </button>
-    </div>
-    -->
-    </div>
-    <br>
-    <br>
-    <h2>Featured Movies</h2>
-    <div class="card-container" id="featured-movies">
-    </div>
-
-    <br>
-    <br>
-
-    <h2>Movies Coming Soon</h2>
-    <div class="card-container" id="coming-soon-movies">
-    </div>
+    <section class="adminhome">
+        <p>Welcome to the Admin Home page. Here you can manage the movie listings, view bookings, and perform administrative tasks.</p>
+    </section>
+    <table>
+        <tbody>
+        <tr>
+            <th>Movie Image</th>
+            <th>Movie Title</th>
+            <th>Genre</th>
+            <th>Release Date</th>
+            <th>Rating</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <td><img src="img/movieposter.jpg" class="imgtable" alt="Movie 1"></td>
+            <td>Movie Title 1</td>
+            <td>Action</td>
+            <td>2023-01-01</td>
+            <td>8.5</td>
+            <td><button type="button">Edit</button> <button type="button">Delete</button> <button type="button">Visibility</button></td>
+        </tr>
+        <tr>
+            <td><img src="img/movieposter.jpg" class="imgtable" alt="Movie 2"></td>
+            <td>Movie Title 2</td>
+            <td>Comedy</td>
+            <td>2023-02-01</td>
+            <td>7.8</td>
+            <td><button type="button">Edit</button> <button type="button">Delete</button> <button type="button">Visibility</button></td>
+        </tr>
+        </tbody>
+    </table>
 <br>
 <br>
 <footer>
