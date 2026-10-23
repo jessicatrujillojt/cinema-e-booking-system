@@ -53,7 +53,7 @@ public class AuthEmailService {
             String resetToken) {
 
         String resetLink =
-                "http://localhost:5501/reset-password.html?token="
+                "http://localhost:5501/reset.html?token="
                         + resetToken;
 
         SimpleMailMessage message =
