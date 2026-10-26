@@ -863,9 +863,7 @@ button {
 }
 
 
-/* ========================================
-   NEW MOVIE DETAILS PAGE
-   ======================================== */
+/*NEW MOVIE DETAILS PAGE*/
 
 /* Main content container */
 .movie-details-page {
@@ -958,9 +956,7 @@ button {
     overflow-wrap: anywhere;
 }
 
-/* ========================================
-   TRAILER
-   ======================================== */
+/*TRAILER*/
 
 .trailer-section {
     margin-bottom: 60px;
@@ -992,9 +988,7 @@ button {
     border: 0;
 }
 
-/* ========================================
-   SHOWTIMES
-   ======================================== */
+/*SHOWTIMES*/
 
 .showtimes-section {
     background-color: #f5eff6;
@@ -1039,9 +1033,7 @@ button {
     outline-offset: 3px;
 }
 
-/* ========================================
-   RESPONSIVE LAYOUT
-   ======================================== */
+/*RESPONSIVE LAYOUT*/
 
 @media (max-width: 750px) {
     .movie-details-page {
@@ -1081,4 +1073,44 @@ button {
     .showtimes .time {
         padding: 9px 15px;
     }
+}
+.details-eyebrow {
+    margin: 0 0 10px;
+    line-height: 1.4;
+    letter-spacing: 2px;
+}
+
+.movie-info h1 {
+    margin: 0 0 24px;
+    line-height: 1.1;
+}
+
+/* Center the Showtimes section */
+.showtimes-section {
+    text-align: center;
+}
+
+.showtimes .detailed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.showtimes-section h2 {
+    text-align: center;
+}
+
+.showtimes-section > p {
+    text-align: center;
+}
+/* Center the Trailer section */
+.trailer-section {
+    text-align: center;
+}
+
+.trailer-frame {
+    margin-left: auto;
+    margin-right: auto;
 }
