@@ -861,3 +861,224 @@ button {
     font-weight: 600;
     cursor: pointer;
 }
+
+
+/* ========================================
+   NEW MOVIE DETAILS PAGE
+   ======================================== */
+
+/* Main content container */
+.movie-details-page {
+    max-width: 1150px;
+    width: 90%;
+    margin: 45px auto 60px;
+}
+
+/* Poster and movie information side by side */
+.movie-hero {
+    display: grid;
+    grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+    gap: 45px;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+/* Movie poster */
+.movie-poster-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-poster {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    max-height: 470px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
+}
+
+/* Movie title, rating, and summary */
+.movie-info {
+    min-width: 0;
+}
+
+.details-eyebrow {
+    color: #6e5275;
+    font-family: "Lora", serif;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.movie-info h1 {
+    font-family: "Instrument Serif", serif;
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.1;
+    margin: 8px 0 20px;
+    overflow-wrap: anywhere;
+}
+
+/* Rating badge */
+.rating-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #eee5f0;
+    color: #3e1f48;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 22px;
+    font-family: "Lora", serif;
+}
+
+.rating-badge p,
+.rating-badge strong {
+    margin: 0;
+}
+
+/* Summary heading */
+.movie-info h2 {
+    font-family: "Instrument Serif", serif;
+    font-size: 32px;
+    margin: 0 0 12px;
+}
+
+/* Movie description */
+#movie-description {
+    color: #48434a;
+    font-family: "Lora", serif;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+/* ========================================
+   TRAILER
+   ======================================== */
+
+.trailer-section {
+    margin-bottom: 60px;
+}
+
+.trailer-section h2,
+.showtimes-section h2 {
+    font-family: "Instrument Serif", serif;
+    font-size: 32px;
+    margin: 0 0 15px;
+}
+
+/* Responsive video container */
+.trailer-frame {
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 16 / 9;
+    margin: 20px auto 0;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #17131a;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
+}
+
+.trailer-frame iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* ========================================
+   SHOWTIMES
+   ======================================== */
+
+.showtimes-section {
+    background-color: #f5eff6;
+    padding: 28px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.showtimes-section > p {
+    color: #625b65;
+    font-family: "Lora", serif;
+    line-height: 1.6;
+    margin: 0 0 22px;
+}
+
+.showtimes .detailed {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* Showtime buttons created by details.js */
+.showtimes .time {
+    background-color: #3e1f48;
+    color: white;
+    border: 2px solid #3e1f48;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-family: "Lora", serif;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.showtimes .time:hover {
+    background-color: white;
+    color: #3e1f48;
+}
+
+.showtimes .time:focus-visible {
+    outline: 3px solid #92749b;
+    outline-offset: 3px;
+}
+
+/* ========================================
+   RESPONSIVE LAYOUT
+   ======================================== */
+
+@media (max-width: 750px) {
+    .movie-details-page {
+        width: 92%;
+        margin-top: 30px;
+    }
+
+    .movie-hero {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-bottom: 45px;
+    }
+
+    .detail-poster {
+        max-width: 250px;
+        max-height: 370px;
+    }
+
+    .movie-info h1 {
+        font-size: 42px;
+    }
+
+    .trailer-section {
+        margin-bottom: 45px;
+    }
+
+    .showtimes-section {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .movie-info h1 {
+        font-size: 36px;
+    }
+
+    .showtimes .time {
+        padding: 9px 15px;
+    }
+}

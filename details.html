@@ -10,6 +10,7 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
         <h1> Movie E-Booking System Title </h1>
         <div class="navsection">
@@ -20,34 +21,51 @@
         </div>
     </nav>
 
-    <div class="movie-poster-section">
-        <img id="movie-poster" class="detail-poster" src="img/movieposter.jpg" alt="Movie Poster">
-    </div>
+    <main class="movie-details-page">
+        
+        <section class="movie-hero">
+            <div class="movie-poster-section">
+                <img id="movie-poster" class="detail-poster" src="img/movieposter.jpg" alt="Movie Poster">
+            </div>
 
-    <div class="frame">
-        <iframe
-            id="movie-trailer"
-            class="imgcover"
-            title="Movie Trailer"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen>
-        </iframe>
-    </div>
-    <h1 id="movie-title">Movie Title Here</h1>
-    <h3>Summary</h3>
-    <p id="movie-description">Movie description here</p>
-    <h3>Rating</h3>
-    <p id="movie-rating">Movie rating here</p>
+            <div class="movie-info">
+            <p class="details-eyebrow">NOW SHOWING</p>
+            <h1 id="movie-title">Movie Title Here</h1>
+                
+            <div class="rating-badge"> 
+            <span>Rating</span>
+            <strong id="movie-rating">Movie rating here</strong>
+            </div>
 
-    <h2>Showtimes</h2>
-    <div class="showtimes">
-        <div class="detailed" id="showtime-buttons">
+            <h2>Summary</h2>
+            <p id="movie-description">Movie description here</p>
+            </div>
+        </section>
+
+    <section class="trailer-section">
+        <h2>Trailer</h2>
+        <div class="trailer-frame">
+            <iframe
+                id="movie-trailer"
+                class="imgcover"
+                title="Movie Trailer"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
         </div>
-    </div>
-    <br>
-    <br>
-    <br>
+    </section>
+    
+    <section class="showtimes-section">
+        <h2>Showtimes</h2>
+        <p>Click on a showtime to book your tickets!</p>
+        <div class="showtimes">
+            <div class="detailed" id="showtime-buttons">
+            </div>
+        </div>
+    </section>
+</main>
+
     <footer>
     <p> &copy; 2024 Movie Poster Title. All rights reserved.</p>
     </footer>
