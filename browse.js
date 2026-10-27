@@ -34,6 +34,63 @@ function displayMovies(movies) {
         detailsLink.textContent = "Show Movie Details →";
         detailsLink.classList.add("details-button");
         detailsLink.href = `details.html?id=${movie.id}`;
+        
+const favoriteButton = document.createElement("button");
+favoriteButton.type = "button";
+favoriteButton.classList.add("favorite-button");
+favoriteButton.setAttribute("aria-label", "Add to Favorites");
+favoriteButton.title = "Add to Favorites";
+favoriteButton.textContent = "♡";
+const savedFavorites = JSON.parse(
+    localStorage.getItem("favoriteMovies") || "[]"
+);
+
+const alreadyFavorite = savedFavorites.some(
+    favorite => String(favorite.id) === String(movie.id)
+);
+
+if (alreadyFavorite) {
+    favoriteButton.textContent = "♥";
+    favoriteButton.title = "Remove from Favorites";
+    favoriteButton.setAttribute("aria-label", "Remove from Favorites");
+    favoriteButton.classList.add("is-favorite");
+} else {
+    favoriteButton.title = "Add to Favorites";
+    favoriteButton.setAttribute("aria-label", "Add to Favorites");
+}
+favoriteButton.addEventListener("click", function() {
+    const favorites = JSON.parse(
+        localStorage.getItem("favoriteMovies") || "[]"
+    );
+
+    const isFavorite = favorites.some(
+        favorite => String(favorite.id) === String(movie.id)
+    );
+
+    if (isFavorite) {
+        const updatedFavorites = favorites.filter(
+            favorite => String(favorite.id) !== String(movie.id)
+        );
+        localStorage.setItem(
+            "favoriteMovies",
+            JSON.stringify(updatedFavorites)
+        );
+        favoriteButton.textContent = "♡";
+        favoriteButton.title = "Add to Favorites";
+        favoriteButton.setAttribute("aria-label", "Add to Favorites");
+        favoriteButton.classList.remove("is-favorite");
+    } else {
+        favorites.push(movie);
+        localStorage.setItem(
+            "favoriteMovies",
+            JSON.stringify(favorites)
+        );
+        favoriteButton.textContent = "♥";
+        favoriteButton.title = "Remove from Favorites";
+        favoriteButton.setAttribute("aria-label", "Remove from Favorites");
+        favoriteButton.classList.add("is-favorite");
+    }
+});
 
         content.appendChild(title);
         content.appendChild(genre);
@@ -41,7 +98,7 @@ function displayMovies(movies) {
 
         card.appendChild(image);
         card.appendChild(content);
-
+        card.appendChild(favoriteButton);
         movieGrid.appendChild(card);
     });
 }
