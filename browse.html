@@ -15,12 +15,14 @@
 
     <!-- Navigation -->
     <nav>
-         <h1> Movie E-Booking System Title </h1>
+        <h1> Movie E-Booking System</h1>
         <div class="navsection">
             <p> <a href="home.html">Home</a></p>
-            <p><a href="favorite-movies.html">Favorites ♥</a></p>
-            <p><button type="button" class="login-btn" onclick="location.href='login.html'">Login</button></p>
-            <p><button type="button" class="login-btn" onclick="location.href='profile.html'">Profile</button></p>
+            <p> <a href="profile.html">Profile</a> </p>  <!-- Should only be visible when logged in -->
+            <p><button type="button" class="login-btn" onclick="location.href='login.html'">Login</button></p> <!-- Should only be visible when logged out -->
+            <section class="logout-btn">
+            <p> <button type="button" class="login-btn" onclick="location.href='browse.html'">Logout</button></p> <!-- Should only be visible when logged in -->
+            </section>
         </div>
     </nav>
 
