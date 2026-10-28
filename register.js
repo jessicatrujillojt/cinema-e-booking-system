@@ -1,89 +1,124 @@
-const registerForm =
-    document.getElementById("register-form");
+const API_BASE = "http://localhost:8080";
 
-const registerMessage =
-    document.getElementById("register-message");
 
-registerForm.addEventListener(
-    "submit",
-    async function (event) {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-        event.preventDefault();
+        const registerForm =
+            document.getElementById("registerForm");
 
-        const firstName =
-            document.getElementById("firstName").value;
+        const registerMessage =
+            document.getElementById("registerMessage");
 
-        const lastName =
-            document.getElementById("lastName").value;
 
-        const emailAddress =
-            document.getElementById("email").value;
+        registerForm.addEventListener(
+            "submit",
+            async function (event) {
 
-        const phoneNumber =
-            document.getElementById("phoneNumber").value;
+                event.preventDefault();
 
-        const password =
-            document.getElementById("password").value;
 
-        const promotionSubscriptions =
-            document.getElementById(
-                "promotionSubscriptions"
-            ).checked;
+                const firstName =
+                    document
+                        .getElementById("firstName")
+                        .value
+                        .trim();
 
-        const registrationData = {
-            firstName: firstName,
-            lastName: lastName,
-            emailAddress: emailAddress,
-            phoneNumber: phoneNumber,
-            password: password,
-            promotionSubscriptions: promotionSubscriptions
-        };
+                const lastName =
+                    document
+                        .getElementById("lastName")
+                        .value
+                        .trim();
 
-        try {
+                const emailAddress =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
 
-            const response = await fetch(
-                "http://localhost:8080/api/auth/register",
-                {
-                    method: "POST",
+                const phoneNumber =
+                    document
+                        .getElementById("phoneNumber")
+                        .value
+                        .trim();
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                const password =
+                    document
+                        .getElementById("password")
+                        .value;
 
-                    credentials: "include",
+                const promotionSubscriptions =
+                    document
+                        .getElementById(
+                            "promotionSubscriptions"
+                        )
+                        .checked;
 
-                    body: JSON.stringify(
-                        registrationData
-                    )
+
+                registerMessage.textContent =
+                    "Creating account...";
+
+
+                try {
+
+                    const response = await fetch(
+                        `${API_BASE}/api/auth/register`,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            credentials: "include",
+
+                            body: JSON.stringify({
+                                firstName,
+                                lastName,
+                                emailAddress,
+                                phoneNumber,
+                                password,
+                                promotionSubscriptions
+                            })
+                        }
+                    );
+
+
+                    const result =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        registerMessage.textContent =
+                            result.message ||
+                            "Registration failed.";
+
+                        return;
+                    }
+
+
+                    registerMessage.textContent =
+                        result.message ||
+                        "Account created successfully! Please verify your account before logging in.";
+
+
+                    registerForm.reset();
+
+                } catch (error) {
+
+                    console.error(
+                        "Registration error:",
+                        error
+                    );
+
+
+                    registerMessage.textContent =
+                        "Unable to connect to the server.";
                 }
-            );
-
-            const data =
-                await response.json();
-
-            if (response.ok) {
-
-                registerMessage.textContent =
-                    data.message;
-
-                registerForm.reset();
-
-            } else {
-
-                registerMessage.textContent =
-                    data.message ||
-                    "Registration failed.";
             }
-
-        } catch (error) {
-
-            console.error(
-                "Registration error:",
-                error
-            );
-
-            registerMessage.textContent =
-                "Unable to connect to the server.";
-        }
+        );
     }
 );

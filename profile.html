@@ -4,32 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <title>Edit Profile | Cinema E-Booking</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- Navigation bar -->
+    <!-- Navigation -->
     <nav>
-        <h1> Movie E-Booking System Title </h1>
+        <h1>Movie E-Booking System</h1>
+
         <div class="navsection">
-            <p> <a href="home.html">Home</a></p>
-            <p> <a href="browse.html">Browse</a></p>
-            <p><button type="button" class="login-btn" onclick="location.href='login.html'">Login</button></p>
-            <p><button type="button" class="login-btn" onclick="location.href='profile.html'">Profile</button></p>
+            <p><a href="home.html">Home</a></p>
+            <p><a href="browse.html">Browse</a></p>
+
+            <!-- Login: visible only when logged out -->
+            <p id="loginNav" hidden>
+                <button type="button"
+                        class="login-btn"
+                        onclick="location.href='login.html'">
+                    Login
+                </button>
+            </p>
+
+            <!-- Logout: visible only when logged in -->
+            <section class="logout-btn" id="logoutNav" hidden>
+                <p>
+                    <button type="button"
+                            class="login-btn"
+                            id="logoutButton">
+                        Logout
+                    </button>
+                </p>
+            </section>
         </div>
     </nav>
 
     <!-- Edit Profile Form -->
     <main class="login-section profile-section">
         <img src="img/movieposter.jpg" class="profile-picture" alt="Profile Picture">
-         <h2>Welcome, USER_NAME</h2>
+        <h2 id="welcomeMessage">Welcome!</h2>
+        <p id="profileMessage"></p>
         <button type="button" class="bigbutton" onclick="window.location.href='edit-profile.html'">Edit Profile</button>
         <button type="button" class="bigbutton" onclick="window.location.href='favorite-movies.html'">Favorite Movies</button>
         <button type="button" class="bigbutton" onclick="window.location.href='payment-info.html'">Payment Information</button>
         <button type="button" class="bigbutton" onclick="window.location.href='delete-account.html'">Delete Account</button>
         <button type="button" class="bigbutton" onclick="window.location.href='login.html'">Logout</button>
     </main>
-<script src="js/edit-profile.js"></script>
+<script src="edit-profile.js"></script>
+<script src="nav.js"></script>
 </body>
 </html>

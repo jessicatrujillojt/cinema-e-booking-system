@@ -11,18 +11,52 @@
 </head>
 <body>
     <nav>
-        <h1> Movie E-Booking System Title </h1>
+        <h1>Movie E-Booking System</h1>
+
         <div class="navsection">
-            <p> <a href="home.html">Home</a></p>
-            <p> <a href="browse.html">Browse</a></p>
-            <p><button type="button" class="login-btn" onclick="location.href='login.html'">Login</button></p>
-            <p><button type="button" class="login-btn" onclick="location.href='profile.html'">Profile</button></p>
+
+            <p><a href="home.html">Home</a></p>
+            <p><a href="browse.html">Browse</a></p>
+
+            <!-- Profile: visible only when logged in -->
+            <p id="profileNav" hidden>
+                <a href="profile.html">Profile</a>
+            </p>
+
+            <!-- Login: visible only when logged out -->
+            <p id="loginNav" hidden>
+                <button type="button"
+                        class="login-btn"
+                        onclick="location.href='login.html'">
+                    Login
+                </button>
+            </p>
+
+            <!-- Logout: visible only when logged in -->
+            <section class="logout-btn" id="logoutNav" hidden>
+                <p>
+                    <button type="button"
+                            class="login-btn"
+                            id="logoutButton">
+                        Logout
+                    </button>
+                </p>
+            </section>
+
         </div>
     </nav>
+    <main class="browse-page">
+        <h2>Your Favorite Movies</h2>
+        <section class="movie-grid" id="favorites-grid"></section>
+        <p id="no-favorites" style="display: none;">
+            You have no favorite movies yet. Browse and add some!
+        </p>
+    </main>
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Movie E-Booking System. All rights reserved.</p>
     </footer>
-<script src="browse.js"></script>
+    <script src="favorite-movies.js"></script>
+    <script src="nav.js"></script>
 </body>
 </html>

@@ -3,17 +3,34 @@
 
 <head>
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Edit Profile | Cinema E-Booking</title>
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet"
+    >
 
     <link
         rel="stylesheet"
         href="css/style.css"
     >
+
+    <title>Edit Profile | Cinema E-Booking</title>
 </head>
 
 <body>
@@ -21,7 +38,7 @@
     <nav>
 
         <h1>
-            Movie E-Booking System Title
+            Movie E-Booking System
         </h1>
 
         <div class="navsection">
@@ -38,17 +55,37 @@
                 </a>
             </p>
 
-            <p>
+            <p id="profileNav" hidden>
                 <a href="profile.html">
                     Profile
                 </a>
             </p>
 
-            <p>
-                <a href="#" id="logout-link">
-                    Logout
-                </a>
+            <p id="loginNav" hidden>
+                <button
+                    type="button"
+                    class="login-btn"
+                    onclick="location.href='login.html'"
+                >
+                    Login
+                </button>
             </p>
+
+            <section
+                class="logout-btn"
+                id="logoutNav"
+                hidden
+            >
+                <p>
+                    <button
+                        type="button"
+                        class="login-btn"
+                        id="logoutButton"
+                    >
+                        Logout
+                    </button>
+                </p>
+            </section>
 
         </div>
 
@@ -57,7 +94,9 @@
 
     <main class="login-section profile-section">
 
-        <h2>Edit Profile</h2>
+        <h2>
+            Edit Profile
+        </h2>
 
 
         <form
@@ -135,7 +174,7 @@
             <div class="form-group">
 
                 <label for="address">
-                    Address:
+                    Street Address:
                 </label>
 
                 <input
@@ -194,14 +233,14 @@
 
             <div class="form-group">
 
-                <label>
+                <label for="subscribedToPromotions">
 
                     <input
                         type="checkbox"
                         id="subscribedToPromotions"
                     >
 
-                    Receive promotional emails
+                    Subscribe to promotional emails
 
                 </label>
 
@@ -212,10 +251,13 @@
                 Save Changes
             </button>
 
+
+            <p
+                id="profileMessage"
+                role="status"
+            ></p>
+
         </form>
-
-
-        <p id="profileMessage"></p>
 
 
         <hr>
@@ -337,26 +379,21 @@
         <div class="login-links">
 
             <h5>
-
                 <a
                     class="register-link"
                     href="change-password.html"
                 >
                     Change Password
                 </a>
-
             </h5>
 
-
             <h5>
-
                 <a
                     class="register-link"
                     href="browse.html"
                 >
                     Browse Movies
                 </a>
-
             </h5>
 
         </div>
@@ -365,6 +402,7 @@
 
 
     <script src="edit-profile.js"></script>
+    <script src="nav.js"></script>
 
 </body>
 

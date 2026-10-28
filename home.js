@@ -1,80 +1,5 @@
 const API_BASE = "http://localhost:8080";
 
-const loginButton =
-    document.getElementById("login-button");
-
-const logoutButton =
-    document.getElementById("logout-button");
-
-const profileLinkContainer =
-    document.getElementById("profile-link-container");
-
-
-async function checkSession() {
-
-    try {
-
-        const response = await fetch(
-            `${API_BASE}/api/auth/session`,
-            {
-                method: "GET",
-                credentials: "include"
-            }
-        );
-
-        const data = await response.json();
-
-        if (data.loggedIn === true) {
-
-            loginButton.style.display = "none";
-            logoutButton.style.display = "inline-block";
-            profileLinkContainer.style.display = "block";
-
-        } else {
-
-            loginButton.style.display = "inline-block";
-            logoutButton.style.display = "none";
-            profileLinkContainer.style.display = "none";
-        }
-
-    } catch (error) {
-
-        console.error(
-            "Session check error:",
-            error
-        );
-
-        loginButton.style.display = "inline-block";
-        logoutButton.style.display = "none";
-        profileLinkContainer.style.display = "none";
-    }
-}
-
-
-async function logout() {
-
-    try {
-
-        await fetch(
-            `${API_BASE}/api/auth/logout`,
-            {
-                method: "POST",
-                credentials: "include"
-            }
-        );
-
-        window.location.href =
-            "login.html";
-
-    } catch (error) {
-
-        console.error(
-            "Logout error:",
-            error
-        );
-    }
-}
-
 
 function loadMovies() {
 
@@ -96,12 +21,12 @@ function loadMovies() {
                     "coming-soon-movies"
                 );
 
-            movies.forEach(function(movie) {
 
-                console.log(
-                    movie.title,
-                    movie.status
-                );
+            featuredContainer.innerHTML = "";
+            comingSoonContainer.innerHTML = "";
+
+
+            movies.forEach(function(movie) {
 
                 const card =
                     document.createElement("div");
@@ -132,6 +57,7 @@ function loadMovies() {
                     document.createElement("h5");
 
                 description.textContent =
+                    movie.showtimes &&
                     movie.showtimes[0]
                         ? `Showtime: ${movie.showtimes[0]}`
                         : "No showtimes available";
@@ -193,27 +119,10 @@ function loadMovies() {
 }
 
 
-loginButton.addEventListener(
-    "click",
-    function() {
-
-        window.location.href =
-            "login.html";
-    }
-);
-
-
-logoutButton.addEventListener(
-    "click",
-    logout
-);
-
-
 document.addEventListener(
     "DOMContentLoaded",
     function() {
 
-        checkSession();
         loadMovies();
     }
 );

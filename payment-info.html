@@ -3,69 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
     <title>Payment Information</title>
 </head>
+
 <body>
+   <!-- Navigation -->
     <nav>
-        <h1> Movie E-Booking System Title </h1>
+        <h1>Movie E-Booking System</h1>
+
         <div class="navsection">
-            <p> <a href="home.html">Home</a></p>
-            <p> <a href="browse.html">Browse</a></p>
-            <p><button type="button" class="login-btn" onclick="location.href='login.html'">Login</button></p>
-            <p><button type="button" class="login-btn" onclick="location.href='profile.html'">Profile</button></p>
+
+            <p><a href="home.html">Home</a></p>
+            <p><a href="browse.html">Browse</a></p>
+
+            <!-- Profile: only visible when logged in -->
+            <p id="profileNav" hidden>
+                <a href="profile.html">Profile</a>
+            </p>
+
+            <!-- Login: only visible when logged out -->
+            <p id="loginNav" hidden>
+                <button type="button"
+                        class="login-btn"
+                        onclick="location.href='login.html'">
+                    Login
+                </button>
+            </p>
+
+            <!-- Logout: only visible when logged in -->
+            <section class="logout-btn" id="logoutNav" hidden>
+                <p>
+                    <button type="button"
+                            class="login-btn"
+                            id="logoutButton">
+                        Logout
+                    </button>
+                </p>
+            </section>
+
         </div>
     </nav>
 
     <main>
         <h2>Payment Information</h2>
-        <div class="card-container">
-            <section class="payment-info">
-                <h3>Payment Method #1</h3>
-                <p>Card Type: Visa</p>
-                <p>Card Number: **** **** **** 1234</p>
-                <p>Expiration Date: 12/25</p>
-                <p>Cardholder Name: John Doe</p>
-                <div class="card-actions">
-                    <button type="button" class="edit-btn">Edit</button>
-                    <button type="button" class="delete-btn">Delete</button>
+
+        <p id="paymentMessage" role="status"></p>
+
+        <!-- Cards loaded from H2 -->
+        <div id="paymentCards"></div>
+
+        <button type="button" class="add-card-btn" id="addCardButton">
+            Add Payment Method
+        </button>
+
+        <!-- Add/Edit Card Form -->
+        <section class="payment-info" id="cardFormSection" hidden>
+            <h3 id="cardFormTitle">Add Payment Method</h3>
+
+            <form id="cardForm" class="login-form">
+
+                <div class="form-group">
+                    <label for="cardholderName">Cardholder Name:</label>
+                    <input type="text" id="cardholderName"
+                           autocomplete="cc-name" required>
                 </div>
-            </section>
-        </div>
-        <div class="card-container">
-            <section class="payment-info">
-                <h3>Payment Method #1</h3>
-                <p>Card Type: Visa</p>
-                <p>Card Number: **** **** **** 1234</p>
-                <p>Expiration Date: 12/25</p>
-                <p>Cardholder Name: John Doe</p>
-                <div class="card-actions">
-                    <button type="button" class="edit-btn">Edit</button>
-                    <button type="button" class="delete-btn">Delete</button>
+
+                <div class="form-group">
+                    <label for="cardNumber">Card Number:</label>
+                    <input type="text" id="cardNumber"
+                           inputmode="numeric"
+                           autocomplete="off"
+                           maxlength="23"
+                           placeholder="Enter test card number"
+                           required>
                 </div>
-            </section>
-        </div>
-        <div class="card-container">
-            <section class="payment-info">
-                <h3>Payment Method #1</h3>
-                <p>Card Type: Visa</p>
-                <p>Card Number: **** **** **** 1234</p>
-                <p>Expiration Date: 12/25</p>
-                <p>Cardholder Name: John Doe</p>
-                <div class="card-actions">
-                    <button type="button" class="edit-btn">Edit</button>
-                    <button type="button" class="delete-btn">Delete</button>
+
+                <div class="form-group">
+                    <label for="expirationMonth">Expiration Month:</label>
+                    <input type="number" id="expirationMonth"
+                           min="1" max="12" required>
                 </div>
-            </section>
-        </div>
+
+                <div class="form-group">
+                    <label for="expirationYear">Expiration Year:</label>
+                    <input type="number" id="expirationYear"
+                           min="2026" max="9999" required>
+                </div>
+
+                <button type="submit" id="saveCardButton">
+                    Save Card
+                </button>
+
+                <button type="button" id="cancelCardButton">
+                    Cancel
+                </button>
+            </form>
+        </section>
     </main>
-    <!-- Footer -->
+
     <footer>
         <p>&copy; 2024 Movie E-Booking System. All rights reserved.</p>
     </footer>
-<script src="browse.js"></script>
+
+    <script src="payment-info.js"></script>
+    <script src="nav.js"></script>
 </body>
 </html>

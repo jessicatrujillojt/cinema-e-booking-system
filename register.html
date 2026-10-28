@@ -18,7 +18,7 @@
         href="css/style.css"
     >
 
-    <title>Register</title>
+    <title>Register - 13th Reel</title>
 </head>
 
 <body>
@@ -26,7 +26,7 @@
     <nav>
 
         <h1>
-            Movie E-Booking System Title
+            Movie E-Booking System
         </h1>
 
         <div class="navsection">
@@ -43,7 +43,13 @@
                 </a>
             </p>
 
-            <p>
+            <p id="profileNav" hidden>
+                <a href="profile.html">
+                    Profile
+                </a>
+            </p>
+
+            <p id="loginNav" hidden>
                 <button
                     type="button"
                     class="login-btn"
@@ -53,6 +59,22 @@
                 </button>
             </p>
 
+            <section
+                class="logout-btn"
+                id="logoutNav"
+                hidden
+            >
+                <p>
+                    <button
+                        type="button"
+                        class="login-btn"
+                        id="logoutButton"
+                    >
+                        Logout
+                    </button>
+                </p>
+            </section>
+
         </div>
 
     </nav>
@@ -60,12 +82,13 @@
 
     <section class="login-section">
 
-        <h2>Register</h2>
-
+        <h2>
+            Register
+        </h2>
 
         <form
             class="login-form"
-            id="register-form"
+            id="registerForm"
         >
 
             <label for="firstName">
@@ -75,7 +98,6 @@
             <input
                 type="text"
                 id="firstName"
-                name="firstName"
                 required
             >
 
@@ -89,7 +111,6 @@
             <input
                 type="text"
                 id="lastName"
-                name="lastName"
                 required
             >
 
@@ -103,7 +124,6 @@
             <input
                 type="email"
                 id="email"
-                name="email"
                 required
             >
 
@@ -117,7 +137,6 @@
             <input
                 type="tel"
                 id="phoneNumber"
-                name="phoneNumber"
                 required
             >
 
@@ -130,23 +149,22 @@
 
             <input
                 type="password"
-                autocomplete="new-password"
                 id="password"
-                name="password"
+                autocomplete="new-password"
                 required
             >
 
             <br>
 
 
-            <label>
+            <label for="promotionSubscriptions">
 
                 <input
                     type="checkbox"
                     id="promotionSubscriptions"
                 >
 
-                Receive promotional emails
+                Subscribe to promotional emails
 
             </label>
 
@@ -157,10 +175,13 @@
                 Register
             </button>
 
+
+            <p
+                id="registerMessage"
+                role="status"
+            ></p>
+
         </form>
-
-
-        <p id="register-message"></p>
 
 
         <div class="login-links">
@@ -182,6 +203,7 @@
 
 
     <script src="register.js"></script>
+    <script src="nav.js"></script>
 
 </body>
 

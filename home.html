@@ -38,7 +38,7 @@
     <nav>
 
         <h1>
-            Movie E-Booking System Title
+            Movie E-Booking System
         </h1>
 
         <div class="navsection">
@@ -49,31 +49,37 @@
                 </a>
             </p>
 
-            <p id="profile-link-container">
+            <p id="profileNav" hidden>
                 <a href="profile.html">
                     Profile
                 </a>
             </p>
 
-            <p>
+            <p id="loginNav" hidden>
                 <button
                     type="button"
                     class="login-btn"
-                    id="login-button"
+                    onclick="location.href='login.html'"
                 >
                     Login
                 </button>
             </p>
 
-            <p>
-                <button
-                    type="button"
-                    class="login-btn"
-                    id="logout-button"
-                >
-                    Logout
-                </button>
-            </p>
+            <section
+                class="logout-btn"
+                id="logoutNav"
+                hidden
+            >
+                <p>
+                    <button
+                        type="button"
+                        class="login-btn"
+                        id="logoutButton"
+                    >
+                        Logout
+                    </button>
+                </p>
+            </section>
 
         </div>
 
@@ -144,6 +150,7 @@
 
 
     <script src="home.js"></script>
+    <script src="nav.js"></script>
 
 </body>
 

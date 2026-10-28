@@ -8,6 +8,35 @@ async function loadProfile() {
 
     try {
 
+        const sessionResponse = await fetch(
+            `${API_BASE}/api/auth/session`,
+            {
+                credentials: "include"
+            }
+        );
+
+
+        if (!sessionResponse.ok) {
+
+            throw new Error(
+                "Could not check login session."
+            );
+        }
+
+
+        const session =
+            await sessionResponse.json();
+
+
+        if (!session.loggedIn) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
         const response = await fetch(
             `${API_BASE}/api/profile`,
             {
@@ -16,99 +45,161 @@ async function loadProfile() {
             }
         );
 
+
         if (!response.ok) {
 
-            if (response.status === 401) {
-                window.location.href = "login.html";
-                return;
-            }
-
             throw new Error(
-                "Could not load your profile."
+                "Could not load profile."
             );
         }
 
-        const user = await response.json();
 
-        document.getElementById("firstName").value =
-            user.firstName ?? "";
+        const user =
+            await response.json();
 
-        document.getElementById("lastName").value =
-            user.lastName ?? "";
 
-        document.getElementById("email").value =
-            user.email ?? "";
+        const welcomeMessage =
+            document.getElementById(
+                "welcomeMessage"
+            );
 
-        document.getElementById("phoneNumber").value =
-            user.phoneNumber ?? "";
 
-        document.getElementById("address").value =
-            user.address ?? "";
+        if (welcomeMessage) {
 
-        document.getElementById("city").value =
-            user.city ?? "";
+            welcomeMessage.textContent =
+                `Welcome, ${user.firstName}!`;
+        }
 
-        document.getElementById("state").value =
-            user.state ?? "";
 
-        document.getElementById("zipCode").value =
-            user.zipCode ?? "";
+        const fields = [
+            "firstName",
+            "lastName",
+            "email",
+            "phoneNumber",
+            "address",
+            "city",
+            "state",
+            "zipCode"
+        ];
 
-        document.getElementById(
-            "subscribedToPromotions"
-        ).checked =
-            user.subscribedToPromotions ?? false;
 
-        message.textContent = "";
+        fields.forEach(function (field) {
+
+            const input =
+                document.getElementById(field);
+
+
+            if (input) {
+
+                input.value =
+                    user[field] ?? "";
+            }
+        });
+
+
+        const promotions =
+            document.getElementById(
+                "subscribedToPromotions"
+            );
+
+
+        if (promotions) {
+
+            promotions.checked =
+                user.subscribedToPromotions ??
+                false;
+        }
+
+
+        if (message) {
+
+            message.textContent = "";
+        }
 
     } catch (error) {
 
         console.error(
-            "Load profile error:",
+            "Profile load error:",
             error
         );
 
-        message.textContent =
-            "Unable to load your profile. Please try again.";
+
+        if (message) {
+
+            message.textContent =
+                "Unable to load your profile.";
+        }
     }
 }
 
 
-async function updateProfile(event) {
+async function saveProfile(event) {
 
     event.preventDefault();
 
-    const message =
-        document.getElementById("profileMessage");
 
-    const profileData = {
+    const message =
+        document.getElementById(
+            "profileMessage"
+        );
+
+
+    const updatedProfile = {
 
         firstName:
-            document.getElementById("firstName").value,
+            document
+                .getElementById("firstName")
+                .value
+                .trim(),
 
         lastName:
-            document.getElementById("lastName").value,
+            document
+                .getElementById("lastName")
+                .value
+                .trim(),
 
         phoneNumber:
-            document.getElementById("phoneNumber").value,
+            document
+                .getElementById("phoneNumber")
+                .value
+                .trim(),
 
         address:
-            document.getElementById("address").value,
+            document
+                .getElementById("address")
+                .value
+                .trim(),
 
         city:
-            document.getElementById("city").value,
+            document
+                .getElementById("city")
+                .value
+                .trim(),
 
         state:
-            document.getElementById("state").value,
+            document
+                .getElementById("state")
+                .value
+                .trim(),
 
         zipCode:
-            document.getElementById("zipCode").value,
+            document
+                .getElementById("zipCode")
+                .value
+                .trim(),
 
         subscribedToPromotions:
-            document.getElementById(
-                "subscribedToPromotions"
-            ).checked
+            document
+                .getElementById(
+                    "subscribedToPromotions"
+                )
+                .checked
     };
+
+
+    message.textContent =
+        "Saving changes...";
+
 
     try {
 
@@ -118,38 +209,54 @@ async function updateProfile(event) {
                 method: "PUT",
 
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type":
+                        "application/json"
                 },
 
                 credentials: "include",
 
-                body: JSON.stringify(profileData)
+                body: JSON.stringify(
+                    updatedProfile
+                )
             }
         );
 
-        const data = await response.json();
 
-        if (response.ok) {
+        let data = null;
 
-            message.textContent =
-                "Profile updated successfully.";
+        try {
 
-        } else {
+            data = await response.json();
 
-            message.textContent =
-                data.message ||
-                "Unable to update profile.";
+        } catch (error) {
+
+            data = null;
         }
+
+
+        if (!response.ok) {
+
+            message.textContent =
+                data?.message ||
+                "Unable to save your changes.";
+
+            return;
+        }
+
+
+        message.textContent =
+            "Profile updated successfully!";
 
     } catch (error) {
 
         console.error(
-            "Update profile error:",
+            "Save profile error:",
             error
         );
 
+
         message.textContent =
-            "Unable to connect to the server.";
+            "Unable to save your changes. Please try again.";
     }
 }
 
@@ -157,7 +264,15 @@ async function updateProfile(event) {
 async function loadPaymentCards() {
 
     const savedCards =
-        document.getElementById("saved-cards");
+        document.getElementById(
+            "saved-cards"
+        );
+
+
+    if (!savedCards) {
+        return;
+    }
+
 
     try {
 
@@ -169,15 +284,21 @@ async function loadPaymentCards() {
             }
         );
 
+
         if (!response.ok) {
+
             throw new Error(
                 "Could not load cards."
             );
         }
 
-        const cards = await response.json();
+
+        const cards =
+            await response.json();
+
 
         savedCards.innerHTML = "";
+
 
         if (cards.length === 0) {
 
@@ -187,10 +308,14 @@ async function loadPaymentCards() {
             return;
         }
 
+
         cards.forEach(function (card) {
 
             const cardElement =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             cardElement.innerHTML = `
                 <p>
@@ -207,7 +332,10 @@ async function loadPaymentCards() {
                 </p>
             `;
 
-            savedCards.appendChild(cardElement);
+
+            savedCards.appendChild(
+                cardElement
+            );
         });
 
     } catch (error) {
@@ -216,6 +344,7 @@ async function loadPaymentCards() {
             "Load cards error:",
             error
         );
+
 
         savedCards.innerHTML =
             "<p>Unable to load saved cards.</p>";
@@ -227,35 +356,50 @@ async function addPaymentCard(event) {
 
     event.preventDefault();
 
+
     const cardMessage =
-        document.getElementById("cardMessage");
+        document.getElementById(
+            "cardMessage"
+        );
+
 
     const cardData = {
 
         cardholderName:
-            document.getElementById(
-                "cardholderName"
-            ).value,
+            document
+                .getElementById(
+                    "cardholderName"
+                )
+                .value
+                .trim(),
 
         cardNumber:
-            document.getElementById(
-                "cardNumber"
-            ).value,
+            document
+                .getElementById(
+                    "cardNumber"
+                )
+                .value
+                .trim(),
 
         expirationMonth:
             Number(
-                document.getElementById(
-                    "expirationMonth"
-                ).value
+                document
+                    .getElementById(
+                        "expirationMonth"
+                    )
+                    .value
             ),
 
         expirationYear:
             Number(
-                document.getElementById(
-                    "expirationYear"
-                ).value
+                document
+                    .getElementById(
+                        "expirationYear"
+                    )
+                    .value
             )
     };
+
 
     try {
 
@@ -265,19 +409,24 @@ async function addPaymentCard(event) {
                 method: "POST",
 
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type":
+                        "application/json"
                 },
 
                 credentials: "include",
 
-                body: JSON.stringify(cardData)
+                body: JSON.stringify(
+                    cardData
+                )
             }
         );
+
 
         if (response.ok) {
 
             cardMessage.textContent =
                 "Payment card added successfully.";
+
 
             document
                 .getElementById(
@@ -285,17 +434,43 @@ async function addPaymentCard(event) {
                 )
                 .reset();
 
+
             loadPaymentCards();
 
-        } else {
-
-            const message =
-                await response.text();
-
-            cardMessage.textContent =
-                message ||
-                "Unable to add payment card.";
+            return;
         }
+
+
+        let message =
+            "Unable to add payment card.";
+
+
+        try {
+
+            const data =
+                await response.json();
+
+            message =
+                data.message || message;
+
+        } catch (error) {
+
+            try {
+
+                const text =
+                    await response.text();
+
+                if (text) {
+                    message = text;
+                }
+
+            } catch (ignored) {
+            }
+        }
+
+
+        cardMessage.textContent =
+            message;
 
     } catch (error) {
 
@@ -303,6 +478,7 @@ async function addPaymentCard(event) {
             "Add card error:",
             error
         );
+
 
         cardMessage.textContent =
             "Unable to connect to the server.";
@@ -322,11 +498,16 @@ async function deletePaymentCard(cardId) {
             }
         );
 
-        if (response.ok) {
 
-            loadPaymentCards();
+        if (!response.ok) {
 
+            throw new Error(
+                "Unable to delete payment card."
+            );
         }
+
+
+        loadPaymentCards();
 
     } catch (error) {
 
@@ -345,6 +526,12 @@ async function loadFavoriteMovies() {
             "favorite-movies"
         );
 
+
+    if (!favoriteMovies) {
+        return;
+    }
+
+
     try {
 
         const response = await fetch(
@@ -355,16 +542,21 @@ async function loadFavoriteMovies() {
             }
         );
 
+
         if (!response.ok) {
+
             throw new Error(
                 "Could not load favorites."
             );
         }
 
+
         const movies =
             await response.json();
 
+
         favoriteMovies.innerHTML = "";
+
 
         if (movies.length === 0) {
 
@@ -374,10 +566,14 @@ async function loadFavoriteMovies() {
             return;
         }
 
+
         movies.forEach(function (movie) {
 
             const movieElement =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             movieElement.innerHTML = `
                 <p>
@@ -385,6 +581,7 @@ async function loadFavoriteMovies() {
                     - ${movie.genre}
                 </p>
             `;
+
 
             favoriteMovies.appendChild(
                 movieElement
@@ -398,35 +595,9 @@ async function loadFavoriteMovies() {
             error
         );
 
+
         favoriteMovies.innerHTML =
             "<p>Unable to load favorite movies.</p>";
-    }
-}
-
-
-async function logout(event) {
-
-    event.preventDefault();
-
-    try {
-
-        await fetch(
-            `${API_BASE}/api/auth/logout`,
-            {
-                method: "POST",
-                credentials: "include"
-            }
-        );
-
-        window.location.href =
-            "login.html";
-
-    } catch (error) {
-
-        console.error(
-            "Logout error:",
-            error
-        );
     }
 }
 
@@ -439,31 +610,34 @@ document.addEventListener(
         loadPaymentCards();
         loadFavoriteMovies();
 
-        document
-            .getElementById(
+
+        const profileForm =
+            document.getElementById(
                 "editProfileForm"
-            )
-            .addEventListener(
-                "submit",
-                updateProfile
             );
 
-        document
-            .getElementById(
+
+        if (profileForm) {
+
+            profileForm.addEventListener(
+                "submit",
+                saveProfile
+            );
+        }
+
+
+        const paymentForm =
+            document.getElementById(
                 "payment-card-form"
-            )
-            .addEventListener(
+            );
+
+
+        if (paymentForm) {
+
+            paymentForm.addEventListener(
                 "submit",
                 addPaymentCard
             );
-
-        document
-            .getElementById(
-                "logout-link"
-            )
-            .addEventListener(
-                "click",
-                logout
-            );
+        }
     }
 );

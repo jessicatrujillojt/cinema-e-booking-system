@@ -12,83 +12,73 @@ const movieGrid =
 const noResults =
     document.getElementById("no-results");
 
-const loginButton =
-    document.getElementById("login-button");
 
-const logoutButton =
-    document.getElementById("logout-button");
-
-
-let favoriteMovieIds = new Set();
+let favoriteIds = new Set();
 let loggedIn = false;
+let allMovies = [];
 
 
-async function checkSession() {
+/*
+ * Check whether the user is logged in
+ * and load their saved favorite movies.
+ */
+async function loadFavorites() {
 
     try {
 
-        const response = await fetch(
+        const sessionResponse = await fetch(
             `${API_BASE}/api/auth/session`,
             {
-                method: "GET",
                 credentials: "include"
             }
         );
 
-        const data = await response.json();
+        if (!sessionResponse.ok) {
 
-        loggedIn = data.loggedIn === true;
+            loggedIn = false;
+            favoriteIds.clear();
 
-        if (loggedIn) {
-
-            loginButton.style.display = "none";
-            logoutButton.style.display = "inline-block";
-
-            await loadFavorites();
-
-        } else {
-
-            loginButton.style.display = "inline-block";
-            logoutButton.style.display = "none";
-
-            favoriteMovieIds.clear();
+            return;
         }
 
-    } catch (error) {
+        const session =
+            await sessionResponse.json();
 
-        console.error(
-            "Session check error:",
-            error
-        );
-    }
-}
+        loggedIn =
+            session.loggedIn === true;
+
+        favoriteIds.clear();
 
 
-async function loadFavorites() {
+        if (!loggedIn) {
+            return;
+        }
 
-    if (!loggedIn) {
-        return;
-    }
-
-    try {
 
         const response = await fetch(
             `${API_BASE}/api/favorites`,
             {
-                method: "GET",
                 credentials: "include"
             }
         );
 
+
         if (!response.ok) {
-            return;
+
+            throw new Error(
+                "Unable to load favorites."
+            );
         }
+
 
         const favorites =
             await response.json();
 
-        favoriteMovieIds = new Set(
-            favorites.map(movie => movie.id)
+
+        favoriteIds = new Set(
+            favorites.map(
+                movie => String(movie.id)
+            )
         );
 
     } catch (error) {
@@ -97,13 +87,62 @@ async function loadFavorites() {
             "Error loading favorites:",
             error
         );
+
+        loggedIn = false;
+        favoriteIds.clear();
     }
 }
 
 
-async function toggleFavorite(movieId) {
+/*
+ * Update the heart icon for a movie.
+ */
+function updateHeart(button, movieId) {
+
+    const isFavorite =
+        favoriteIds.has(
+            String(movieId)
+        );
+
+
+    button.textContent =
+        isFavorite
+            ? "♥"
+            : "♡";
+
+
+    button.title =
+        isFavorite
+            ? "Remove from Favorites"
+            : "Add to Favorites";
+
+
+    button.setAttribute(
+        "aria-label",
+        button.title
+    );
+
+
+    button.classList.toggle(
+        "is-favorite",
+        isFavorite
+    );
+}
+
+
+/*
+ * Add or remove a movie from favorites.
+ */
+async function toggleFavorite(
+    movieId,
+    button
+) {
 
     if (!loggedIn) {
+
+        alert(
+            "Please log in to save your favorite movies."
+        );
 
         window.location.href =
             "login.html";
@@ -111,16 +150,24 @@ async function toggleFavorite(movieId) {
         return;
     }
 
-    const isFavorite =
-        favoriteMovieIds.has(movieId);
+
+    const id =
+        String(movieId);
+
+    const alreadyFavorite =
+        favoriteIds.has(id);
+
+
+    button.disabled = true;
+
 
     try {
 
         const response = await fetch(
-            `${API_BASE}/api/favorites/${movieId}`,
+            `${API_BASE}/api/favorites/${encodeURIComponent(id)}`,
             {
                 method:
-                    isFavorite
+                    alreadyFavorite
                         ? "DELETE"
                         : "POST",
 
@@ -128,31 +175,47 @@ async function toggleFavorite(movieId) {
             }
         );
 
-        if (!response.ok) {
+
+        if (response.status === 401) {
+
+            loggedIn = false;
+
+            window.location.href =
+                "login.html";
+
             return;
         }
 
-        if (isFavorite) {
 
-            favoriteMovieIds.delete(movieId);
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to update favorites."
+            );
+        }
+
+
+        if (alreadyFavorite) {
+
+            favoriteIds.delete(id);
 
         } else {
 
-            favoriteMovieIds.add(movieId);
+            favoriteIds.add(id);
         }
 
-        const button =
-            document.querySelector(
-                `[data-favorite-id="${movieId}"]`
-            );
 
-        if (button) {
+        document
+            .querySelectorAll(
+                ".favorite-button"
+            )
+            .forEach(function (heart) {
 
-            button.textContent =
-                favoriteMovieIds.has(movieId)
-                    ? "♥"
-                    : "♡";
-        }
+                updateHeart(
+                    heart,
+                    heart.dataset.movieId
+                );
+            });
 
     } catch (error) {
 
@@ -160,39 +223,67 @@ async function toggleFavorite(movieId) {
             "Favorite error:",
             error
         );
+
+        alert(
+            "Could not update favorites. Please try again."
+        );
+
+    } finally {
+
+        button.disabled = false;
     }
 }
 
 
+/*
+ * Display the movie cards.
+ */
 function displayMovies(movies) {
 
     movieGrid.innerHTML = "";
 
+
     if (movies.length === 0) {
 
-        noResults.style.display = "block";
+        noResults.style.display =
+            "block";
+
         return;
     }
 
-    noResults.style.display = "none";
+
+    noResults.style.display =
+        "none";
+
 
     movies.forEach(function (movie) {
 
         const card =
-            document.createElement("article");
+            document.createElement(
+                "article"
+            );
 
-        card.classList.add("browse-card");
+        card.classList.add(
+            "browse-card"
+        );
 
 
         const image =
-            document.createElement("img");
+            document.createElement(
+                "img"
+            );
 
-        image.src = movie.posterUrl;
-        image.alt = movie.title;
+        image.src =
+            movie.posterUrl;
+
+        image.alt =
+            movie.title;
 
 
         const content =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         content.classList.add(
             "browse-card-content"
@@ -200,21 +291,27 @@ function displayMovies(movies) {
 
 
         const title =
-            document.createElement("h3");
+            document.createElement(
+                "h3"
+            );
 
         title.textContent =
             movie.title;
 
 
         const genre =
-            document.createElement("p");
+            document.createElement(
+                "p"
+            );
 
         genre.textContent =
             movie.genre;
 
 
         const detailsLink =
-            document.createElement("a");
+            document.createElement(
+                "a"
+            );
 
         detailsLink.textContent =
             "Show Movie Details →";
@@ -224,11 +321,13 @@ function displayMovies(movies) {
         );
 
         detailsLink.href =
-            `details.html?id=${movie.id}`;
+            `details.html?id=${encodeURIComponent(movie.id)}`;
 
 
         const favoriteButton =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
         favoriteButton.type =
             "button";
@@ -237,22 +336,24 @@ function displayMovies(movies) {
             "favorite-button"
         );
 
-        favoriteButton.dataset.favoriteId =
+        favoriteButton.dataset.movieId =
             movie.id;
 
-        favoriteButton.title =
-            "Add or remove favorite";
 
-        favoriteButton.textContent =
-            favoriteMovieIds.has(movie.id)
-                ? "♥"
-                : "♡";
+        updateHeart(
+            favoriteButton,
+            movie.id
+        );
+
 
         favoriteButton.addEventListener(
             "click",
             function () {
 
-                toggleFavorite(movie.id);
+                toggleFavorite(
+                    movie.id,
+                    favoriteButton
+                );
             }
         );
 
@@ -260,7 +361,9 @@ function displayMovies(movies) {
         content.appendChild(title);
         content.appendChild(genre);
         content.appendChild(detailsLink);
-        content.appendChild(favoriteButton);
+        content.appendChild(
+            favoriteButton
+        );
 
         card.appendChild(image);
         card.appendChild(content);
@@ -270,6 +373,9 @@ function displayMovies(movies) {
 }
 
 
+/*
+ * Load all movies from the backend.
+ */
 async function loadAllMovies() {
 
     try {
@@ -278,10 +384,20 @@ async function loadAllMovies() {
             `${API_BASE}/api/movies`
         );
 
-        const movies =
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to retrieve movies."
+            );
+        }
+
+
+        allMovies =
             await response.json();
 
-        displayMovies(movies);
+
+        displayMovies(allMovies);
 
     } catch (error) {
 
@@ -289,10 +405,18 @@ async function loadAllMovies() {
             "Error loading movies:",
             error
         );
+
+        movieGrid.innerHTML = "";
+
+        noResults.style.display =
+            "block";
     }
 }
 
 
+/*
+ * Search movies by title.
+ */
 searchInput.addEventListener(
     "input",
     function () {
@@ -302,36 +426,30 @@ searchInput.addEventListener(
                 .trim()
                 .toLowerCase();
 
-        fetch(
-            `${API_BASE}/api/movies`
-        )
-            .then(response =>
-                response.json()
-            )
-            .then(movies => {
 
-                const filteredMovies =
-                    movies.filter(movie =>
-                        movie.title
-                            .toLowerCase()
-                            .includes(searchText)
-                    );
+        const filteredMovies =
+            allMovies.filter(
+                function (movie) {
 
-                displayMovies(
-                    filteredMovies
-                );
-            })
-            .catch(error => {
+                    return movie.title
+                        .toLowerCase()
+                        .includes(
+                            searchText
+                        );
+                }
+            );
 
-                console.error(
-                    "Error searching movies:",
-                    error
-                );
-            });
+
+        displayMovies(
+            filteredMovies
+        );
     }
 );
 
 
+/*
+ * Filter movies by genre.
+ */
 genreSelect.addEventListener(
     "change",
     function () {
@@ -340,87 +458,45 @@ genreSelect.addEventListener(
             genreSelect.value
                 .toLowerCase();
 
-        fetch(
-            `${API_BASE}/api/movies`
-        )
-            .then(response =>
-                response.json()
-            )
-            .then(movies => {
 
-                if (
-                    selectedGenre === "all"
-                ) {
+        if (
+            selectedGenre === "all"
+        ) {
 
-                    displayMovies(movies);
-                    return;
-                }
-
-                const filteredMovies =
-                    movies.filter(movie =>
-                        movie.genre
-                            .toLowerCase() ===
-                        selectedGenre
-                    );
-
-                displayMovies(
-                    filteredMovies
-                );
-            })
-            .catch(error => {
-
-                console.error(
-                    "Error filtering movies:",
-                    error
-                );
-            });
-    }
-);
-
-
-loginButton.addEventListener(
-    "click",
-    function () {
-
-        window.location.href =
-            "login.html";
-    }
-);
-
-
-logoutButton.addEventListener(
-    "click",
-    async function () {
-
-        try {
-
-            await fetch(
-                `${API_BASE}/api/auth/logout`,
-                {
-                    method: "POST",
-                    credentials: "include"
-                }
+            displayMovies(
+                allMovies
             );
 
-            window.location.href =
-                "login.html";
-
-        } catch (error) {
-
-            console.error(
-                "Logout error:",
-                error
-            );
+            return;
         }
+
+
+        const filteredMovies =
+            allMovies.filter(
+                function (movie) {
+
+                    return movie.genre
+                        .toLowerCase() ===
+                        selectedGenre;
+                }
+            );
+
+
+        displayMovies(
+            filteredMovies
+        );
     }
 );
 
 
+/*
+ * Initialize the browse page.
+ */
 document.addEventListener(
     "DOMContentLoaded",
     async function () {
 
-        await checkSession();
+        await loadFavorites();
         await loadAllMovies();
     }
 );
