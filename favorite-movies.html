@@ -11,15 +11,38 @@
 </head>
 <body>
     <nav>
-        <h1> Movie E-Booking System</h1>
+        <h1>Movie E-Booking System</h1>
+
         <div class="navsection">
-            <p> <a href="home.html">Home</a></p>
-            <p> <a href="browse.html">Browse</a></p>
-            <p> <a href="profile.html">Profile</a> </p>  <!-- Should only be visible when logged in -->
-            <p><button type="button" class="login-btn" onclick="location.href='login.html'">Login</button></p> <!-- Should only be visible when logged out -->
-            <section class="logout-btn">
-            <p> <button type="button" class="login-btn" onclick="location.href='favorite-movies.html'">Logout</button></p> <!-- Should only be visible when logged in -->
+
+            <p><a href="home.html">Home</a></p>
+            <p><a href="browse.html">Browse</a></p>
+
+            <!-- Profile: visible only when logged in -->
+            <p id="profileNav" hidden>
+                <a href="profile.html">Profile</a>
+            </p>
+
+            <!-- Login: visible only when logged out -->
+            <p id="loginNav" hidden>
+                <button type="button"
+                        class="login-btn"
+                        onclick="location.href='login.html'">
+                    Login
+                </button>
+            </p>
+
+            <!-- Logout: visible only when logged in -->
+            <section class="logout-btn" id="logoutNav" hidden>
+                <p>
+                    <button type="button"
+                            class="login-btn"
+                            id="logoutButton">
+                        Logout
+                    </button>
+                </p>
             </section>
+
         </div>
     </nav>
     <main class="browse-page">
@@ -34,5 +57,6 @@
         <p>&copy; 2024 Movie E-Booking System. All rights reserved.</p>
     </footer>
     <script src="favorite-movies.js"></script>
+    <script src="nav.js"></script>
 </body>
 </html>
