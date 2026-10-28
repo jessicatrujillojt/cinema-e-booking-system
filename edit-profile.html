@@ -1,32 +1,35 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
     <title>Edit Profile | Cinema E-Booking</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-    <!-- Navigation bar -->
     <nav>
-        <h1> Movie E-Booking System</h1>
+        <h1>Movie E-Booking System</h1>
+
         <div class="navsection">
-            <p> <a href="home.html">Home</a></p>
-            <p> <a href="browse.html">Browse</a></p>
-            <p> <a href="profile.html">Profile</a> </p>  <!-- Should only be visible when logged in -->
-            <p><button type="button" class="login-btn" onclick="location.href='login.html'">Login</button></p> <!-- Should only be visible when logged out -->
-            <section class="logout-btn">
-            <p> <button type="button" class="login-btn" onclick="location.href='edit-profile.html'">Logout</button></p> <!-- Should only be visible when logged in -->
-            </section>
+            <p><a href="home.html">Home</a></p>
+            <p><a href="browse.html">Browse</a></p>
+            <p><a href="profile.html">Profile</a></p>
+            <p>
+                <button type="button" class="login-btn"
+                    onclick="location.href='login.html'">
+                    Login
+                </button>
+            </p>
         </div>
     </nav>
 
-    <!-- Edit Profile Form -->
     <main class="login-section profile-section">
         <h2>Edit Profile</h2>
 
@@ -34,40 +37,72 @@
 
             <div class="form-group">
                 <label for="firstName">First Name:</label>
-                <input type="text" id="firstName"
-                       name="firstName" required>
+                <input type="text" id="firstName" required>
             </div>
 
             <div class="form-group">
                 <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName"
-                       name="lastName" required>
-            </div>
-
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username"
-                       name="username" required>
+                <input type="text" id="lastName" required>
             </div>
 
             <div class="form-group">
                 <label for="email">Email Address:</label>
-                <input type="email" id="email"
-                       name="email" readonly>
+                <input type="email" id="email" readonly>
                 <small>Your email address cannot be changed.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Street Address:</label>
+                <input type="text" id="address">
+            </div>
+
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" id="city">
+            </div>
+
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input type="text" id="state">
+            </div>
+
+            <div class="form-group">
+                <label for="zipCode">ZIP Code:</label>
+                <input type="text" id="zipCode">
+            </div>
+
+            <div class="form-group">
+                <label for="subscribedToPromotions">
+                    <input type="checkbox" id="subscribedToPromotions">
+                    Subscribe to promotional emails
+                </label>
             </div>
 
             <button type="submit">Save Changes</button>
 
+            <p id="profileMessage" role="status"></p>
         </form>
 
         <div class="login-links">
-            <h5><a class="register-link"
-                   href="password.html">Change Password</a></h5>
-            <h5><a class="register-link"
-                   href="browse.html">Browse Movies</a></h5>
+            <h5>
+                <a class="register-link" href="password.html">
+                    Change Password
+                </a>
+            </h5>
+            <h5>
+                <a class="register-link" href="browse.html">
+                    Browse Movies
+                </a>
+            </h5>
         </div>
     </main>
-<script src="js/edit-profile.js"></script>
+
+    <script src="edit-profile.js"></script>
+
 </body>
 </html>

@@ -3,43 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+
+    <title>Login - 13th Reel</title>
 </head>
-    <!-- login-section, login-form, sectionfooter, register-link -->
+
 <body>
-    <!-- Navigation -->
+
     <nav>
-        <h1> Movie E-Booking System</h1>
+        <h1>Movie E-Booking System</h1>
+
         <div class="navsection">
-            <p> <a href="home.html">Home</a></p>
-            <p> <a href="browse.html">Browse</a></p>
-            <p> <a href="profile.html">Profile</a> </p>  <!-- Should only be visible when logged in -->
-            <p><button type="button" class="login-btn" onclick="location.href='login.html'">Login</button></p> <!-- Should only be visible when logged out -->
-            <section class="logout-btn">
-            <p> <button type="button" class="login-btn" onclick="location.href='login.html'">Logout</button></p> <!-- Should only be visible when logged in -->
+            <p><a href="home.html">Home</a></p>
+            <p><a href="browse.html">Browse</a></p>
+
+            <p id="profileNav" hidden>
+                <a href="profile.html">Profile</a>
+            </p>
+
+            <p id="loginNav">
+                <button type="button" class="login-btn"
+                    onclick="location.href='login.html'">
+                    Login
+                </button>
+            </p>
+
+            <section class="logout-btn" id="logoutNav" hidden>
+                <p>
+                    <button type="button" class="login-btn"
+                        id="logoutButton">
+                        Logout
+                    </button>
+                </p>
             </section>
         </div>
     </nav>
+
     <section class="login-section">
         <h2>Login</h2>
-        <form class="login-form" action="#" method="post">
+
+        <form class="login-form" id="loginForm">
+
             <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+                <label for="email">Email:</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required>
             </div>
+
             <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" autocomplete="current-password" id="password" name="password" required>
+                <label for="password">Password:</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    autocomplete="current-password"
+                    required>
             </div>
-            <button type="button" onclick="location.href='home.html'">Login</button>
+
+            <button type="submit">Login</button>
+
+            <p id="loginMessage" role="status"></p>
         </form>
 
         <div class="login-links">
-        <h5>Don't have an existing account? <a class="register-link" href="register.html">Register Here!</a></h5>
-        <h5>Forgot your password? <a class="register-link" href="reset.html">Reset Here!</a></h5>
+            <h5>
+                Don't have an existing account?
+                <a class="register-link" href="register.html">
+                    Register Here!
+                </a>
+            </h5>
+
+            <h5>
+                Forgot your password?
+                <a class="register-link" href="reset.html">
+                    Reset Here!
+                </a>
+            </h5>
         </div>
     </section>
+
+    <script src="login.js"></script>
+
 </body>
 </html>
