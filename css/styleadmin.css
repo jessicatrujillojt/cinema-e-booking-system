@@ -11,27 +11,26 @@ h1{
     color: rgb(255, 255, 255);
     font-family: "Instrument Serif", serif;
 }
-
-.imgtable{
-    display: block;
-    width: 20%;
-    border: none;
-}
 h2, h3, h4, h5, h6, p{
     margin: 5px;
     color: rgb(255, 255, 255);
     font-family: "Lora", serif;
 }
+h5{
+    margin: 5px;
+    color: rgb(32, 31, 31);
+    font-family: "Lora", serif;
+}
 footer{
-    background-color: #383838;
-    color: rgb(255, 255, 255);
+    background-color: #2b2929;
+    color: rgb(18, 7, 7);
     text-align: center;
     font-size: 10px;
     padding: 5px;
     font-family: "Lora", serif;
 }
 nav {
-background-color: #383838;
+background-color: #2b2929;
   color: rgb(255, 255, 255);
   display: flex;
   padding: 10px;
@@ -151,10 +150,6 @@ a{
 }
 h3 {
     margin: 2px 2px 1px 8px;
-}
-p {
-    margin: 2px 2px 20px 18px;
-    color: #383838;
 }
 .card h5 {
     margin: 2px 2px 1px 8px;
@@ -689,4 +684,80 @@ button {
     margin: 0 auto 20px auto;
 }
 
+/* Admin Home Section */
+.adminhome {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+}
 
+.adminhome h5 {
+    font-size: 1.1rem;
+    color: #555;
+    font-weight: normal;
+}
+
+/* Table Styling */
+table {
+    width: 95%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: "Lora", serif;
+}
+
+th {
+    background-color: #222;
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Movie Poster Images */
+.imgtable {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    
+}
+
+/* Buttons */
+button {
+    padding: 8px 12px;
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    text-align: center;
+    padding: 15px;
+    background-color: #222;
+    color: white;
+}
