@@ -18,10 +18,14 @@ h2, h3, h4, h5, h6, p{
 footer{
     background-color: rgb(232, 222, 233);
     color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     font-size: 10px;
     padding: 5px;
     font-family: "Lora", serif;
+    
 }
 nav {
 background-color: rgb(232, 222, 233);
