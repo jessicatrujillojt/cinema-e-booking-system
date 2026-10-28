@@ -11,14 +11,37 @@
 </head>
 <body>
     <nav>
-        <h1> Movie E-Booking System</h1>
+        <h1>Movie E-Booking System</h1>
+
         <div class="navsection">
-            <p> <a href="browse.html">Browse</a></p>
-            <p> <a href="profile.html">Profile</a> </p>  <!-- Should only be visible when logged in -->
-            <p><button type="button" class="login-btn" onclick="location.href='login.html'">Login</button></p> <!-- Should only be visible when logged out -->
-            <section class="logout-btn">
-            <p> <button type="button" class="login-btn" onclick="location.href='home.html'">Logout</button></p> <!-- Should only be visible when logged in -->
+
+            <p><a href="browse.html">Browse</a></p>
+
+            <!-- Profile: only visible when logged in -->
+            <p id="profileNav" hidden>
+                <a href="profile.html">Profile</a>
+            </p>
+
+            <!-- Login: only visible when logged out -->
+            <p id="loginNav" hidden>
+                <button type="button"
+                        class="login-btn"
+                        onclick="location.href='login.html'">
+                    Login
+                </button>
+            </p>
+
+            <!-- Logout: only visible when logged in -->
+            <section class="logout-btn" id="logoutNav" hidden>
+                <p>
+                    <button type="button"
+                            class="login-btn"
+                            id="logoutButton">
+                        Logout
+                    </button>
+                </p>
             </section>
+
         </div>
     </nav>
     <div class="slide">
@@ -52,5 +75,6 @@
 </footer>
 
 <script src="home.js"></script>
+<script src="nav.js"></script>
 </body>
 </html>

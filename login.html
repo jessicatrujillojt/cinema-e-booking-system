@@ -12,32 +12,33 @@
 
 <body>
 
+    <!-- Navigation -->
     <nav>
         <h1>Movie E-Booking System</h1>
 
         <div class="navsection">
+
             <p><a href="home.html">Home</a></p>
             <p><a href="browse.html">Browse</a></p>
 
+            <!-- Profile: visible only when logged in -->
             <p id="profileNav" hidden>
                 <a href="profile.html">Profile</a>
             </p>
 
-            <p id="loginNav">
-                <button type="button" class="login-btn"
-                    onclick="location.href='login.html'">
-                    Login
-                </button>
-            </p>
+            <!-- Login is omitted because we're on the Login page -->
 
+            <!-- Logout: visible only when logged in -->
             <section class="logout-btn" id="logoutNav" hidden>
                 <p>
-                    <button type="button" class="login-btn"
-                        id="logoutButton">
+                    <button type="button"
+                            class="login-btn"
+                            id="logoutButton">
                         Logout
                     </button>
                 </p>
             </section>
+
         </div>
     </nav>
 
@@ -90,6 +91,7 @@
     </section>
 
     <script src="login.js"></script>
+    <script src="nav.js"></script>
 
 </body>
 </html>
