@@ -1133,3 +1133,43 @@ button {
 .favorite-button.is-favorite {
     color: #b42355;
 }
+
+/* Add Payment Method button */
+.add-card-btn {
+    background-color: #3e1f48;
+    color: white;
+    border: 2px solid #3e1f48;
+    border-radius: 15px;
+    width: 100%;
+    height: 60px;
+    padding: 20px 20px 20px 20px;
+    margin: 5px;
+    font-family: "Lora", serif;
+    font-size: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.add-card-btn:hover {
+    background-color: white;
+    color: #3e1f48;
+}
+.add-card-btn:focus-visible {
+    outline: 3px solid #92749b;
+    outline-offset: 3px;
+}
+.payment-info{
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin: 5px;
+}
+.card-actions {
+    display: flex;
+    justify-content:center;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+}
