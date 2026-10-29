@@ -83,7 +83,7 @@ document.addEventListener(
                     } else {
 
                         window.location.href =
-                            "home.html";
+                            "profile.html";
                     }
 
                 } catch (error) {
