@@ -1,99 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 
     <title>Movie Browsing</title>
 </head>
 
 <body>
-<!-- Navigation -->
-<nav>
-    <h1>Movie E-Booking System</h1>
 
-    <div class="navsection">
+    <nav>
 
-        <p><a href="home.html">Home</a></p>
+        <h1>
+            Movie E-Booking System
+        </h1>
 
-        <!-- Profile: only visible when logged in -->
-        <p id="profileNav" hidden>
-            <a href="profile.html">Profile</a>
-        </p>
+        <div class="navsection">
 
-        <!-- Login: only visible when logged out -->
-        <p id="loginNav" hidden>
-            <button type="button"
-                    class="login-btn"
-                    onclick="location.href='login.html'">
-                Login
-            </button>
-        </p>
-
-        <!-- Logout: only visible when logged in -->
-        <section class="logout-btn" id="logoutNav" hidden>
             <p>
-                <button type="button"
-                        class="login-btn"
-                        id="logoutButton">
-                    Logout
+                <a href="home.html">
+                    Home
+                </a>
+            </p>
+
+            <p id="profileNav" hidden>
+                <a href="profile.html">
+                    Profile
+                </a>
+            </p>
+
+            <p id="loginNav" hidden>
+                <button
+                    type="button"
+                    class="login-btn"
+                    onclick="location.href='login.html'"
+                >
+                    Login
                 </button>
             </p>
-        </section>
 
-    </div>
-</nav>
+            <section
+                class="logout-btn"
+                id="logoutNav"
+                hidden
+            >
+                <p>
+                    <button
+                        type="button"
+                        class="login-btn"
+                        id="logoutButton"
+                    >
+                        Logout
+                    </button>
+                </p>
+            </section>
+
+        </div>
+
+    </nav>
 
 
-    <!-- Main Browse Page -->
     <main class="browse-page">
 
         <h2>Browse Movies</h2>
 
 
-        <!-- Filters -->
         <section class="browse-controls">
 
-            <!-- Genre -->
             <div class="filter-group">
-                <label for="genre">Genre</label>
 
-                <select id="genre" name="genre">
-                    <option value="all">All Genres</option>
-                    <option value="action">Action</option>
-                    <option value="adventure">Adventure</option>
-                    <option value="comedy">Comedy</option>
-                    <option value="documentary">Documentary</option>
-                    <option value="drama">Drama</option>
-                    <option value="horror">Horror</option>
-                    <option value="mystery">Mystery</option>
-                    <option value="romance">Romance</option>
-                    <option value="thriller">Thriller</option>
+                <label for="genre">
+                    Genre
+                </label>
+
+                <select
+                    id="genre"
+                    name="genre"
+                >
+                    <option value="all">
+                        All Genres
+                    </option>
+
+                    <option value="action">
+                        Action
+                    </option>
+
+                    <option value="adventure">
+                        Adventure
+                    </option>
+
+                    <option value="comedy">
+                        Comedy
+                    </option>
+
+                    <option value="documentary">
+                        Documentary
+                    </option>
+
+                    <option value="drama">
+                        Drama
+                    </option>
+
+                    <option value="horror">
+                        Horror
+                    </option>
+
+                    <option value="mystery">
+                        Mystery
+                    </option>
+
+                    <option value="romance">
+                        Romance
+                    </option>
+
+                    <option value="thriller">
+                        Thriller
+                    </option>
                 </select>
+
             </div>
 
 
-            <!-- Show Date -->
             <div class="filter-group">
-                <label for="show-date">Show Date</label>
 
-                <select id="show-date" name="show-date">
-                    <option value="all">&lt;Week day, Month Day&gt;</option>
-                    <option value="date1">&lt;Week day, Month Day&gt;</option>
-                    <option value="date2">&lt;Week day, Month Day&gt;</option>
-                    <option value="date3">&lt;Week day, Month Day&gt;</option>
+                <label for="show-date">
+                    Show Date
+                </label>
+
+                <select
+                    id="show-date"
+                    name="show-date"
+                >
+
+                    <option value="all">
+                        &lt;Week day, Month Day&gt;
+                    </option>
+
+                    <option value="date1">
+                        &lt;Week day, Month Day&gt;
+                    </option>
+
+                    <option value="date2">
+                        &lt;Week day, Month Day&gt;
+                    </option>
+
+                    <option value="date3">
+                        &lt;Week day, Month Day&gt;
+                    </option>
+
                 </select>
+
             </div>
 
 
-            <!-- Search -->
             <div class="search-container">
 
-                <span class="search-icon">⌕</span>
+                <span class="search-icon">
+                    ⌕
+                </span>
 
                 <input
                     type="text"
@@ -101,30 +191,45 @@
                     placeholder="I'm looking for..."
                 >
 
-                <span class="search-button">⌕</span>
+                <span class="search-button">
+                    ⌕
+                </span>
 
             </div>
 
         </section>
 
 
-        <!-- Movie Results -->
-        <section class="movie-grid" id="movie-grid">
+        <section
+            class="movie-grid"
+            id="movie-grid"
+        >
         </section>
 
-        <p id="no-results" class="no-results">
+
+        <p
+            id="no-results"
+            class="no-results"
+        >
             SORRY WE CANNOT FIND WHAT YOU'RE LOOKING FOR...
         </p>
 
     </main>
 
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Movie E-Booking System. All rights reserved.</p>
+
+        <p>
+            &copy; 2024 Movie E-Booking System.
+            All rights reserved.
+        </p>
+
     </footer>
 
-<script src="browse.js"></script>
-<script src="nav.js"></script>
+
+    <script src="browse.js"></script>
+    <script src="nav.js"></script>
+
 </body>
+
 </html>

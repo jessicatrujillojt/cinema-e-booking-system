@@ -1,41 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <title>Reset Password</title>
 </head>
-    <!-- login-section, login-form, sectionfooter, register-link -->
+
 <body>
-    <!-- Navigation -->
+
     <nav>
-        <h1> Movie E-Booking System</h1>
+
+        <h1>
+            Movie E-Booking System
+        </h1>
+
         <div class="navsection">
-            <p> <a href="home.html">Home</a></p>
-            <p> <a href="browse.html">Browse</a></p>
-            <p> <a href="profile.html">Profile</a> </p>  <!-- Should only be visible when logged in -->
-            <p><button type="button" class="login-btn" onclick="location.href='login.html'">Login</button></p> <!-- Should only be visible when logged out -->
-            <section class="logout-btn">
-            <p> <button type="button" class="login-btn" onclick="location.href='reset.html'">Logout</button></p> <!-- Should only be visible when logged in -->
+
+            <p>
+                <a href="home.html">
+                    Home
+                </a>
+            </p>
+
+            <p>
+                <a href="browse.html">
+                    Browse
+                </a>
+            </p>
+
+            <p id="profileNav" hidden>
+                <a href="profile.html">
+                    Profile
+                </a>
+            </p>
+
+            <p id="loginNav" hidden>
+                <button
+                    type="button"
+                    class="login-btn"
+                    onclick="location.href='login.html'"
+                >
+                    Login
+                </button>
+            </p>
+
+            <section
+                class="logout-btn"
+                id="logoutNav"
+                hidden
+            >
+                <p>
+                    <button
+                        type="button"
+                        class="login-btn"
+                        id="logoutButton"
+                    >
+                        Logout
+                    </button>
+                </p>
             </section>
+
         </div>
+
     </nav>
+
+
     <section class="login-section">
-        <h2>Reset Password</h2>
-        <h5>Enter your new unique password below:</h5>
-        <form class="login-form">
-            <label for="password">Password:</label>
-            <input type="password" autocomplete="new-password" id="password" name="password" required>
+
+        <h2>
+            Reset Password
+        </h2>
+
+        <h5>
+            Enter your new password below:
+        </h5>
+
+
+        <form
+            class="login-form"
+            id="reset-form"
+        >
+
+            <label for="password">
+                New Password:
+            </label>
+
+            <input
+                type="password"
+                autocomplete="new-password"
+                id="password"
+                name="password"
+                required
+            >
+
             <br>
-            <label for="confirm-password">Re-enter Password:</label>
-            <input type="password" autocomplete="new-password" id="confirm-password" name="confirm-password" required>
-            <button type="submit">Reset Password</button>
+
+
+            <label for="confirm-password">
+                Re-enter Password:
+            </label>
+
+            <input
+                type="password"
+                autocomplete="new-password"
+                id="confirm-password"
+                name="confirm-password"
+                required
+            >
+
+            <br>
+
+
+            <button type="submit">
+                Reset Password
+            </button>
+
         </form>
+
+
+        <p id="reset-message"></p>
+
+
         <div class="login-links">
-        <h5>Don't have an existing account? <a class="register-link" href="register.html">Register Here!</a></h5>
+
+            <h5>
+                Don't have an existing account?
+
+                <a
+                    class="register-link"
+                    href="register.html"
+                >
+                    Register Here!
+                </a>
+            </h5>
+
         </div>
+
     </section>
+
+
+    <script src="reset.js"></script>
+    <script src="nav.js"></script>
+
 </body>
+
 </html>

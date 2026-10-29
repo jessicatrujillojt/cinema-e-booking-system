@@ -1,57 +1,102 @@
 const API_BASE = "http://localhost:8080";
 
-document.addEventListener("DOMContentLoaded", () => {
 
-    const loginForm = document.getElementById("loginForm");
-    const loginMessage = document.getElementById("loginMessage");
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-    loginForm.addEventListener("submit", async (event) => {
+        const loginForm =
+            document.getElementById("loginForm");
 
-        event.preventDefault();
+        const loginMessage =
+            document.getElementById("loginMessage");
 
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
 
-        loginMessage.textContent = "Logging in...";
+        loginForm.addEventListener(
+            "submit",
+            async function (event) {
 
-        try {
-            const response = await fetch(
-                `${API_BASE}/api/auth/login`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({
-                        emailAddress: email,
-                        password: password
-                    })
-                }
-            );
+                event.preventDefault();
 
-            const result = await response.json();
 
-            if (!response.ok || !result.success) {
+                const emailAddress =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+                const password =
+                    document
+                        .getElementById("password")
+                        .value;
+
+
                 loginMessage.textContent =
-                    result.message || "Invalid email or password.";
-                return;
+                    "Logging in...";
+
+
+                try {
+
+                    const response = await fetch(
+                        `${API_BASE}/api/auth/login`,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            credentials: "include",
+
+                            body: JSON.stringify({
+                                emailAddress,
+                                password
+                            })
+                        }
+                    );
+
+
+                    const result =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        loginMessage.textContent =
+                            result.message ||
+                            "Invalid email or password.";
+
+                        return;
+                    }
+
+
+                    loginMessage.textContent =
+                        "Login successful!";
+
+
+                    if (result.role === "ADMIN") {
+
+                        window.location.href =
+                            "adminhome.html";
+
+                    } else {
+
+                        window.location.href =
+                            "home.html";
+                    }
+
+                } catch (error) {
+
+                    console.error(
+                        "Login error:",
+                        error
+                    );
+
+                    loginMessage.textContent =
+                        "Unable to connect to the server.";
+                }
             }
-
-            loginMessage.textContent = "Login successful!";
-
-            // Redirect after successful login
-            if (result.role === "ADMIN") {
-                window.location.href = "admin.html";
-            } else {
-                window.location.href = "profile.html";
-            }
-
-        } catch (error) {
-            console.error("Login error:", error);
-
-            loginMessage.textContent =
-                "Unable to connect to the server.";
-        }
-    });
-});
+        );
+    }
+);

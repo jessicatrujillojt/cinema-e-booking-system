@@ -1,130 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 
     <title>Edit Profile | Cinema E-Booking</title>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <!-- Navigation -->
     <nav>
-        <h1>Movie E-Booking System</h1>
+
+        <h1>
+            Movie E-Booking System
+        </h1>
 
         <div class="navsection">
 
-            <p><a href="home.html">Home</a></p>
-            <p><a href="browse.html">Browse</a></p>
-
-            <!-- Profile: only visible when logged in -->
-            <p id="profileNav" hidden>
-                <a href="profile.html">Profile</a>
+            <p>
+                <a href="home.html">
+                    Home
+                </a>
             </p>
 
-            <!-- Login: only visible when logged out -->
+            <p>
+                <a href="browse.html">
+                    Browse
+                </a>
+            </p>
+
+            <p id="profileNav" hidden>
+                <a href="profile.html">
+                    Profile
+                </a>
+            </p>
+
             <p id="loginNav" hidden>
-                <button type="button"
-                        class="login-btn"
-                        onclick="location.href='login.html'">
+                <button
+                    type="button"
+                    class="login-btn"
+                    onclick="location.href='login.html'"
+                >
                     Login
                 </button>
             </p>
 
-            <!-- Logout: only visible when logged in -->
-            <section class="logout-btn" id="logoutNav" hidden>
+            <section
+                class="logout-btn"
+                id="logoutNav"
+                hidden
+            >
                 <p>
-                    <button type="button"
-                            class="login-btn"
-                            id="logoutButton">
+                    <button
+                        type="button"
+                        class="login-btn"
+                        id="logoutButton"
+                    >
                         Logout
                     </button>
                 </p>
             </section>
 
         </div>
+
     </nav>
 
+
     <main class="login-section profile-section">
-        <h2>Edit Profile</h2>
 
-        <form class="login-form" id="editProfileForm">
+        <h2>
+            Edit Profile
+        </h2>
 
-            <div class="form-group">
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" required>
-            </div>
 
-            <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" required>
-            </div>
+        <form
+            class="login-form"
+            id="editProfileForm"
+        >
 
             <div class="form-group">
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" readonly>
-                <small>Your email address cannot be changed.</small>
-            </div>
 
-            <div class="form-group">
-                <label for="phoneNumber">Phone Number:</label>
-                <input type="tel" id="phoneNumber">
-            </div>
-
-            <div class="form-group">
-                <label for="address">Street Address:</label>
-                <input type="text" id="address">
-            </div>
-
-            <div class="form-group">
-                <label for="city">City:</label>
-                <input type="text" id="city">
-            </div>
-
-            <div class="form-group">
-                <label for="state">State:</label>
-                <input type="text" id="state">
-            </div>
-
-            <div class="form-group">
-                <label for="zipCode">ZIP Code:</label>
-                <input type="text" id="zipCode">
-            </div>
-
-            <div class="form-group">
-                <label for="subscribedToPromotions">
-                    <input type="checkbox" id="subscribedToPromotions">
-                    Subscribe to promotional emails
+                <label for="firstName">
+                    First Name:
                 </label>
+
+                <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    required
+                >
+
             </div>
 
-            <button type="submit">Save Changes</button>
 
-            <p id="profileMessage" role="status"></p>
+            <div class="form-group">
+
+                <label for="lastName">
+                    Last Name:
+                </label>
+
+                <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address:
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    readonly
+                >
+
+                <small>
+                    Your email address cannot be changed.
+                </small>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="phoneNumber">
+                    Phone Number:
+                </label>
+
+                <input
+                    type="tel"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="address">
+                    Street Address:
+                </label>
+
+                <input
+                    type="text"
+                    id="address"
+                    name="address"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="city">
+                    City:
+                </label>
+
+                <input
+                    type="text"
+                    id="city"
+                    name="city"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="state">
+                    State:
+                </label>
+
+                <input
+                    type="text"
+                    id="state"
+                    name="state"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="zipCode">
+                    ZIP Code:
+                </label>
+
+                <input
+                    type="text"
+                    id="zipCode"
+                    name="zipCode"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="subscribedToPromotions">
+
+                    <input
+                        type="checkbox"
+                        id="subscribedToPromotions"
+                    >
+
+                    Subscribe to promotional emails
+
+                </label>
+
+            </div>
+
+
+            <button type="submit">
+                Save Changes
+            </button>
+
+
+            <p
+                id="profileMessage"
+                role="status"
+            ></p>
+
         </form>
 
+
+        <hr>
+
+
+        <h2>
+            Saved Payment Cards
+        </h2>
+
+
+        <div id="saved-cards">
+
+            <p>
+                No saved cards.
+            </p>
+
+        </div>
+
+
+        <h3>
+            Add Payment Card
+        </h3>
+
+
+        <form
+            class="login-form"
+            id="payment-card-form"
+        >
+
+            <div class="form-group">
+
+                <label for="cardholderName">
+                    Cardholder Name:
+                </label>
+
+                <input
+                    type="text"
+                    id="cardholderName"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="cardNumber">
+                    Card Number:
+                </label>
+
+                <input
+                    type="text"
+                    id="cardNumber"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="expirationMonth">
+                    Expiration Month:
+                </label>
+
+                <input
+                    type="number"
+                    id="expirationMonth"
+                    min="1"
+                    max="12"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="expirationYear">
+                    Expiration Year:
+                </label>
+
+                <input
+                    type="number"
+                    id="expirationYear"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit">
+                Add Card
+            </button>
+
+        </form>
+
+
+        <p id="cardMessage"></p>
+
+
+        <hr>
+
+
+        <h2>
+            Favorite Movies
+        </h2>
+
+
+        <div id="favorite-movies">
+
+            <p>
+                No favorite movies yet.
+            </p>
+
+        </div>
+
+
         <div class="login-links">
+
             <h5>
-                <a class="register-link" href="password.html">
+                <a
+                    class="register-link"
+                    href="change-password.html"
+                >
                     Change Password
                 </a>
             </h5>
+
             <h5>
-                <a class="register-link" href="browse.html">
+                <a
+                    class="register-link"
+                    href="browse.html"
+                >
                     Browse Movies
                 </a>
             </h5>
+
         </div>
+
     </main>
+
 
     <script src="edit-profile.js"></script>
     <script src="nav.js"></script>
 
 </body>
+
 </html>

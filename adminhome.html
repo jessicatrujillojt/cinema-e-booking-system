@@ -1,92 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styleadmin.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/styleadmin.css"
+    >
+
     <title>Admin Home</title>
 </head>
-<body>
-    <nav>
-        <h1> 13th Reel E-Booking System Admin </h1>
-        <div class="navsection">
-            <p>
-            <button type="button" onclick="window.location.href='manage_movies.html'">Manage Movies</button>
-            <button type="button" onclick="window.location.href='view_bookings.html'">View Bookings</button>
-            <button type="button" onclick="window.location.href='user_management.html'">User Management</button>
-            <button type="button" class="login-btn" href="login.html">Logout</button></p>
-        </div>
-    </nav>
-    <section class="adminhome">
-        <h5>Welcome to the Admin Home page. Here you can manage the movie listings, view bookings, and perform administrative tasks.</h5>
-    </section>
-    <table>
-        <tbody>
-        <tr>
-            <th>Movie Image</th>
-            <th>Movie Title</th>
-            <th>Genre</th>
-            <th>Release Date</th>
-            <th>Rating</th>
-            <th>Visibility</th>
-            <th>Actions</th>
-        </tr>
-        <tr>
-            <td><img src="img/movieposter.jpg" class="imgtable" alt="Movie 1"></td>
-            <td>Movie Title 1</td>
-            <td>Action</td>
-            <td>2023-01-01</td>
-            <td>8.5</td>
-            <td>Visible</td>
-            <td><button type="button">Edit</button> <button type="button">Delete</button> <button type="button">Visibility</button></td>
-        </tr>
-        <tr>
-            <td><img src="img/movieposter.jpg" class="imgtable" alt="Movie 2"></td>
-            <td>Movie Title 2</td>
-            <td>Comedy</td>
-            <td>2023-02-01</td>
-            <td>7.8</td>
-            <td>Hidden</td>
-            <td><button type="button">Edit</button> <button type="button">Delete</button> <button type="button">Visibility</button></td>
-        </tr>
-        <tr>
-            <td><img src="img/movieposter.jpg" class="imgtable" alt="Movie 3"></td>
-            <td>Movie Title 3</td>
-            <td>Drama</td>
-            <td>2023-03-01</td>
-            <td>8.0</td>
-            <td>Visible</td>
-            <td><button type="button">Edit</button> <button type="button">Delete</button> <button type="button">Visibility</button></td>
-        </tr>
-        <tr>
-            <td><img src="img/movieposter.jpg" class="imgtable" alt="Movie 4"></td>
-            <td>Movie Title 4</td>
-            <td>Sci-Fi</td>
-            <td>2023-04-01</td>
-            <td>8.2</td>
-            <td>Visible</td>
-            <td><button type="button">Edit</button> <button type="button">Delete</button> <button type="button">Visibility</button></td>
-        </tr>
-        <tr>
-            <td><img src="img/movieposter.jpg" class="imgtable" alt="Movie 5"></td>
-            <td>Movie Title 5</td>
-            <td>Thriller</td>
-            <td>2023-05-01</td>
-            <td>7.9</td>
-            <td>Hidden</td>
-            <td><button type="button">Edit</button> <button type="button">Delete</button> <button type="button">Visibility</button></td>
-        </tr>
-        </tbody>
-    </table>
-<br>
-<br>
-<footer>
-    <p> &copy; 2024 Movie Poster Title. All rights reserved.</p>
-</footer>
 
-<script src="home.js"></script>
+<body>
+
+    <nav>
+
+        <h1>
+            13th Reel E-Booking System Admin
+        </h1>
+
+        <div class="navsection">
+
+            <button
+                type="button"
+                onclick="window.location.href='manage_movies.html'"
+            >
+                Manage Movies
+            </button>
+
+            <button type="button">
+                Promotions
+            </button>
+
+            <button
+                type="button"
+                onclick="window.location.href='user_management.html'"
+            >
+                Users
+            </button>
+
+            <button type="button">
+                Showtimes
+            </button>
+
+            <button
+                type="button"
+                class="login-btn"
+                id="logout-button"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <section class="adminhome">
+
+        <h5>
+            Welcome to the Admin Home page.
+            Here you can manage movie listings,
+            promotions, users, and showtimes.
+        </h5>
+
+    </section>
+
+
+    <table>
+
+        <tbody>
+
+            <tr>
+                <th>Movie Image</th>
+                <th>Movie Title</th>
+                <th>Genre</th>
+                <th>Release Date</th>
+                <th>Rating</th>
+                <th>Visibility</th>
+                <th>Actions</th>
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    <img
+                        src="img/movieposter.jpg"
+                        class="imgtable"
+                        alt="Movie 1"
+                    >
+                </td>
+
+                <td>Movie Title 1</td>
+                <td>Action</td>
+                <td>2023-01-01</td>
+                <td>8.5</td>
+                <td>Visible</td>
+
+                <td>
+                    <button type="button">
+                        Edit
+                    </button>
+
+                    <button type="button">
+                        Delete
+                    </button>
+
+                    <button type="button">
+                        Visibility
+                    </button>
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    <img
+                        src="img/movieposter.jpg"
+                        class="imgtable"
+                        alt="Movie 2"
+                    >
+                </td>
+
+                <td>Movie Title 2</td>
+                <td>Comedy</td>
+                <td>2023-02-01</td>
+                <td>7.8</td>
+                <td>Hidden</td>
+
+                <td>
+                    <button type="button">
+                        Edit
+                    </button>
+
+                    <button type="button">
+                        Delete
+                    </button>
+
+                    <button type="button">
+                        Visibility
+                    </button>
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    <img
+                        src="img/movieposter.jpg"
+                        class="imgtable"
+                        alt="Movie 3"
+                    >
+                </td>
+
+                <td>Movie Title 3</td>
+                <td>Drama</td>
+                <td>2023-03-01</td>
+                <td>8.0</td>
+                <td>Visible</td>
+
+                <td>
+                    <button type="button">
+                        Edit
+                    </button>
+
+                    <button type="button">
+                        Delete
+                    </button>
+
+                    <button type="button">
+                        Visibility
+                    </button>
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    <img
+                        src="img/movieposter.jpg"
+                        class="imgtable"
+                        alt="Movie 4"
+                    >
+                </td>
+
+                <td>Movie Title 4</td>
+                <td>Sci-Fi</td>
+                <td>2023-04-01</td>
+                <td>8.2</td>
+                <td>Visible</td>
+
+                <td>
+                    <button type="button">
+                        Edit
+                    </button>
+
+                    <button type="button">
+                        Delete
+                    </button>
+
+                    <button type="button">
+                        Visibility
+                    </button>
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    <img
+                        src="img/movieposter.jpg"
+                        class="imgtable"
+                        alt="Movie 5"
+                    >
+                </td>
+
+                <td>Movie Title 5</td>
+                <td>Thriller</td>
+                <td>2023-05-01</td>
+                <td>7.9</td>
+                <td>Hidden</td>
+
+                <td>
+                    <button type="button">
+                        Edit
+                    </button>
+
+                    <button type="button">
+                        Delete
+                    </button>
+
+                    <button type="button">
+                        Visibility
+                    </button>
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <br>
+    <br>
+
+
+    <footer>
+
+        <p>
+            &copy; 2024 Movie Poster Title.
+            All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="adminhome.js"></script>
+
 </body>
+
 </html>
