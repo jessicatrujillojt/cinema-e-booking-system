@@ -9,3 +9,8 @@ INSERT INTO movie VALUES
 (8,'A new adaptation of the classic romantic drama starring Daisy Edgar-Jones and Esmé Creed-Miles.','Drama','https://image.tmdb.org/t/p/original/czsyPHosFNbh4PPqXfqWu1aBXnA.jpg','PG-13','Coming Soon','Sense and Sensibility','https://www.youtube.com/embed/mcrwcvad84U'),
 (9,'A comedy drama starring Tom Cruise, Riz Ahmed, and John Goodman.','Drama','https://image.tmdb.org/t/p/original/1ATXKrIPJyKNwnJ6lcG088Sa6zi.jpg','PG-13','Coming Soon','Digger','https://www.youtube.com/embed/job8V254NAE'),
 (10,'The next Avengers adventure featuring Robert Downey Jr., Pedro Pascal, Chris Hemsworth, and Vanessa Kirby.','Action','https://image.tmdb.org/t/p/original/jzPwsojjFStf5lR5Nm07w2hH56G.jpg','PG-13','Coming Soon','Avengers: Doomsday','https://www.youtube.com/embed/irVNGjRFZGk');
+
+INSERT INTO showroom (name, rows, seats_per_row) VALUES
+('Showroom 1', 5, 8),
+('Showroom 2', 6, 10),
+('Showroom 3', 7, 12);

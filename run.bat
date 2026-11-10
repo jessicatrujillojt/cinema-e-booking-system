@@ -11,3 +11,5 @@ echo.
 echo Cinema E-Booking System is running.
 echo Frontend: http://localhost:5501/home.html
 echo Backend:  http://localhost:8080
+echo.
+echo To stop the system, close the Cinema Backend and Cinema Frontend windows.

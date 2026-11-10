@@ -6,26 +6,26 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 
 cleanup() {
     echo
-    echo "Stopping backend and frontend..."
+    echo "Stopping Cinema E-Booking System..."
 
-    kill $BACKEND_PID 2>/dev/null
-    kill $FRONTEND_PID 2>/dev/null
+    # Stop anything this app is using on its two ports
+    lsof -ti :8080 | xargs kill 2>/dev/null
+    lsof -ti :5501 | xargs kill 2>/dev/null
 
-    exit
+    echo "Backend and frontend stopped."
+    exit 0
 }
 
-trap cleanup INT TERM
+trap cleanup INT TERM EXIT
 
 echo "Starting backend..."
 (
     cd backend
     ./mvnw spring-boot:run
 ) &
-BACKEND_PID=$!
 
 echo "Starting frontend on http://localhost:5501 ..."
 python3 -m http.server 5501 &
-FRONTEND_PID=$!
 
 echo
 echo "Cinema E-Booking System is running."
