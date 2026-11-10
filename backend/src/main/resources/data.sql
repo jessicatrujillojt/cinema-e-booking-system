@@ -14,3 +14,5 @@ INSERT INTO showroom (name, rows, seats_per_row) VALUES
 ('Showroom 1', 5, 8),
 ('Showroom 2', 6, 10),
 ('Showroom 3', 7, 12);
+
+ALTER TABLE movie ALTER COLUMN id RESTART WITH 11;
