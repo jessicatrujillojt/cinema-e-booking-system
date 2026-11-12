@@ -76,3 +76,89 @@ Returns all scheduled showtimes for one movie.
 Example:
 
 GET /api/showtimes/movie/1
+
+### Booking and Seating
+
+POST /api/bookings
+
+Creates a booking with the selected showtime and ticket quantities.
+
+Example request:
+
+```json
+{
+  "showtimeId": 1,
+  "adultTickets": 2,
+  "childTickets": 1,
+  "seniorTickets": 0
+}
+```
+
+Required fields:
+- showtimeId
+- adultTickets
+- childTickets
+- seniorTickets
+
+Ticket quantities must be valid and cannot exceed showroom capacity.
+
+### Seat Selection
+
+GET /api/bookings/showtime/{showtimeId}/unavailable-seats
+
+Returns seats that are already reserved or booked.
+
+Example response:
+
+```json
+["A1", "A2", "A3"]
+```
+
+POST /api/bookings/{bookingId}/seats
+
+Reserves selected seats for a booking.
+
+Example request:
+
+```json
+{
+  "selectedSeats": ["B1", "B2", "B3"]
+}
+```
+
+The number of seats must match the number of tickets. Already reserved seats cannot be selected.
+
+### Checkout
+
+POST /api/bookings/{bookingId}/attach-user
+
+Links the booking to the logged-in user. Login is required before checkout.
+
+GET /api/bookings/{bookingId}/summary
+
+Returns the movie, showtime, selected seats, ticket quantities, prices, total before tax, and checkout email.
+
+Ticket prices:
+- Adult: $12.00
+- Child: $8.00
+- Senior: $10.00
+
+PUT /api/bookings/{bookingId}/checkout-email
+
+Allows the user to confirm or change their checkout email.
+
+Example request:
+
+```json
+{
+  "emailAddress": "tickets@example.com"
+}
+```
+
+### Booking Flow
+
+Movie → Showtime → Tickets → Seat Selection → Login (if needed) → Order Summary → Email Confirmation → Payment Page
+
+All session-based booking requests must use `credentials: "include"` to preserve the booking through login.
+
+Payment processing and final booking confirmation are not required for Sprint 3.
