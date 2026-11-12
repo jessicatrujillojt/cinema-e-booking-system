@@ -1180,3 +1180,98 @@ button {
 [hidden] {
     display: none !important;
 }
+
+/* NEW CHANGES FROM NOV 3RD */
+/* Profile page buttons */
+.profile-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    max-width: 500px;
+    margin: 25px auto;
+}
+
+.profile-actions .bigbutton {
+    width: 100%;
+    min-height: 50px;
+    margin: 0;
+    font-size: 15px;
+}
+
+@media (max-width: 500px) {
+    .profile-actions {
+        grid-template-columns: 1fr;
+    }
+}
+/* Payment information page */
+#paymentCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 850px;
+    margin: 25px auto;
+}
+
+#paymentCards > * {
+    max-width: 350px;
+    box-sizing: border-box;
+}
+
+.payment-info {
+    max-width: 550px;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+    margin: 25px auto;
+    padding: 25px;
+}
+
+.add-card-btn {
+    display: block;
+    width: 250px;
+    height: 48px;
+    padding: 10px;
+    margin: 20px auto;
+}
+/* Red asterisk for required fields */
+.login-form label:has(+ input:required)::after,
+.login-form label:has(+ select:required)::after,
+.login-form label:has(+ textarea:required)::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+/* Center and arrange saved payment cards */
+#paymentCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 850px;
+    margin: 25px auto;
+}
+
+/* Individual saved payment card */
+.card-container {
+    width: 100%;
+    max-width: 350px;
+    box-sizing: border-box;
+}
+
+/* Card information */
+.card-container .payment-info {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Center Edit and Delete buttons */
+.card-container .card-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
