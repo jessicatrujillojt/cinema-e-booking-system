@@ -75,17 +75,35 @@ document.addEventListener(
                         "Login successful!";
 
 
-                    if (result.role === "ADMIN") {
+                    const returnToCheckout =
+                            sessionStorage.getItem(
+                                "returnToCheckout"
+                            );
 
-                        window.location.href =
-                            "adminhome.html";
+                        if (
+                            returnToCheckout === "true" &&
+                            result.role !== "ADMIN"
+                        ) {
 
-                    } else {
+                            sessionStorage.removeItem(
+                                "returnToCheckout"
+                            );
 
-                        window.location.href =
-                            "profile.html";
-                    }
+                            window.location.href =
+                                "checkout.html";
 
+                        } else if (
+                            result.role === "ADMIN"
+                        ) {
+
+                            window.location.href =
+                                "adminhome.html";
+
+                        } else {
+
+                            window.location.href =
+                                "profile.html";
+                        }
                 } catch (error) {
 
                     console.error(

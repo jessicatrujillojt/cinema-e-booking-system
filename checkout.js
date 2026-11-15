@@ -317,5 +317,61 @@ function formatTime(time) {
     );
 }
 
+async function attachBookingToUser() {
+    const response = await fetch(
+        `${API_BASE}/api/bookings/${bookingId}/attach-user`,
+        {
+            method: "POST",
+            credentials: "include"
+        }
+    );
 
-loadSummary();
+    if (response.status === 401) {
+        sessionStorage.setItem(
+            "returnToCheckout",
+            "true"
+        );
+
+        window.location.href =
+            "login.html";
+
+        return false;
+    }
+
+    if (!response.ok) {
+        const error =
+            await response.json();
+
+        throw new Error(
+            error.error ||
+            "Unable to attach booking to user."
+        );
+    }
+
+    return true;
+}
+
+async function initializeCheckout() {
+    try {
+        const attached =
+            await attachBookingToUser();
+
+        if (!attached) {
+            return;
+        }
+
+        await loadSummary();
+
+    } catch (error) {
+        console.error(
+            "Checkout initialization error:",
+            error
+        );
+
+        checkoutMessage.textContent =
+            error.message;
+    }
+}
+
+
+initializeCheckout();
