@@ -1,4 +1,5 @@
-INSERT INTO movie VALUES
+MERGE INTO movie KEY(id) VALUES
+
 (1,'A new chapter in the Resident Evil franchise following a new story of survival against a terrifying outbreak.','Action','https://image.tmdb.org/t/p/original/i7UyjfPio0VFHB9rBUZSFyhOoM8.jpg','R','Currently Running','Resident Evil','https://www.youtube.com/embed/mNd1gb19A-c'),
 (2,'An action adventure crime story starring Ethan Hawke and Russell Crowe.','Action','https://image.tmdb.org/t/p/original/8i5iZV50CoEtmDCFM7RSxCkpE8h.jpg','R','Currently Running','The Weight','https://www.youtube.com/embed/7YpuMymmiJ8'),
 (3,'A mysterious and dangerous story combining action, drama, and horror.','Action','https://image.tmdb.org/t/p/original/1n37BJchWHLiSYQkuFxe5KjB951.jpg','R','Currently Running','Hope','https://www.youtube.com/embed/0Q4v7IKWO_E'),
@@ -10,9 +11,9 @@ INSERT INTO movie VALUES
 (9,'A comedy drama starring Tom Cruise, Riz Ahmed, and John Goodman.','Drama','https://image.tmdb.org/t/p/original/1ATXKrIPJyKNwnJ6lcG088Sa6zi.jpg','PG-13','Coming Soon','Digger','https://www.youtube.com/embed/job8V254NAE'),
 (10,'The next Avengers adventure featuring Robert Downey Jr., Pedro Pascal, Chris Hemsworth, and Vanessa Kirby.','Action','https://image.tmdb.org/t/p/original/jzPwsojjFStf5lR5Nm07w2hH56G.jpg','PG-13','Coming Soon','Avengers: Doomsday','https://www.youtube.com/embed/irVNGjRFZGk');
 
-INSERT INTO showroom (name, rows, seats_per_row) VALUES
-('Showroom 1', 5, 8),
-('Showroom 2', 6, 10),
-('Showroom 3', 7, 12);
+MERGE INTO showroom (id, name, rows, seats_per_row) KEY(id) VALUES
+(1, 'Showroom 1', 5, 8),
+(2, 'Showroom 2', 6, 10),
+(3, 'Showroom 3', 7, 12);
 
 ALTER TABLE movie ALTER COLUMN id RESTART WITH 11;
