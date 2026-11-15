@@ -56,6 +56,205 @@ async function logout() {
     }
 }
 
+async function addMovie(event) {
+    event.preventDefault();
+
+    const movie = {
+        title: document.getElementById("Title").value,
+        description: document.getElementById("Description").value,
+        posterUrl: document.getElementById("PosterURL").value,
+        trailerUrl: document.getElementById("TrailerURL").value,
+        rating: document.getElementById("rating").value,
+        genre: document.getElementById("Genre").value,
+        status: document.getElementById("status").value
+    };
+
+    try {
+        const response = await fetch(`${API_BASE}/api/movies`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify(movie)
+        });
+
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            alert(errorMessage);
+            return;
+        }
+
+        const savedMovie = await response.json();
+
+        alert(`Movie "${savedMovie.title}" added successfully.`);
+
+        await loadMovies();
+
+        document
+        .getElementById("cardForm")
+        .reset();
+    } catch (error) {
+        console.error("Add movie error:", error);
+        alert("Unable to add movie.");
+    }
+}
+
+async function loadMovies() {
+    try {
+        const response = await fetch(
+            `${API_BASE}/api/movies`,
+            {
+                method: "GET",
+                credentials: "include"
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to load movies.");
+        }
+
+        const movies = await response.json();
+
+        const movieSelect =
+            document.getElementById("showtimeMovie");
+
+        movieSelect.innerHTML =
+            '<option value="">Select a movie</option>';
+
+        movies.forEach(function (movie) {
+            const option =
+                document.createElement("option");
+
+            option.value = movie.id;
+            option.textContent = movie.title;
+
+            movieSelect.appendChild(option);
+        });
+
+    } catch (error) {
+        console.error(
+            "Load movies error:",
+            error
+        );
+    }
+}
+
+
+async function loadShowrooms() {
+    try {
+        const response = await fetch(
+            `${API_BASE}/api/showrooms`,
+            {
+                method: "GET",
+                credentials: "include"
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to load showrooms.");
+        }
+
+        const showrooms = await response.json();
+
+        const showroomSelect =
+            document.getElementById("showroom");
+
+        showroomSelect.innerHTML =
+            '<option value="">Select a showroom</option>';
+
+        showrooms.forEach(function (showroom) {
+            const option =
+                document.createElement("option");
+
+            option.value = showroom.id;
+            option.textContent = showroom.name;
+
+            showroomSelect.appendChild(option);
+        });
+
+    } catch (error) {
+        console.error(
+            "Load showrooms error:",
+            error
+        );
+    }
+}
+
+
+async function addShowtime(event) {
+    event.preventDefault();
+
+    const showtime = {
+        movieId: Number(
+            document.getElementById(
+                "showtimeMovie"
+            ).value
+        ),
+
+        showroomId: Number(
+            document.getElementById(
+                "showroom"
+            ).value
+        ),
+
+        showDate:
+            document.getElementById(
+                "event-date"
+            ).value,
+
+        showTime:
+            document.getElementById(
+                "showtime"
+            ).value
+    };
+
+    try {
+        const response = await fetch(
+            `${API_BASE}/api/showtimes`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                credentials: "include",
+
+                body: JSON.stringify(showtime)
+            }
+        );
+
+        if (!response.ok) {
+            const errorMessage =
+                await response.text();
+
+            alert(errorMessage);
+            return;
+        }
+
+        await response.json();
+
+        alert(
+            "Showtime added successfully."
+        );
+
+        document
+            .getElementById("showtimeForm")
+            .reset();
+
+    } catch (error) {
+        console.error(
+            "Add showtime error:",
+            error
+        );
+
+        alert(
+            "Unable to add showtime."
+        );
+    }
+}
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -63,11 +262,54 @@ document.addEventListener(
 
         checkAdminAccess();
 
+        loadMovies();
+        loadShowrooms();
+
         document
             .getElementById("logout-button")
             .addEventListener(
                 "click",
                 logout
             );
+
+        document
+            .getElementById("cardForm")
+            .addEventListener(
+                "submit",
+                addMovie
+            );
+
+        document
+            .getElementById("showtimeForm")
+            .addEventListener(
+                "submit",
+                addShowtime
+            );
+
+        document
+            .getElementById("addCardButton")
+            .addEventListener(
+                "click",
+                function () {
+                    document
+                        .getElementById("cardFormSection")
+                        .scrollIntoView({
+                            behavior: "smooth"
+                        });
+            }
+        );
+
+        document
+            .getElementById("cancelCardButton")
+            .addEventListener(
+                "click",
+                function () {
+                    document
+                        .getElementById("cardForm")
+                        .reset();
+            }
+        );
     }
+
+    
 );

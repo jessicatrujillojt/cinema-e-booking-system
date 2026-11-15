@@ -45,24 +45,16 @@
 
             <button
                 type="button"
-                onclick="window.location.href='manage_movies.html'"
+                onclick="window.location.href='admin-promo.html'"
             >
-                Manage Movies
-            </button>
-
-            <button type="button">
                 Promotions
             </button>
 
             <button
                 type="button"
-                onclick="window.location.href='user_management.html'"
+                onclick="window.location.href='admin-showrooms.html'"
             >
-                Users
-            </button>
-
-            <button type="button">
-                Showtimes
+                Showrooms
             </button>
 
             <button
@@ -89,6 +81,7 @@
     </section>
 
 
+    <!-- Movie Table -->
     <table>
 
         <tbody>
@@ -97,7 +90,7 @@
                 <th>Movie Image</th>
                 <th>Movie Title</th>
                 <th>Genre</th>
-                <th>Release Date</th>
+                <th>Showroom</th>
                 <th>Rating</th>
                 <th>Visibility</th>
                 <th>Actions</th>
@@ -116,7 +109,7 @@
 
                 <td>Movie Title 1</td>
                 <td>Action</td>
-                <td>2023-01-01</td>
+                <td>Showroom 1</td>
                 <td>8.5</td>
                 <td>Visible</td>
 
@@ -149,7 +142,7 @@
 
                 <td>Movie Title 2</td>
                 <td>Comedy</td>
-                <td>2023-02-01</td>
+                <td>Showroom 2</td>
                 <td>7.8</td>
                 <td>Hidden</td>
 
@@ -182,7 +175,7 @@
 
                 <td>Movie Title 3</td>
                 <td>Drama</td>
-                <td>2023-03-01</td>
+                <td>Showroom 3</td>
                 <td>8.0</td>
                 <td>Visible</td>
 
@@ -215,7 +208,7 @@
 
                 <td>Movie Title 4</td>
                 <td>Sci-Fi</td>
-                <td>2023-04-01</td>
+                <td>Showroom 3</td>
                 <td>8.2</td>
                 <td>Visible</td>
 
@@ -248,7 +241,7 @@
 
                 <td>Movie Title 5</td>
                 <td>Thriller</td>
-                <td>2023-05-01</td>
+                <td>Showroom 2</td>
                 <td>7.9</td>
                 <td>Hidden</td>
 
@@ -273,6 +266,276 @@
     </table>
 
 
+    <!-- Add Movie Section -->
+    <button
+        type="button"
+        class="add-card-btn"
+        id="addCardButton"
+    >
+        Add Movie
+    </button>
+
+
+    <section
+        class="payment-info"
+        id="cardFormSection"
+    >
+
+        <h3 id="cardFormTitle">
+            Add Movie
+        </h3>
+
+        <form
+            id="cardForm"
+            class="login-form"
+        >
+
+            <div class="form-group">
+
+                <label for="Title">
+                    Title:
+                </label>
+
+                <input
+                    type="text"
+                    id="Title"
+                    autocomplete="off"
+                    placeholder="Enter movie title"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="Description">
+                    Description:
+                </label>
+
+                <input
+                    type="text"
+                    id="Description"
+                    autocomplete="off"
+                    placeholder="Enter movie description"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="PosterURL">
+                    Poster URL:
+                </label>
+
+                <input
+                    type="text"
+                    id="PosterURL"
+                    autocomplete="off"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="TrailerURL">
+                    Trailer URL:
+                </label>
+
+                <input
+                    type="text"
+                    id="TrailerURL"
+                    autocomplete="off"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="rating">
+                    Rating:
+                </label>
+
+                <input
+                    type="number"
+                    id="rating"
+                    min="0"
+                    max="10"
+                    step="0.1"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="Genre">
+                    Genre:
+                </label>
+
+                <select
+                    id="Genre"
+                    required
+                >
+                    <option value="Action">Action</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Biography">Biography</option>
+                    <option value="Crime">Crime</option>
+                    <option value="Documentary">Documentary</option>
+                    <option value="Family">Family</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="History">History</option>
+                    <option value="Musical">Musical</option>
+                    <option value="Mystery">Mystery</option>
+                    <option value="War">War</option>
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="status">
+                    Status:
+                </label>
+
+                <select
+                    id="status"
+                    required
+                >
+                    <option value="Currently Running">
+                        Currently Running
+                    </option>
+
+                    <option value="Coming Soon">
+                        Coming Soon
+                    </option>
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                id="saveCardButton"
+            >
+                Save Movie
+            </button>
+
+
+            <button
+                type="button"
+                id="cancelCardButton"
+            >
+                Cancel
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Schedule Showtime Section -->
+    <section class="payment-info">
+
+        <h3>
+            Schedule Showtime
+        </h3>
+
+        <form
+            id="showtimeForm"
+            class="login-form"
+        >
+
+            <div class="form-group">
+
+                <label for="showtimeMovie">
+                    Movie:
+                </label>
+
+                <select
+                    id="showtimeMovie"
+                    required
+                >
+                    <option value="">
+                        Select a movie
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="showroom">
+                    Showroom:
+                </label>
+
+                <select
+                    id="showroom"
+                    required
+                >
+                    <option value="">
+                        Select a showroom
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="event-date">
+                    Date:
+                </label>
+
+                <input
+                    type="date"
+                    id="event-date"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="showtime">
+                    Time:
+                </label>
+
+                <input
+                    type="time"
+                    id="showtime"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit">
+                Add Showtime
+            </button>
+
+        </form>
+
+    </section>
+
+
     <br>
     <br>
 
@@ -287,7 +550,7 @@
     </footer>
 
 
-    <!-- <script src="adminhome.js"></script> -->
+    <script src="adminhome.js"></script>
 
 </body>
 

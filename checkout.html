@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <title>Order Summary</title>
+</head>
+
+<body>
+
+    <nav>
+
+        <h1>
+            Movie E-Booking System
+        </h1>
+
+        <div class="navsection">
+
+            <p>
+                <a href="home.html">Home</a>
+            </p>
+
+            <p>
+                <a href="browse.html">Browse</a>
+            </p>
+
+            <p>
+                <a href="profile.html">Profile</a>
+            </p>
+
+        </div>
+
+    </nav>
+
+
+    <main class="booking-page">
+
+        <section class="booking-summary">
+
+            <h2>
+                Order Summary
+            </h2>
+
+
+            <div class="summary-row">
+                <strong>Movie:</strong>
+                <span id="summary-movie"></span>
+            </div>
+
+
+            <div class="summary-row">
+                <strong>Date:</strong>
+                <span id="summary-date"></span>
+            </div>
+
+
+            <div class="summary-row">
+                <strong>Showtime:</strong>
+                <span id="summary-time"></span>
+            </div>
+
+
+            <div class="summary-row">
+                <strong>Showroom:</strong>
+                <span id="summary-showroom"></span>
+            </div>
+
+
+            <div class="summary-row">
+                <strong>Selected Seats:</strong>
+                <span id="summary-seats"></span>
+            </div>
+
+
+            <div class="summary-row">
+                <strong>Adult Tickets:</strong>
+                <span id="summary-adult"></span>
+            </div>
+
+
+            <div class="summary-row">
+                <strong>Child Tickets:</strong>
+                <span id="summary-child"></span>
+            </div>
+
+
+            <div class="summary-row">
+                <strong>Senior Tickets:</strong>
+                <span id="summary-senior"></span>
+            </div>
+
+
+            <div class="summary-row">
+                <strong>Total Tickets:</strong>
+                <span id="summary-total-tickets"></span>
+            </div>
+
+
+            <div class="summary-row">
+                <strong>Adult Price:</strong>
+                <span id="summary-adult-price"></span>
+            </div>
+
+
+            <div class="summary-row">
+                <strong>Child Price:</strong>
+                <span id="summary-child-price"></span>
+            </div>
+
+
+            <div class="summary-row">
+                <strong>Senior Price:</strong>
+                <span id="summary-senior-price"></span>
+            </div>
+
+
+            <div class="summary-row">
+                <strong>Total Before Tax:</strong>
+                <span id="summary-total"></span>
+            </div>
+
+
+            <hr>
+
+
+            <h3>
+                Checkout Email
+            </h3>
+
+            <p>
+                Confirm your email address or enter a different one.
+            </p>
+
+
+            <form id="checkout-email-form">
+
+                <div class="form-group">
+
+                    <label for="checkout-email">
+                        Email Address:
+                    </label>
+
+                    <input
+                        type="email"
+                        id="checkout-email"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="checkout-button"
+                >
+                    Continue to Payment
+                </button>
+
+            </form>
+
+
+            <p
+                id="checkout-message"
+                role="status"
+            ></p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            &copy; 2024 Movie E-Booking System.
+            All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="checkout.js"></script>
+
+</body>
+
+</html>
