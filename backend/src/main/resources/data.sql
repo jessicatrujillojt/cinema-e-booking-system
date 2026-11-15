@@ -16,4 +16,4 @@ MERGE INTO showroom (id, name, rows, seats_per_row) KEY(id) VALUES
 (2, 'Showroom 2', 6, 10),
 (3, 'Showroom 3', 7, 12);
 
-ALTER TABLE movie ALTER COLUMN id RESTART WITH 11;
+ALTER TABLE movie ALTER COLUMN id RESTART WITH 100;
