@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Account | Cinema E-Booking</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <section class="verify-section">
+
+        <div class="verify-card">
+
+            <div class="verify-icon" id="verifyIcon">
+                ✓
+            </div>
+
+            <h1 id="verifyTitle">
+                Verifying Account...
+            </h1>
+
+            <p id="verifyMessage">
+                Please wait while we verify your email address.
+            </p>
+
+            <a href="login.html" class="verify-login-btn">
+                Go to Login
+            </a>
+
+            <p class="verify-footer">
+                Cinema E-Booking System
+            </p>
+
+        </div>
+
+    </section>
+
+    <script>
+        const params = new URLSearchParams(
+            window.location.search
+        );
+
+        const status = params.get("status");
+
+        const title = document.getElementById("verifyTitle");
+        const message = document.getElementById("verifyMessage");
+        const icon = document.getElementById("verifyIcon");
+
+        if (status === "success") {
+
+            title.textContent = "Email Verified Successfully!";
+
+            message.textContent =
+                "Your account has been verified. You can now log in to your Cinema E-Booking account.";
+
+            icon.textContent = "✓";
+            icon.classList.add("verify-success");
+
+        } else {
+
+            title.textContent = "Verification Failed";
+
+            message.textContent =
+                "Your verification link is invalid or has expired. Please try again.";
+
+            icon.textContent = "!";
+            icon.classList.add("verify-error");
+        }
+    </script>
+
+</body>
+</html>

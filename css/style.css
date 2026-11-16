@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Lora:wght@400;500;600;700&display=swap');
 body {
     margin: 0px;
     padding: 0;
@@ -1300,4 +1301,116 @@ button {
 
 .message-box[hidden] {
     display: none;
+}
+
+/* EMAIL VERIFICATION PAGE */
+
+.verify-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    background-color: #f8f6fa;
+}
+
+.verify-card {
+    width: 100%;
+    max-width: 500px;
+    background-color: #ffffff;
+    padding: 55px 45px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Verification icon */
+
+.verify-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 38px;
+    font-weight: bold;
+}
+
+.verify-success {
+    background-color: #e8f5ec;
+    color: #318451;
+}
+
+.verify-error {
+    background-color: #fcebea;
+    color: #c44545;
+}
+
+/* Heading */
+
+.verify-card h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 38px;
+    font-weight: normal;
+    color: #29232f;
+    margin-bottom: 18px;
+}
+
+/* Description */
+
+.verify-card p {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #77717d;
+}
+
+/* Login button */
+
+.verify-login-btn {
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+    padding: 14px 20px;
+    background-color: #3e1f48;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 7px;
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.verify-login-btn:hover {
+    background-color: #3e1f48;
+}
+
+/* Footer */
+
+.verify-card .verify-footer {
+    margin-top: 35px;
+    margin-bottom: 0;
+    padding-top: 20px;
+    border-top: 1px solid #eee9f1;
+    font-size: 12px;
+    color: #a39ba9;
+}
+
+/* Mobile responsiveness */
+
+@media (max-width: 500px) {
+
+    .verify-card {
+        padding: 40px 25px;
+    }
+
+    .verify-card h1 {
+        font-size: 32px;
+    }
+
 }
