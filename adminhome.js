@@ -116,6 +116,8 @@ async function loadMovies() {
 
         const movies = await response.json();
 
+
+        // Populate Schedule Showtime movie dropdown
         const movieSelect =
             document.getElementById("showtimeMovie");
 
@@ -132,7 +134,100 @@ async function loadMovies() {
             movieSelect.appendChild(option);
         });
 
+
+        // Populate admin movie table
+        const movieTableBody =
+            document.getElementById("movieTableBody");
+
+        const headerRow =
+            movieTableBody.querySelector("tr");
+
+        movieTableBody.innerHTML = "";
+
+        movieTableBody.appendChild(headerRow);
+
+
+        movies.forEach(function (movie) {
+
+            const row =
+                document.createElement("tr");
+
+
+            const imageCell =
+                document.createElement("td");
+
+            const image =
+                document.createElement("img");
+
+            image.src =
+                movie.posterUrl;
+
+            image.alt =
+                movie.title;
+
+            image.classList.add("imgtable");
+
+            imageCell.appendChild(image);
+
+
+            const titleCell =
+                document.createElement("td");
+
+            titleCell.textContent =
+                movie.title;
+
+
+            const genreCell =
+                document.createElement("td");
+
+            genreCell.textContent =
+                movie.genre;
+
+
+            const showroomCell =
+                document.createElement("td");
+
+            showroomCell.textContent =
+                "Scheduled separately";
+
+
+            const ratingCell =
+                document.createElement("td");
+
+            ratingCell.textContent =
+                movie.rating;
+
+
+            const visibilityCell =
+                document.createElement("td");
+
+            visibilityCell.textContent =
+                movie.status;
+
+
+            const actionsCell =
+                document.createElement("td");
+
+            actionsCell.textContent =
+                "—";
+
+
+            row.append(
+                imageCell,
+                titleCell,
+                genreCell,
+                showroomCell,
+                ratingCell,
+                visibilityCell,
+                actionsCell
+            );
+
+
+            movieTableBody.appendChild(row);
+        });
+
     } catch (error) {
+
         console.error(
             "Load movies error:",
             error
