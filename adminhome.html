@@ -59,14 +59,6 @@
 
         <button
             type="button"
-            disabled
-            title="User management is not required for Sprint 3"
-        >
-            Manage Users
-        </button>
-
-        <button
-            type="button"
             onclick="document.getElementById('showtimeSection').scrollIntoView({ behavior: 'smooth' })"
         >
             Manage Showtimes
@@ -99,7 +91,7 @@
     <!-- Movie Table -->
     <table>
 
-        <tbody id ="movieTableBody">
+        <tbody>
 
             <tr>
                 <th>Movie Image</th>
@@ -210,34 +202,14 @@
                     Rating:
                 </label>
 
-                <select
+                <input
+                    type="number"
                     id="rating"
+                    min="0"
+                    max="10"
+                    step="0.1"
                     required
                 >
-                    <option value="">
-                        Select rating
-                    </option>
-
-                    <option value="G">
-                        G
-                    </option>
-
-                    <option value="PG">
-                        PG
-                    </option>
-
-                    <option value="PG-13">
-                        PG-13
-                    </option>
-
-                    <option value="R">
-                        R
-                    </option>
-
-                    <option value="NC-17">
-                        NC-17
-                    </option>
-                </select>
 
             </div>
 
