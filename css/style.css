@@ -59,25 +59,66 @@ a{
 .slide{
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 1px;
+}
+.trailer-section-home {
+    padding: 30px 5%;
+    display: flex;
+    justify-content: center;
 }
 
-.frame{
-    background-color: rgb(4, 4, 4);
-    
+.trailer-frame-home {
+    width: 80%;
+    max-width: 1200px;
+}
+
+.frame {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.15),
+        transparent
+    );
+}
+.announcement{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(232, 222, 233, 0.297);
+    color: rgb(253, 253, 253);
+    font-family: "Lora", serif;
+    width: 50%;
+    height: 10%;
+    gap: 5px;
 }
 .imgcover{
-     display: block;
+    display: block;
     width: 100%;
     aspect-ratio: 16 / 9;
     border: none;
 }
+.frame:hover .imgcover {
+    transform: scale(1.03);
+}
 .imgbase{
     display: block;
-    width: 90%;
+    width: 60%;
     height: 100%;
     position: relative;
     margin: 10px auto;
+    border-radius: 100px;
+    border: 1px solid rgb(165, 137, 137);
     
 }
 .imgbase::before{
@@ -127,7 +168,14 @@ a{
     object-fit: cover;
     display: block;
 }
-
+h2 {
+    margin: 20px 5% 25px;
+    font-size: 24px;
+    color: #000000;
+    border-left: 5px solid #5b0053;
+    padding-left: 10px;
+    letter-spacing: 1px;
+}
 .card h4, .card h3,
 .card h5{
     position: relative; /* ensures text sits ABOVE overlay */
@@ -1258,6 +1306,7 @@ button {
     width: 100%;
     max-width: 350px;
     box-sizing: border-box;
+    border: 1px solid #782a2a;
 }
 
 /* Card information */
