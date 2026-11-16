@@ -1,19 +1,38 @@
-MERGE INTO movie KEY(id) VALUES
+MERGE INTO movie (
+    id,
+    description,
+    genre,
+    poster_url,
+    rating,
+    status,
+    title,
+    trailer_url,
+    visible
+)
+KEY(id)
+VALUES
+(1,'A new chapter in the Resident Evil franchise following a new story of survival against a terrifying outbreak.','Action','https://image.tmdb.org/t/p/original/i7UyjfPio0VFHB9rBUZSFyhOoM8.jpg','R','Currently Running','Resident Evil','https://www.youtube.com/embed/mNd1gb19A-c',TRUE),
+(2,'An action adventure crime story starring Ethan Hawke and Russell Crowe.','Action','https://image.tmdb.org/t/p/original/8i5iZV50CoEtmDCFM7RSxCkpE8h.jpg','R','Currently Running','The Weight','https://www.youtube.com/embed/7YpuMymmiJ8',TRUE),
+(3,'A mysterious and dangerous story combining action, drama, and horror.','Action','https://image.tmdb.org/t/p/original/1n37BJchWHLiSYQkuFxe5KjB951.jpg','R','Currently Running','Hope','https://www.youtube.com/embed/0Q4v7IKWO_E',TRUE),
+(4,'The next chapter of the magical story featuring Sandra Bullock and Nicole Kidman.','Fantasy','https://image.tmdb.org/t/p/original/ogwQOLbCfncjvBhFb5l0OmQH8KC.jpg','PG-13','Currently Running','Practical Magic 2','https://www.youtube.com/embed/Ho10_4IX1jE',TRUE),
+(5,'An action comedy thriller starring Alan Ritchson and Owen Wilson.','Action','https://image.tmdb.org/t/p/original/yBKMAIj7clP42UkFejhGDBBoTpb.jpg','PG-13','Currently Running','Runner','https://www.youtube.com/embed/iarSF_4epRg?si=wbp3FvSF5kz1yPg0',TRUE),
+(6,'An action adventure thriller starring Brad Pitt, J.K. Simmons, and Anna Lambe.','Action','https://image.tmdb.org/t/p/original/1ApfSA8JTqeha3GTFEY8syV4auq.jpg','PG-13','Coming Soon','Heart of the Beast','https://www.youtube.com/embed/JFQcDFhNh4o',TRUE),
+(7,'A new action drama based on the Street Fighter franchise, starring Jason Momoa and Noah Centineo.','Action','https://image.tmdb.org/t/p/original/utKzCSCz2HtXwcDGfWLj2IHhSob.jpg','PG-13','Coming Soon','Street Fighter','https://www.youtube.com/embed/Xt4X4FvXk2A',TRUE),
+(8,'A new adaptation of the classic romantic drama starring Daisy Edgar-Jones and Esmé Creed-Miles.','Drama','https://image.tmdb.org/t/p/original/czsyPHosFNbh4PPqXfqWu1aBXnA.jpg','PG-13','Coming Soon','Sense and Sensibility','https://www.youtube.com/embed/mcrwcvad84U',TRUE),
+(9,'A comedy drama starring Tom Cruise, Riz Ahmed, and John Goodman.','Drama','https://image.tmdb.org/t/p/original/1ATXKrIPJyKNwnJ6lcG088Sa6zi.jpg','PG-13','Coming Soon','Digger','https://www.youtube.com/embed/job8V254NAE',TRUE),
+(10,'The next Avengers adventure featuring Robert Downey Jr., Pedro Pascal, Chris Hemsworth, and Vanessa Kirby.','Action','https://image.tmdb.org/t/p/original/jzPwsojjFStf5lR5Nm07w2hH56G.jpg','PG-13','Coming Soon','Avengers: Doomsday','https://www.youtube.com/embed/irVNGjRFZGk',TRUE);
 
-(1,'A new chapter in the Resident Evil franchise following a new story of survival against a terrifying outbreak.','Action','https://image.tmdb.org/t/p/original/i7UyjfPio0VFHB9rBUZSFyhOoM8.jpg','R','Currently Running','Resident Evil','https://www.youtube.com/embed/mNd1gb19A-c'),
-(2,'An action adventure crime story starring Ethan Hawke and Russell Crowe.','Action','https://image.tmdb.org/t/p/original/8i5iZV50CoEtmDCFM7RSxCkpE8h.jpg','R','Currently Running','The Weight','https://www.youtube.com/embed/7YpuMymmiJ8'),
-(3,'A mysterious and dangerous story combining action, drama, and horror.','Action','https://image.tmdb.org/t/p/original/1n37BJchWHLiSYQkuFxe5KjB951.jpg','R','Currently Running','Hope','https://www.youtube.com/embed/0Q4v7IKWO_E'),
-(4,'The next chapter of the magical story featuring Sandra Bullock and Nicole Kidman.','Fantasy','https://image.tmdb.org/t/p/original/ogwQOLbCfncjvBhFb5l0OmQH8KC.jpg','PG-13','Currently Running','Practical Magic 2','https://www.youtube.com/embed/Ho10_4IX1jE'),
-(5,'An action comedy thriller starring Alan Ritchson and Owen Wilson.','Action','https://image.tmdb.org/t/p/original/yBKMAIj7clP42UkFejhGDBBoTpb.jpg','PG-13','Currently Running','Runner','https://www.youtube.com/embed/iarSF_4epRg?si=wbp3FvSF5kz1yPg0'),
-(6,'An action adventure thriller starring Brad Pitt, J.K. Simmons, and Anna Lambe.','Action','https://image.tmdb.org/t/p/original/1ApfSA8JTqeha3GTFEY8syV4auq.jpg','PG-13','Coming Soon','Heart of the Beast','https://www.youtube.com/embed/JFQcDFhNh4o'),
-(7,'A new action drama based on the Street Fighter franchise, starring Jason Momoa and Noah Centineo.','Action','https://image.tmdb.org/t/p/original/utKzCSCz2HtXwcDGfWLj2IHhSob.jpg','PG-13','Coming Soon','Street Fighter','https://www.youtube.com/embed/Xt4X4FvXk2A'),
-(8,'A new adaptation of the classic romantic drama starring Daisy Edgar-Jones and Esmé Creed-Miles.','Drama','https://image.tmdb.org/t/p/original/czsyPHosFNbh4PPqXfqWu1aBXnA.jpg','PG-13','Coming Soon','Sense and Sensibility','https://www.youtube.com/embed/mcrwcvad84U'),
-(9,'A comedy drama starring Tom Cruise, Riz Ahmed, and John Goodman.','Drama','https://image.tmdb.org/t/p/original/1ATXKrIPJyKNwnJ6lcG088Sa6zi.jpg','PG-13','Coming Soon','Digger','https://www.youtube.com/embed/job8V254NAE'),
-(10,'The next Avengers adventure featuring Robert Downey Jr., Pedro Pascal, Chris Hemsworth, and Vanessa Kirby.','Action','https://image.tmdb.org/t/p/original/jzPwsojjFStf5lR5Nm07w2hH56G.jpg','PG-13','Coming Soon','Avengers: Doomsday','https://www.youtube.com/embed/irVNGjRFZGk');
-
-MERGE INTO showroom (id, name, rows, seats_per_row) KEY(id) VALUES
+MERGE INTO showroom (
+    id,
+    name,
+    rows,
+    seats_per_row
+)
+KEY(id)
+VALUES
 (1, 'Showroom 1', 5, 8),
 (2, 'Showroom 2', 6, 10),
 (3, 'Showroom 3', 7, 12);
 
-ALTER TABLE movie ALTER COLUMN id RESTART WITH 100;
+ALTER TABLE movie
+ALTER COLUMN id RESTART WITH 100;

@@ -69,6 +69,9 @@ public class PromotionEmailService {
                             + ",\n\n"
                             + promotion.getDescription()
                             + "\n\n"
+                            + "Promo Code: "
+                            + promotion.getPromoCode()
+                            + "\n"
                             + "Discount: "
                             + promotion.getDiscount()
                             + "%\n"

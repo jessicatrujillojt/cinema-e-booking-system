@@ -1,6 +1,15 @@
 const API_BASE = "http://localhost:8080";
 
+function showMessage(message, type) {
 
+    const loginMessage =
+        document.getElementById("loginMessage");
+
+    loginMessage.textContent = message;
+    loginMessage.className = "message-box " + type;
+    loginMessage.hidden = false;
+
+}
 document.addEventListener(
     "DOMContentLoaded",
     function () {
@@ -31,8 +40,7 @@ document.addEventListener(
                         .value;
 
 
-                loginMessage.textContent =
-                    "Logging in...";
+                showMessage("Logging in...", "info");
 
 
                 try {
@@ -63,16 +71,18 @@ document.addEventListener(
 
                     if (!response.ok) {
 
-                        loginMessage.textContent =
+                        showMessage(
                             result.message ||
-                            "Invalid email or password.";
+                            "Invalid email or password.", "error"
+                        );
 
                         return;
                     }
 
 
-                    loginMessage.textContent =
-                        "Login successful!";
+                    showMessage(
+                        "Login successful!", "success"
+                    );
 
 
                     const returnToCheckout =
@@ -111,8 +121,9 @@ document.addEventListener(
                         error
                     );
 
-                    loginMessage.textContent =
-                        "Unable to connect to the server.";
+                    showMessage(
+                        "Unable to connect to the server.", "error"
+                    );
                 }
             }
         );

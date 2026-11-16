@@ -1,20 +1,26 @@
 package com.cinema.backend.controller;
+import java.net.URI;
+import java.util.Map;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.cinema.backend.dto.ChangePasswordRequest;
 import com.cinema.backend.dto.ForgotPasswordRequest;
 import com.cinema.backend.dto.LoginRequest;
 import com.cinema.backend.dto.LoginResult;
 import com.cinema.backend.dto.RegisterRequest;
+import com.cinema.backend.dto.ResetPasswordRequest;
 import com.cinema.backend.model.User;
 import com.cinema.backend.service.AuthService;
-import com.cinema.backend.dto.ResetPasswordRequest;
 
 import jakarta.servlet.http.HttpSession;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -56,31 +62,31 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/verify")
-    public ResponseEntity<?> verifyAccount(
-            @RequestParam String token) {
+    
+@GetMapping("/verify")
+public ResponseEntity<Void> verifyAccount(
+        @RequestParam String token) {
 
-        try {
+    try {
 
-            authService.verifyAccount(token);
+        authService.verifyAccount(token);
 
-            return ResponseEntity.ok(
-                    Map.of(
-                            "success", true,
-                            "message", "Account verified successfully."
-                    )
-            );
+        return ResponseEntity.status(302)
+                .location(URI.create(
+                    "http://localhost:5501/verify.html?status=success"
+                ))
+                .build();
 
-        } catch (IllegalArgumentException e) {
+    } catch (IllegalArgumentException e) {
 
-            return ResponseEntity.badRequest().body(
-                    Map.of(
-                            "success", false,
-                            "message", e.getMessage()
-                    )
-            );
-        }
+        return ResponseEntity.status(302)
+                .location(URI.create(
+                    "http://localhost:5501/verify.html?status=failed"
+                ))
+                .build();
     }
+}
+
 
     @PostMapping("/login")
     public ResponseEntity<?> login(
