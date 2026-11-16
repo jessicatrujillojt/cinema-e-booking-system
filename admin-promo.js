@@ -48,6 +48,7 @@ async function loadPromotions() {
 
             item.textContent =
                 `${promotion.title} - ` +
+                `Code: ${promotion.promoCode || "N/A"} - ` +
                 `${promotion.discount}% off - ` +
                 `Expires ${promotion.expiryDate}`;
 
@@ -97,6 +98,13 @@ promotionForm.addEventListener(
                     .getElementById("Title")
                     .value
                     .trim(),
+
+            promoCode:
+                document
+                    .getElementById("promoCode")
+                    .value
+                    .trim(),
+
 
             description:
                 document

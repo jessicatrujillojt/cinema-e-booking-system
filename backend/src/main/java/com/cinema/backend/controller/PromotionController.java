@@ -6,6 +6,7 @@ import com.cinema.backend.service.PromotionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -63,4 +64,32 @@ public class PromotionController {
                     );
         }
     }
+    @GetMapping("/validate/{promoCode}")
+        public ResponseEntity<?> validatePromoCode(
+                @PathVariable String promoCode
+        ) {
+        try {
+
+                Promotion promotion =
+                        promotionService
+                                .validatePromoCode(
+                                        promoCode
+                                );
+
+                return ResponseEntity.ok(
+                        promotion
+                );
+
+        } catch (IllegalArgumentException e) {
+
+                return ResponseEntity
+                        .badRequest()
+                        .body(
+                                Map.of(
+                                        "error",
+                                        e.getMessage()
+                                )
+                        );
+        }
+        }
 }

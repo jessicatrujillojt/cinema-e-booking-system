@@ -68,6 +68,31 @@ public class PromotionService {
             );
         }
 
+        if (
+            promotion.getPromoCode() == null ||
+            promotion.getPromoCode().isBlank()
+        ) {
+            throw new IllegalArgumentException(
+                    "Promo code is required."
+            );
+        }
+
+        promotion.setPromoCode(
+                promotion.getPromoCode()
+                        .trim()
+                        .toUpperCase()
+        );
+
+        if (
+            promotionRepository
+                    .existsByPromoCodeIgnoreCase(
+                            promotion.getPromoCode()
+                    )
+        ) {
+            throw new IllegalArgumentException(
+                    "Promo code already exists."
+            );
+        }
 
         Promotion savedPromotion =
                 promotionRepository.save(promotion);
@@ -86,5 +111,34 @@ public class PromotionService {
     public List<Promotion> getAllPromotions() {
 
         return promotionRepository.findAll();
+    }
+
+    public Promotion validatePromoCode(String promoCode) {
+
+    if (promoCode == null || promoCode.isBlank()) {
+        throw new IllegalArgumentException(
+                "Promo code is required."
+        );
+    }
+
+    Promotion promotion =
+            promotionRepository
+                    .findByPromoCodeIgnoreCase(
+                            promoCode.trim()
+                    )
+                    .orElseThrow(
+                            () ->
+                                    new IllegalArgumentException(
+                                            "Invalid promo code."
+                                    )
+                    );
+
+    if (promotion.getExpiryDate().isBefore(LocalDate.now())) {
+        throw new IllegalArgumentException(
+                "Promo code has expired."
+        );
+    }
+
+        return promotion;
     }
 }

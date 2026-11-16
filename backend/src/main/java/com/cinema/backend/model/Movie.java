@@ -18,6 +18,8 @@ public class Movie {
     private String trailerUrl;
     private String status;
 
+    private Boolean visible = true;
+
     public Movie() {
     }
 
@@ -83,6 +85,14 @@ public class Movie {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public boolean isVisible() {
+        return visible == null || visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
 }

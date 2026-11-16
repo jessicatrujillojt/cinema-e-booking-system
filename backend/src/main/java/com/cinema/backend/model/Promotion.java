@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "promotion")
+
 public class Promotion {
 
     @Id
@@ -22,6 +23,9 @@ public class Promotion {
 
     @Column(nullable = false)
     private LocalDate expiryDate;
+
+    @Column(unique = true)
+    private String promoCode;
 
     public Promotion() {}
 
@@ -63,5 +67,13 @@ public class Promotion {
 
     public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
+    }
+
+    public String getPromoCode() {
+        return promoCode;
+    }
+
+    public void setPromoCode(String promoCode) {
+        this.promoCode = promoCode;
     }
 }
