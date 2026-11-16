@@ -11,7 +11,9 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/movies")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5501",
+        allowCredentials = "true"
+)
 public class MovieController {
 
     private final MovieRepository movieRepository;

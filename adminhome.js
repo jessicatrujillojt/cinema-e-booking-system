@@ -103,7 +103,7 @@ async function addMovie(event) {
 async function loadMovies() {
     try {
         const response = await fetch(
-            `${API_BASE}/api/movies`,
+            `${API_BASE}/api/movies/admin/all`,
             {
                 method: "GET",
                 credentials: "include"
@@ -124,15 +124,18 @@ async function loadMovies() {
         movieSelect.innerHTML =
             '<option value="">Select a movie</option>';
 
-        movies.forEach(function (movie) {
-            const option =
-                document.createElement("option");
+        movies
+            .filter(movie => movie.visible)
+            .forEach(function (movie) {
 
-            option.value = movie.id;
-            option.textContent = movie.title;
+                const option =
+                    document.createElement("option");
 
-            movieSelect.appendChild(option);
-        });
+                option.value = movie.id;
+                option.textContent = movie.title;
+
+                movieSelect.appendChild(option);
+            });
 
 
         // Populate admin movie table
@@ -159,12 +162,8 @@ async function loadMovies() {
             const image =
                 document.createElement("img");
 
-            image.src =
-                movie.posterUrl;
-
-            image.alt =
-                movie.title;
-
+            image.src = movie.posterUrl;
+            image.alt = movie.title;
             image.classList.add("imgtable");
 
             imageCell.appendChild(image);
@@ -173,15 +172,13 @@ async function loadMovies() {
             const titleCell =
                 document.createElement("td");
 
-            titleCell.textContent =
-                movie.title;
+            titleCell.textContent = movie.title;
 
 
             const genreCell =
                 document.createElement("td");
 
-            genreCell.textContent =
-                movie.genre;
+            genreCell.textContent = movie.genre;
 
 
             const showroomCell =
@@ -202,14 +199,69 @@ async function loadMovies() {
                 document.createElement("td");
 
             visibilityCell.textContent =
-                movie.status;
+                movie.visible
+                    ? "Visible"
+                    : "Hidden";
 
 
             const actionsCell =
                 document.createElement("td");
 
-            actionsCell.textContent =
-                "—";
+
+            const editButton =
+                document.createElement("button");
+
+            editButton.textContent =
+                "Edit";
+
+            editButton.addEventListener(
+                "click",
+                function () {
+                    editMovie(movie);
+                }
+            );
+
+
+            const visibilityButton =
+                document.createElement("button");
+
+            visibilityButton.textContent =
+                movie.visible
+                    ? "Hide"
+                    : "Show";
+
+            visibilityButton.addEventListener(
+                "click",
+                function () {
+                    toggleMovieVisibility(
+                        movie.id
+                    );
+                }
+            );
+
+
+            const deleteButton =
+                document.createElement("button");
+
+            deleteButton.textContent =
+                "Delete";
+
+            deleteButton.addEventListener(
+                "click",
+                function () {
+                    deleteMovie(
+                        movie.id,
+                        movie.title
+                    );
+                }
+            );
+
+
+            actionsCell.append(
+                editButton,
+                visibilityButton,
+                deleteButton
+            );
 
 
             row.append(
@@ -347,6 +399,193 @@ async function addShowtime(event) {
 
         alert(
             "Unable to add showtime."
+        );
+    }
+}
+
+async function toggleMovieVisibility(movieId) {
+
+    try {
+
+        const response = await fetch(
+            `${API_BASE}/api/movies/${movieId}/visibility`,
+            {
+                method: "PATCH",
+                credentials: "include"
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                "Unable to update movie visibility."
+            );
+        }
+
+        await response.json();
+
+        await loadMovies();
+
+    } catch (error) {
+
+        console.error(
+            "Visibility error:",
+            error
+        );
+
+        alert(
+            "Unable to update movie visibility."
+        );
+    }
+}
+
+
+async function deleteMovie(
+    movieId,
+    movieTitle
+) {
+
+    const confirmed =
+        confirm(
+            `Delete "${movieTitle}"?`
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `${API_BASE}/api/movies/${movieId}`,
+            {
+                method: "DELETE",
+                credentials: "include"
+            }
+        );
+
+        const result =
+            await response.json();
+
+        if (!response.ok) {
+
+            alert(
+                result.error ||
+                "Unable to delete movie."
+            );
+
+            return;
+        }
+
+        alert(
+            result.message
+        );
+
+        await loadMovies();
+
+    } catch (error) {
+
+        console.error(
+            "Delete movie error:",
+            error
+        );
+
+        alert(
+            "Unable to delete movie."
+        );
+    }
+}
+
+
+async function editMovie(movie) {
+
+    const newTitle =
+        prompt(
+            "Movie title:",
+            movie.title
+        );
+
+    if (newTitle === null) {
+        return;
+    }
+
+    const newGenre =
+        prompt(
+            "Genre:",
+            movie.genre
+        );
+
+    if (newGenre === null) {
+        return;
+    }
+
+    const newRating =
+        prompt(
+            "Rating:",
+            movie.rating
+        );
+
+    if (newRating === null) {
+        return;
+    }
+
+    const updatedMovie = {
+        title: newTitle.trim(),
+        genre: newGenre.trim(),
+        rating: newRating.trim(),
+        description: movie.description,
+        posterUrl: movie.posterUrl,
+        trailerUrl: movie.trailerUrl,
+        status: movie.status
+    };
+
+    try {
+
+        const response = await fetch(
+            `${API_BASE}/api/movies/${movie.id}`,
+            {
+                method: "PUT",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                credentials: "include",
+
+                body:
+                    JSON.stringify(
+                        updatedMovie
+                    )
+            }
+        );
+
+        if (!response.ok) {
+
+            const errorMessage =
+                await response.text();
+
+            alert(errorMessage);
+
+            return;
+        }
+
+        await response.json();
+
+        alert(
+            "Movie updated successfully."
+        );
+
+        await loadMovies();
+
+    } catch (error) {
+
+        console.error(
+            "Edit movie error:",
+            error
+        );
+
+        alert(
+            "Unable to edit movie."
         );
     }
 }
