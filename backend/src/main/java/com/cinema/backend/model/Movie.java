@@ -19,6 +19,7 @@ public class Movie {
     private String status;
 
     private Boolean visible = true;
+    private Integer durationMinutes = 120;
 
     public Movie() {
     }
@@ -93,6 +94,14 @@ public class Movie {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public int getDurationMinutes() {
+        return durationMinutes == null ? 120 : durationMinutes;
+    }
+
+    public void setDurationMinutes(Integer durationMinutes) {
+        this.durationMinutes = durationMinutes;
     }
 
 }

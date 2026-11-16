@@ -74,22 +74,45 @@ public class ShowtimeController {
         }
 
 
-        boolean conflict =
-                showtimeRepository
-                        .existsByShowroomIdAndShowDateAndShowTime(
-                                request.getShowroomId(),
-                                request.getShowDate(),
-                                request.getShowTime()
-                        );
+        List<Showtime> existingShowtimes =
+            showtimeRepository
+                    .findByShowroomIdAndShowDate(
+                            request.getShowroomId(),
+                            request.getShowDate()
+                    );
 
+    LocalTime newStart =
+            request.getShowTime();
 
-        if (conflict) {
+    LocalTime newEnd =
+            newStart.plusMinutes(
+                    movie.getDurationMinutes()
+            );
+
+    for (Showtime existingShowtime : existingShowtimes) {
+
+        LocalTime existingStart =
+                existingShowtime.getShowTime();
+
+        LocalTime existingEnd =
+                existingStart.plusMinutes(
+                        existingShowtime
+                                .getMovie()
+                                .getDurationMinutes()
+                );
+
+        boolean overlaps =
+                newStart.isBefore(existingEnd) &&
+                newEnd.isAfter(existingStart);
+
+        if (overlaps) {
             return ResponseEntity
                     .badRequest()
                     .body(
-                            "This showroom already has a movie scheduled at that date and time."
+                            "This showroom already has a movie scheduled during that time."
                     );
         }
+    }
 
 
         Showtime showtime = new Showtime();
