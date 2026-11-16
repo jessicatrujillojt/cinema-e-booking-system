@@ -130,18 +130,18 @@ a{
         z-index: 1;
 }
 
-.card-container {
+.card-container-home {
     display: flex;
     gap: 20px;
-
+    padding: 20px;
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
-
+    justify-content: center;
     scrollbar-width: none;
 
     background: #fbf8f8;
-    border-radius: 12px;
+    border-radius: 20px;
     padding: 10px;
 
     color: rgb(1, 1, 1);
@@ -1307,7 +1307,6 @@ button {
     width: 100%;
     max-width: 350px;
     box-sizing: border-box;
-    border: 1px solid #782a2a;
 }
 
 /* Card information */
